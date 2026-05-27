@@ -1,0 +1,52 @@
+# Project Board
+
+Use this as the initial GitHub Projects setup.
+
+## Board Name
+
+```text
+AI Workflow Kits Roadmap
+```
+
+## Views
+
+| View | Purpose |
+| --- | --- |
+| Roadmap | package and runtime milestones |
+| Runtime Coverage | Codex, Claude Code, Gemini, Copilot support status |
+| Contribution Queue | good first issues and help wanted tasks |
+
+## Fields
+
+| Field | Values |
+| --- | --- |
+| Status | Backlog, Ready, In Progress, Review, Done |
+| Package | package-authoring, keepworking, new-package |
+| Runtime | Codex, Claude Code, Gemini, GitHub Copilot, Cross-runtime |
+| Type | docs, package, adapter, example, scanner, project |
+| Priority | P0, P1, P2 |
+
+## Initial Cards
+
+| Title | Package | Runtime | Type | Priority |
+| --- | --- | --- | --- | --- |
+| Polish README for copy-ready onboarding | Cross-runtime | Cross-runtime | docs | P0 |
+| Add wiki pages from `docs/wiki/` | Cross-runtime | Cross-runtime | docs | P0 |
+| Add package request issue template | package-authoring | Cross-runtime | project | P0 |
+| Expand keepworking Codex dry-run example | keepworking | Codex | example | P1 |
+| Expand keepworking Gemini example | keepworking | Gemini | example | P1 |
+| Expand keepworking Copilot prompt examples | keepworking | GitHub Copilot | example | P1 |
+
+## Issue Labels
+
+```text
+good first issue
+help wanted
+package
+runtime:codex
+runtime:claude
+runtime:gemini
+runtime:copilot
+docs
+public-safety
+```

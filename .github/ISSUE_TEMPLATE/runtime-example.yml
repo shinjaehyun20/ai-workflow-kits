@@ -1,0 +1,38 @@
+name: Runtime example
+description: Add or improve a runtime-specific example.
+title: "[example] "
+labels:
+  - docs
+body:
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      options:
+        - Codex
+        - Claude Code
+        - Gemini
+        - GitHub Copilot
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      description: Package id, such as keepworking.
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Scenario
+      description: Describe the example workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: public_safety
+    attributes:
+      label: Public safety notes
+      description: Confirm that the example uses public-safe paths, names, and evidence.
+    validations:
+      required: true

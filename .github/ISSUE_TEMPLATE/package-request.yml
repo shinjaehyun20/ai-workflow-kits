@@ -1,0 +1,39 @@
+name: Package request
+description: Propose a new workflow package or runtime port.
+title: "[package] "
+labels:
+  - package
+body:
+  - type: input
+    id: package
+    attributes:
+      label: Package name
+      description: Short package id, such as keepworking or proposal-review.
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      options:
+        - Codex
+        - Claude Code
+        - Gemini
+        - GitHub Copilot
+        - Cross-runtime
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What should this workflow help people do?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Completion evidence
+      description: What evidence should prove this workflow is complete?
+    validations:
+      required: true

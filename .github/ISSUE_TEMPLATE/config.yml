@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Package authoring rules
+    url: https://github.com/shinjaehyun20/ai-workflow-kits/blob/main/docs/package-authoring-rules.md
+    about: Read this before adding a new package or runtime artifact.
