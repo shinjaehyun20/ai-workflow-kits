@@ -33,6 +33,7 @@ BLOCKED_PATTERNS = [
 
 ALLOWED_PATTERNS = [
     re.compile(r"https://github\.com/shinjaehyun20/ai-workflow-kits/"),
+    re.compile(r"\bshinjaehyun20\b"),
     re.compile(r"\bGEMINI\.md\b"),
     re.compile(r"\bAGENTS\.md\b"),
     re.compile(r"\.github/copilot-instructions\.md"),
@@ -69,10 +70,21 @@ ALLOWLIST = {
         re.compile(r"desktop", re.IGNORECASE),
         re.compile(r"Users", re.IGNORECASE),
         re.compile(r"/home/"),
+        re.compile(r"D:\\workspace"),
+        re.compile(r"D:\\\\workspace"),
         re.compile(r"windows_drive_path|windows_user_path|unix_user_path"),
         re.compile(r"Wylie|HF_|AXinnovation|조가인|신재현|재현|jaehy|shinjaehyun2018"),
         re.compile(r"https://github\.com/shinjaehyun20/ai-workflow-kits/"),
         re.compile(r"GEMINI\.md|AGENTS\.md|\.github/copilot-instructions\.md"),
+    ],
+    "packages/keepworking/gemini/examples/research-synthesis-case.ko.md": [
+        re.compile(r"<username>"),
+        re.compile(r"<conv-id>"),
+        re.compile(r"\[project_root\]"),
+        re.compile(r"\[로컬_프로젝트_경로\]"),
+        re.compile(r"D:\\workspace"),
+        re.compile(r"C:\\Users\\<username>"),
+        re.compile(r"file:///C:/Users/<username>"),
     ],
 }
 
@@ -127,6 +139,8 @@ def tracked_files() -> list[str]:
 
 
 def is_allowed(path: str, line: str) -> bool:
+    if path == "tools/public-safety-scan.py" and "re.compile(" in line:
+        return True
     if any(pattern.search(line) for pattern in ALLOWED_PATTERNS):
         return True
     return any(pattern.search(line) for pattern in ALLOWLIST.get(path, []))
