@@ -8,18 +8,18 @@ Use this prompt when a task needs persistent progress, local-first verification,
 flowchart TD
     Start([Start Task]) --> Plan[1. Establish Autoplan / Ultraplan]
     Plan --> InitTask[2. Initialize task.md Checklists]
-    InitTask --> Exec[3. Execute Step <br/> Local-First Baseline]
-    Exec --> Verify[4. wylie-report-evidence Verification <br/> Run Tests / Logs / Screenshots]
-    Verify --> CheckPass{Pass?}
-    CheckPass -- Yes --> StepDone[5. Mark task.md [x] <br/> Persist Context]
-    CheckPass -- No --> FailDiag[6. Diagnose Root Cause & Plan Repair]
-    FailDiag --> CheckRetry{Retries < 3?}
-    CheckRetry -- Yes --> AutoRepair[7. Apply Auto-Repair Patch]
+    InitTask --> Exec["3. Execute Step (Local-First Baseline)"]
+    Exec --> Verify["4. Verification (Run Tests / Logs / Screenshots)"]
+    Verify --> CheckPass{"Pass?"}
+    CheckPass -- Yes --> StepDone["5. Mark task.md [x] & Persist Context"]
+    CheckPass -- No --> FailDiag["6. Diagnose Root Cause & Plan Repair"]
+    FailDiag --> CheckRetry{"Retries < 3?"}
+    CheckRetry -- Yes --> AutoRepair["7. Apply Auto-Repair Patch"]
     AutoRepair --> Verify
-    CheckRetry -- No --> StopError([8. Hard Stop & Report Error Logs <br/> Request Human Feedback])
-    StepDone --> CheckAllDone{All Steps Done?}
+    CheckRetry -- No --> StopError["8. Hard Stop & Report Error Logs"]
+    StepDone --> CheckAllDone{"All Steps Done?"}
     CheckAllDone -- No --> Exec
-    CheckAllDone -- Yes --> CloseReport[9. Generate walkthrough.md with Evidence]
+    CheckAllDone -- Yes --> CloseReport["9. Generate walkthrough.md with Evidence"]
     CloseReport --> End([Task Closed])
 ```
 
@@ -49,7 +49,7 @@ goal -> plan -> execute -> verify -> repair -> re-verify -> close
    - Run verification tests inside local virtual environments (Venv) to prevent host environment corruption.
 
 4. **Evidence-Based Verification (Design Contract)**:
-   - Verify every action based on the `wylie-report-evidence` contract.
+   - Verify every action based on the `report-evidence` contract.
    - Do not assume a task is complete based on text generation alone. You must collect and cite hard evidence, such as build outputs, test runner logs, terminal execution results, or browser screenshots.
 
 5. **Self-Repair & Self-Improvement Loop**:

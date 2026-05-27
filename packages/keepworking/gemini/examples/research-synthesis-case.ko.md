@@ -8,7 +8,7 @@
 
 Gemini 에이전트는 하네스 엔지니어링(Harness Engineering) 기준이 통합된 `keepworking` 시스템 프롬프트를 탑재하고 자율 루프를 가동합니다.
 *   **시스템 프롬프트 경로**: `packages/keepworking/gemini/prompts/keepworking-system-prompt.md`
-*   **디자인 계약**: `wylie-report-evidence` 규격에 준하여 물리적 증거(Evidence)와 무결성 검증을 마크다운 문서로 작성합니다.
+*   **디자인 계약**: `report-evidence` 규격에 준하여 물리적 증거(Evidence)와 무결성 검증을 마크다운 문서로 작성합니다.
 
 ---
 
@@ -30,7 +30,7 @@ Gemini 에이전트는 하네스 엔지니어링(Harness Engineering) 기준이 
 *   **실행**: `C:\Users\<username>\AppData\...` 또는 `D:\workspace\...` 하위의 소스 디렉토리를 안전하게 읽어 대조합니다. (개인 식별 경로 및 Secrets는 철저히 검제)
 
 ### 3. [Verify] 도구 기반 무결성 검증
-텍스트 답변으로만 성공했다고 보고하지 않고, `wylie-report-evidence` 계약에 따라 로컬 서버를 구동하고 브라우저를 제어하여 검증합니다.
+텍스트 답변으로만 성공했다고 보고하지 않고, `report-evidence` 계약에 따라 로컬 서버를 구동하고 브라우저를 제어하여 검증합니다.
 *   **실행**:
     1. `run_command`로 로컬 FastAPI 개발 서버 구동 (`uvicorn main:app --port 8000`).
     2. `browse` (Playwright) 도구를 호출하여 `http://localhost:8000`에 접속하고 UI 연동 여부를 테스트.
