@@ -1,0 +1,15 @@
+{
+  "task_id": "example-keepworking-001",
+  "goal": "Inspect a small repository and identify verification gaps.",
+  "tier": "simple",
+  "runtime": "codex",
+  "branch_id": "simple-a",
+  "skill_refs": ["keepworking"],
+  "scope_in": ["README.md", "core/"],
+  "scope_out": ["network calls", "file edits"],
+  "expected_evidence": ["cited file paths", "unresolved risks"],
+  "model_profile": "fast",
+  "reasoning_level": "low",
+  "temperature": 0,
+  "status": "planned"
+}

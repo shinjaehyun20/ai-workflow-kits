@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shinjaehyun20/ai-workflow-kits/core/task-envelope.schema.json",
+  "title": "TaskEnvelope",
+  "type": "object",
+  "required": [
+    "task_id",
+    "goal",
+    "tier",
+    "runtime",
+    "scope_in",
+    "expected_evidence",
+    "status"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["simple", "medium", "complex", "creative"]
+    },
+    "runtime": {
+      "type": "string"
+    },
+    "branch_id": {
+      "type": "string"
+    },
+    "skill_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope_in": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scope_out": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "model_profile": {
+      "type": "string"
+    },
+    "reasoning_level": {
+      "type": "string"
+    },
+    "temperature": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["planned", "active", "blocked", "done", "failed"]
+    }
+  }
+}

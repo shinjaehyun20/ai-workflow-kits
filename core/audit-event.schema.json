@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shinjaehyun20/ai-workflow-kits/core/audit-event.schema.json",
+  "title": "AuditEvent",
+  "type": "object",
+  "required": ["ts", "task_id", "worker", "event", "status"],
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "worker": {
+      "type": "string"
+    },
+    "event": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "blocked", "done", "failed", "hang_suspected"]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unresolved_risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

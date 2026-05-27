@@ -1,0 +1,24 @@
+id: package-id
+name: Package Name
+description: Short package description.
+category: orchestration
+status: draft
+runtimes:
+  codex:
+    supported: false
+    status: planned
+    path: codex/
+  claude:
+    supported: false
+    status: planned
+    path: claude/
+  gemini:
+    supported: false
+    status: planned
+    path: gemini/
+  copilot:
+    supported: false
+    status: planned
+    path: copilot/
+artifacts: []
+evidence_required: []

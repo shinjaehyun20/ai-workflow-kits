@@ -1,0 +1,32 @@
+id: keepworking
+name: Keepworking
+description: Evidence-first long-running AI workflow loop.
+category: orchestration
+status: draft
+runtimes:
+  codex:
+    supported: true
+    status: draft
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: false
+    status: stub
+    path: gemini/
+  copilot:
+    supported: false
+    status: stub
+    path: copilot/
+artifacts:
+  - skill
+  - agent
+  - prompt
+  - hook
+  - example
+evidence_required:
+  - file_paths
+  - logs_or_tests
+  - unresolved_risks

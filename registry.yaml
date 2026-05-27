@@ -1,0 +1,28 @@
+version: 1
+updated_at: "2026-05-27"
+packages:
+  - id: keepworking
+    name: Keepworking
+    description: Evidence-first long-running AI workflow loop.
+    category: orchestration
+    status: draft
+    path: packages/keepworking
+    runtimes:
+      codex:
+        status: draft
+        path: packages/keepworking/codex
+      claude:
+        status: draft
+        path: packages/keepworking/claude
+      gemini:
+        status: stub
+        path: packages/keepworking/gemini
+      copilot:
+        status: stub
+        path: packages/keepworking/copilot
+    artifacts:
+      - skill
+      - agent
+      - prompt
+      - hook
+      - example
