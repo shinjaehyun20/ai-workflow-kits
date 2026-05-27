@@ -53,6 +53,8 @@ packages/<package-id>/
 
 This avoids splitting one workflow across separate `skills`, `agents`, and `prompts` repositories.
 
+For detailed placement rules, see [`docs/package-authoring-rules.md`](docs/package-authoring-rules.md).
+
 ## First Package
 
 | Package | Purpose | Status |
@@ -78,6 +80,8 @@ packages/keepworking/gemini/    # Gemini prompt pack
 packages/keepworking/copilot/   # GitHub Copilot prompt/instruction pack
 ```
 
+When adding a new skill, agent, prompt, hook, command, plugin, or example, add it under the workflow package it supports. For example, a Claude Code agent for `keepworking` belongs in `packages/keepworking/claude/agents/`, not in a top-level `agents/` folder.
+
 ## Design Principles
 
 - One repository can hold many workflow packages.
@@ -85,6 +89,7 @@ packages/keepworking/copilot/   # GitHub Copilot prompt/instruction pack
 - Runtime differences are handled through adapters, not by copying settings across tools.
 - A chat response is not completion. Completion requires evidence.
 - If verification fails, repair and re-verify before closing.
+- Public packages must pass the publication guard before push.
 
 ## Current Scope
 

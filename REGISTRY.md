@@ -23,3 +23,6 @@ This file is the human-readable catalog for AI Workflow Kits.
 3. Add at least one runtime implementation.
 4. Add one example workflow.
 5. Update this registry and `registry.yaml`.
+6. Run `python tools/public-safety-scan.py --history`.
+
+See [`docs/package-authoring-rules.md`](docs/package-authoring-rules.md) for where skills, agents, prompts, hooks, commands, plugins, and examples should go.
