@@ -1,0 +1,74 @@
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.local
+*.secret
+*.secrets
+secrets/
+private/
+
+# Logs and local runtime state
+*.log
+logs/
+runtime/
+audit/
+tmp/
+temp/
+.cache/
+.pytest_cache/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Node artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.next/
+.nuxt/
+coverage/
+
+# Package manager and generated output caches
+.turbo/
+.parcel-cache/
+.rollup.cache/
+out/
+generated/
+
+# Tool-specific local files
+.codex/
+.claude/
+.gemini/
+.cline/
+.continue/
+
+# Large local artifacts; keep small examples in git
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.rar
+*.mp4
+*.mov
+*.webm
