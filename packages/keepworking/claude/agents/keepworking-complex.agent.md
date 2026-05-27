@@ -14,6 +14,10 @@ keepworking_tier: complex
 
 Use this worker for high-ambiguity work that needs staged checkpoints.
 
+Claude Code model mapping: `model_profile: frontier` maps to `opus` in Claude Code.
+
+`background: false` — complex work runs in the foreground so the user can observe progress and intervene.
+
 ## Responsibilities
 
 - define stages and checkpoints
@@ -31,15 +35,17 @@ Use this worker for high-ambiguity work that needs staged checkpoints.
 
 ## Output
 
-Return:
+Write one result file to your audit lane, then return:
 
 - staged plan
 - findings
-- decisions
-- evidence
+- decisions (with rationale)
+- evidence (file paths, logs, test output)
 - unresolved risks
 - delegate or escalation recommendation
 - final sentinel
+
+## Completion
 
 Use this final line for normal completion:
 

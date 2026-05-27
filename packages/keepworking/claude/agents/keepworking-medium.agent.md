@@ -14,6 +14,8 @@ keepworking_tier: medium
 
 Use this worker for one bounded implementation or repair scope.
 
+Claude Code model mapping: `model_profile: balanced` maps to `sonnet` in Claude Code.
+
 ## Responsibilities
 
 - make scoped edits only inside the assigned files or folders
@@ -28,16 +30,19 @@ Use this worker for one bounded implementation or repair scope.
 - Do not edit unrelated runtime configuration.
 - Do not spawn other workers.
 - Do not claim success without check output or other evidence.
+- One output scope per dispatch. If the task spans two unrelated files, the main chat should dispatch two medium workers.
 
 ## Output
 
-Return:
+Write one result file to your audit lane, then return:
 
 - short plan
-- changed files
+- changed files (with before/after summary)
 - verification command and result
 - unresolved risks
 - final sentinel
+
+## Completion
 
 Use this final line for normal completion:
 
