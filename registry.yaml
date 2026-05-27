@@ -1,6 +1,31 @@
 version: 1
 updated_at: "2026-05-27"
 packages:
+  - id: package-authoring
+    name: Package Authoring
+    description: Meta workflow for adding public-safe workflow packages, runtime packs, and artifacts.
+    category: governance
+    status: active
+    path: packages/package-authoring
+    runtimes:
+      codex:
+        status: active
+        path: packages/package-authoring/codex
+      claude:
+        status: draft
+        path: packages/package-authoring/claude
+      gemini:
+        status: stub
+        path: packages/package-authoring/gemini
+      copilot:
+        status: stub
+        path: packages/package-authoring/copilot
+    artifacts:
+      - skill
+      - agent
+      - prompt
+      - instruction
+      - example
   - id: keepworking
     name: Keepworking
     description: Evidence-first long-running AI workflow loop.

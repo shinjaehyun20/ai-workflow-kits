@@ -1,0 +1,32 @@
+id: package-authoring
+name: Package Authoring
+description: Meta workflow for adding public-safe workflow packages, runtime packs, and artifacts.
+category: governance
+status: active
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: false
+    status: stub
+    path: gemini/
+  copilot:
+    supported: false
+    status: stub
+    path: copilot/
+artifacts:
+  - skill
+  - agent
+  - prompt
+  - instruction
+  - example
+evidence_required:
+  - registry_updated
+  - manifest_updated
+  - public_safety_scan_passed

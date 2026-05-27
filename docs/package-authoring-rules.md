@@ -2,6 +2,18 @@
 
 Use these rules whenever you publish a new skill, agent, prompt, hook, command, plugin, or workflow example.
 
+For runtime use, start from the `package-authoring` package:
+
+```text
+packages/package-authoring/
+```
+
+Codex users can reference:
+
+```text
+packages/package-authoring/codex/skills/package-authoring/SKILL.md
+```
+
 ## Placement Rule
 
 Packages are organized by workflow first, not by artifact type.

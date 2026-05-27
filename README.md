@@ -59,9 +59,12 @@ For detailed placement rules, see [`docs/package-authoring-rules.md`](docs/packa
 
 | Package | Purpose | Status |
 | --- | --- | --- |
+| [`package-authoring`](packages/package-authoring/README.md) | Add public-safe packages and runtime artifacts consistently | Active |
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Draft |
 
-`keepworking` is the first reference package. It defines a long-running, evidence-first workflow loop with tiered routing, parallel skill execution, and repair/re-verify behavior.
+`package-authoring` is the meta package for adding future skills, agents, prompts, hooks, commands, plugins, examples, and runtime adapters.
+
+`keepworking` is the first workflow package. It defines a long-running, evidence-first workflow loop with tiered routing, parallel skill execution, and repair/re-verify behavior.
 
 ## How To Use
 
