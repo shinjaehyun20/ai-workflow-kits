@@ -30,24 +30,25 @@ packages:
     name: Keepworking
     description: Evidence-first long-running AI workflow loop.
     category: orchestration
-    status: draft
+    status: active
     path: packages/keepworking
     runtimes:
       codex:
-        status: draft
+        status: active
         path: packages/keepworking/codex
       claude:
-        status: draft
+        status: active
         path: packages/keepworking/claude
       gemini:
-        status: stub
+        status: draft
         path: packages/keepworking/gemini
       copilot:
-        status: stub
+        status: draft
         path: packages/keepworking/copilot
     artifacts:
       - skill
       - agent
       - prompt
       - hook
+      - instruction
       - example

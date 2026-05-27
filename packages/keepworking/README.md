@@ -1,38 +1,54 @@
 # Keepworking
 
-Keepworking is an evidence-first workflow package for long-running AI work.
+Keepworking is a copy-ready workflow package for AI work that should continue until evidence exists.
 
-It is designed for tasks that should not stop at a shallow answer:
+Use it when a task needs more than a one-shot answer:
 
-- deep debugging
-- multi-file implementation
-- research and synthesis
-- workflow repair
-- repeated verification
-- parallel skill execution in one chat
+- inspect a repo and keep going until the cause is clear
+- repair a failing workflow and re-run the same check
+- split read-heavy work into parallel branches
+- escalate from simple search to implementation or architecture work
+- close with file paths, logs, tests, screenshots, or structured audit evidence
 
-## Loop
+## Start Here
+
+| I use... | Open this |
+| --- | --- |
+| Codex | `codex/skills/keepworking/SKILL.md` |
+| Claude Code | `claude/agents/` |
+| Gemini | `gemini/prompts/keepworking-system-prompt.md` |
+| GitHub Copilot | `copilot/github/copilot-instructions.md` |
+
+## Operating Loop
 
 ```text
-lock goal -> route by difficulty -> execute smallest useful slice -> verify -> repair -> re-verify -> close
+goal -> plan -> execute -> verify -> repair -> re-verify -> close
 ```
 
-## Tiers
+Keepworking adds three habits to that loop:
 
-| Tier | Purpose | Expected evidence |
-| --- | --- | --- |
-| `simple` | read-heavy search, classification, summaries | cited paths and findings |
-| `medium` | bounded implementation or repair | changed paths and test/check output |
-| `complex` | architecture, deep debugging, multi-stage workflows | staged findings, decisions, risks, evidence |
+1. Route work by difficulty before execution.
+2. Preserve evidence before claiming completion.
+3. Re-enter repair when verification fails.
 
-## Runtime Packs
+## Tier Model
 
-| Runtime | Path | Status |
-| --- | --- | --- |
-| Codex | `codex/` | Draft |
-| Claude Code | `claude/` | Draft |
-| Gemini | `gemini/` | Stub |
-| GitHub Copilot | `copilot/` | Stub |
+| Tier | Use for | Default behavior | Expected evidence |
+| --- | --- | --- | --- |
+| `simple` | search, classification, summaries, status checks | read-only, fast model, low reasoning | cited paths and findings |
+| `medium` | bounded implementation, repair, deterministic validation | limited edits, balanced model, medium reasoning | changed paths and check output |
+| `complex` | architecture, deep debugging, multi-stage workflows | checkpoints, stronger model, high reasoning | staged findings, decisions, risks |
+
+## Router Rule
+
+Keep the router in the main AI chat unless the runtime safely supports workers spawning workers.
+
+The router decides:
+
+1. What is the current goal?
+2. Which tier is appropriate?
+3. Can any work split into independent branches?
+4. What evidence is required before closure?
 
 ## Completion Sentinels
 
@@ -49,3 +65,20 @@ KW_DELEGATE: medium <task>
 ```
 
 Sentinels are not enough by themselves. They must point back to evidence.
+
+## Copy Pattern
+
+Copy the runtime folder you need into your AI workspace, then adapt local paths and tool names to that runtime.
+
+```text
+packages/keepworking/codex/     -> Codex skill pack
+packages/keepworking/claude/    -> Claude Code agent pack
+packages/keepworking/gemini/    -> Gemini prompt pack
+packages/keepworking/copilot/   -> GitHub Copilot instruction pack
+```
+
+Before publishing changes to this package, run:
+
+```powershell
+python tools/public-safety-scan.py --history
+```

@@ -1,14 +1,25 @@
 # Keepworking Instructions For GitHub Copilot
 
-Use this repository's shared lifecycle for non-trivial work:
+Use this workflow for non-trivial repository work:
 
 ```text
 goal -> plan -> execute -> verify -> repair -> re-verify -> close
 ```
 
-Before finalizing:
+## Rules
 
-- list changed files
-- list checks run
-- identify unresolved risks
-- avoid claiming completion without evidence
+- Start by identifying the current goal and expected evidence.
+- Route the task as `simple`, `medium`, or `complex`.
+- Keep implementation scoped to the requested package, runtime, or files.
+- Run or describe verification before finalizing.
+- If verification fails, repair the smallest likely cause and re-run the check.
+- Do not claim completion without changed files, check output, or explicit evidence.
+
+## Final Response
+
+Include:
+
+- changed files
+- checks run
+- result
+- unresolved risks

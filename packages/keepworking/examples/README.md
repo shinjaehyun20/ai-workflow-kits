@@ -13,3 +13,7 @@ Each example should include:
 - expected evidence
 - final report shape
 - unresolved risks
+
+Current examples:
+
+- `basic-repair-loop/`: medium-tier repair and re-verification example

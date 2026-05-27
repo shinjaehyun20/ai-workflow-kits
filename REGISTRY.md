@@ -5,7 +5,7 @@ This file is the human-readable catalog for AI Workflow Kits.
 | Package | Purpose | Codex | Claude | Gemini | Copilot | Status |
 | --- | --- | ---: | ---: | ---: | ---: | --- |
 | [`package-authoring`](packages/package-authoring/README.md) | Meta workflow for adding public-safe packages and runtime artifacts | Active | Draft | Stub | Stub | Active |
-| [`keepworking`](packages/keepworking/README.md) | Long-running evidence-first workflow loop | Draft | Draft | Stub | Stub | Draft |
+| [`keepworking`](packages/keepworking/README.md) | Long-running evidence-first workflow loop | Active | Active | Draft | Draft | Active |
 
 ## Status Values
 

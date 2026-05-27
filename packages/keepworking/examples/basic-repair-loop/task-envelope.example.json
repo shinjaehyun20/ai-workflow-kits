@@ -1,0 +1,15 @@
+{
+  "task_id": "keepworking-basic-repair-001",
+  "goal": "Repair a failing package manifest check and re-run validation.",
+  "tier": "medium",
+  "runtime": "codex",
+  "branch_id": "medium-repair-a",
+  "skill_refs": ["keepworking"],
+  "scope_in": ["packages/example/manifest.yaml", "registry.yaml"],
+  "scope_out": ["unrelated packages", "runtime-specific settings"],
+  "expected_evidence": ["changed file paths", "validation command output", "unresolved risks"],
+  "model_profile": "balanced",
+  "reasoning_level": "medium",
+  "temperature": 0,
+  "status": "planned"
+}
