@@ -17,3 +17,9 @@ Each example should include:
 Current examples:
 
 - `basic-repair-loop/`: medium-tier repair and re-verification example
+
+Runtime-specific Korean cases:
+
+- `../claude/examples/repo-repair-case.ko.md`
+- `../gemini/examples/research-synthesis-case.ko.md`
+- `../copilot/github/prompts/keepworking-repair.prompt.md`

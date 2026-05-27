@@ -27,6 +27,7 @@ artifacts:
   - instruction
   - hook
   - example
+  - guide
 evidence_required:
   - file_paths
   - logs_or_tests

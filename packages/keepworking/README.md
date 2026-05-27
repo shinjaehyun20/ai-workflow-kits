@@ -19,6 +19,12 @@ Use it when a task needs more than a one-shot answer:
 | Gemini | `gemini/prompts/keepworking-system-prompt.md` |
 | GitHub Copilot | `copilot/github/copilot-instructions.md` |
 
+Korean guide:
+
+```text
+docs/ko/keepworking-guide.md
+```
+
 ## Operating Loop
 
 ```text
@@ -76,6 +82,14 @@ packages/keepworking/claude/    -> Claude Code agent pack
 packages/keepworking/gemini/    -> Gemini prompt pack
 packages/keepworking/copilot/   -> GitHub Copilot instruction pack
 ```
+
+## Runtime Cases
+
+| Runtime | Case |
+| --- | --- |
+| Claude Code | `claude/examples/repo-repair-case.ko.md` |
+| Gemini | `gemini/examples/research-synthesis-case.ko.md` |
+| GitHub Copilot | `copilot/github/prompts/keepworking-repair.prompt.md` |
 
 Before publishing changes to this package, run:
 
