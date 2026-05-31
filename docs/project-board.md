@@ -32,10 +32,13 @@ AI Workflow Kits Roadmap
 | --- | --- | --- | --- | --- |
 | Polish README for copy-ready onboarding | Cross-runtime | Cross-runtime | docs | P0 |
 | Add wiki pages from `docs/wiki/` | Cross-runtime | Cross-runtime | docs | P0 |
+| Sync publication bundle for each new package | Cross-runtime | Cross-runtime | project | P0 |
 | Add package request issue template | package-authoring | Cross-runtime | project | P0 |
 | Expand keepworking Codex dry-run example | keepworking | Codex | example | P1 |
 | Expand keepworking Gemini example | keepworking | Gemini | example | P1 |
 | Expand keepworking Copilot prompt examples | keepworking | GitHub Copilot | example | P1 |
+| Publish pet-companion roadmap and limitations clearly | pet-companion | Cross-runtime | docs | P0 |
+| Add working runtime examples for pet-companion | pet-companion | Cross-runtime | example | P1 |
 
 ## Issue Labels
 
@@ -49,4 +52,6 @@ runtime:gemini
 runtime:copilot
 docs
 public-safety
+package:pet-companion
+publish-bundle
 ```

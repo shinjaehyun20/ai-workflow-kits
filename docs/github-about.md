@@ -50,3 +50,14 @@ Enable these GitHub features when useful:
 - Projects
 
 Keep Packages disabled unless this repository starts publishing installable artifacts.
+
+## Publication Bundle Reminder
+
+When a new public-facing package lands, update this file in the same change as:
+
+- root `README.md`
+- `REGISTRY.md`
+- `registry.yaml`
+- `docs/project-board.md`
+- `docs/wiki/Home.md`
+- one package-specific wiki page

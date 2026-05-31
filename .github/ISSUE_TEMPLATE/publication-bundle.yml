@@ -1,0 +1,41 @@
+name: Publication bundle update
+description: Track the repo-wide GitHub surfaces that should move together when a public-facing package is added or changed.
+title: "[publication-bundle] "
+labels:
+  - docs
+  - publish-bundle
+body:
+  - type: input
+    id: package_id
+    attributes:
+      label: Package id
+      description: Which package needs the publication bundle update?
+      placeholder: pet-companion
+    validations:
+      required: true
+  - type: checkboxes
+    id: surfaces
+    attributes:
+      label: Surfaces to sync
+      description: Check every repository-side source of truth that should move together.
+      options:
+        - label: Root README
+        - label: REGISTRY.md
+        - label: registry.yaml
+        - label: docs/github-about.md
+        - label: docs/project-board.md
+        - label: docs/wiki/Home.md
+        - label: package-specific wiki page
+        - label: issue templates
+  - type: textarea
+    id: limitations
+    attributes:
+      label: Known limits to state clearly
+      description: Note what is not implemented yet so the public docs do not overclaim.
+      placeholder: Claude Code and GitHub Copilot are adapter targets only in this release.
+  - type: textarea
+    id: checks
+    attributes:
+      label: Verification
+      description: List the checks you ran before or after updating the bundle.
+      placeholder: public safety scan, schema validation, viewer check

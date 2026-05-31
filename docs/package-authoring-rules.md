@@ -84,6 +84,23 @@ When adding or changing a package:
 2. Update `registry.yaml` for tools.
 3. Keep package status consistent between the package manifest and both registries.
 
+## Publication Bundle Rule
+
+For a public-facing package, do not stop at `packages/<package-id>/`.
+
+Update the publish bundle together:
+
+1. root `README.md`
+2. `REGISTRY.md`
+3. `registry.yaml`
+4. `docs/github-about.md`
+5. `docs/project-board.md`
+6. `docs/wiki/Home.md`
+7. one package-specific wiki page under `docs/wiki/`
+8. issue templates if the package needs contributor intake
+
+Treat these as the repository-side source of truth for GitHub About, Projects, Issues, and Wiki content.
+
 ## Public Safety Rule
 
 Before publishing, run:

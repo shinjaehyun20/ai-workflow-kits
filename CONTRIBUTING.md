@@ -34,8 +34,10 @@ Do not add top-level artifact buckets such as `skills/`, `agents/`, or `plugins/
 1. Update the package `manifest.yaml`.
 2. Update `REGISTRY.md`.
 3. Update `registry.yaml`.
-4. Add or update at least one public-safe example when behavior changes.
-5. Run:
+4. If the package is public-facing, update the publication bundle:
+   `README.md`, `docs/github-about.md`, `docs/project-board.md`, and `docs/wiki/`.
+5. Add or update at least one public-safe example when behavior changes.
+6. Run:
 
 ```powershell
 python tools/public-safety-scan.py --history
