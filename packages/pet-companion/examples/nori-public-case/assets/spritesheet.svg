@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="768" height="1040" viewBox="0 0 768 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Nori spritesheet</title>
+  <desc id="desc">Public-safe sample spritesheet with five state rows and four frames per row.</desc>
+  <defs>
+    <g id="frame-base">
+      <ellipse cx="96" cy="186" rx="44" ry="10" fill="#0a0e16" opacity=".35"/>
+      <circle cx="96" cy="78" r="30" fill="#f1ede8"/>
+      <path d="M66 62 48 36l24 10Z" fill="#343b51"/>
+      <path d="M126 62 144 36l-24 10Z" fill="#343b51"/>
+      <path d="M58 114c12-12 24-18 38-18s26 6 38 18l-8 42H66Z" fill="#2c3347"/>
+      <path d="M52 106c-12 4-20 14-20 25 0 6 4 12 12 16l16-20Z" fill="#eef1f7" opacity=".94"/>
+      <path d="M140 106c12 4 20 14 20 25 0 6-4 12-12 16l-16-20Z" fill="#eef1f7" opacity=".94"/>
+      <circle cx="85" cy="74" r="4" fill="#111621"/>
+      <circle cx="107" cy="74" r="4" fill="#111621"/>
+      <path d="M90 90c3 4 9 4 12 0" stroke="#111621" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M118 144c22 10 32 22 30 38-2 10-10 18-24 20 10-10 10-20 4-30-6-8-14-12-22-18Z" fill="#101725"/>
+      <circle cx="84" cy="120" r="5" fill="#6ea8b8"/>
+      <circle cx="108" cy="120" r="5" fill="#6ea8b8"/>
+    </g>
+  </defs>
+
+  <rect width="768" height="1040" fill="transparent"/>
+
+  <g transform="translate(0 0)">
+    <use href="#frame-base"/>
+  </g>
+  <g transform="translate(192 0)">
+    <use href="#frame-base"/>
+    <path d="M50 105c-10 2-16 12-16 21 0 6 3 11 10 15l20-16Z" fill="#f7f8fc" opacity=".95"/>
+    <path d="M144 106c10 4 18 12 18 22 0 6-4 12-12 16l-18-18Z" fill="#f0f3f8" opacity=".92"/>
+  </g>
+  <g transform="translate(384 0)">
+    <use href="#frame-base"/>
+    <path d="M116 144c18 10 28 24 26 39-1 9-8 17-22 19 8-8 8-18 4-28-4-9-10-15-18-22Z" fill="#162033"/>
+  </g>
+  <g transform="translate(576 0)">
+    <use href="#frame-base"/>
+    <path d="M86 90c4 6 12 6 16 0" stroke="#111621" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(0 208)">
+    <use href="#frame-base"/>
+    <g transform="translate(-8 0)">
+      <path d="M52 108c-12 6-18 16-18 27 0 6 4 10 10 14l20-18Z" fill="#eef2f7"/>
+      <path d="M142 142c20 12 30 22 28 38-1 8-8 16-20 20 8-8 8-18 4-28-6-10-14-16-24-22Z" fill="#101725"/>
+    </g>
+  </g>
+  <g transform="translate(192 208)">
+    <use href="#frame-base"/>
+    <g transform="translate(2 -4)">
+      <path d="M54 104c-8 4-16 14-16 24 0 6 4 12 10 16l18-18Z" fill="#f7f8fc"/>
+      <path d="M146 104c12 4 20 14 20 25 0 6-4 12-12 16l-18-20Z" fill="#eef2f7"/>
+    </g>
+  </g>
+  <g transform="translate(384 208)">
+    <use href="#frame-base"/>
+    <g transform="translate(8 0)">
+      <path d="M56 102c-6 6-14 14-14 24 0 6 4 12 10 16l16-18Z" fill="#eef2f7"/>
+      <path d="M118 146c20 10 30 22 28 36-2 10-8 18-22 20 10-10 10-20 6-28-4-8-12-14-20-20Z" fill="#162033"/>
+    </g>
+  </g>
+  <g transform="translate(576 208)">
+    <use href="#frame-base"/>
+    <g transform="translate(12 -2)">
+      <path d="M58 106c-8 4-14 12-14 22 0 6 4 10 10 14l14-16Z" fill="#eef2f7"/>
+      <path d="M120 148c18 10 26 20 24 34-1 8-8 14-18 18 8-8 8-16 4-24-4-8-10-14-18-20Z" fill="#101725"/>
+    </g>
+  </g>
+
+  <g transform="translate(0 416)">
+    <use href="#frame-base"/>
+    <rect x="54" y="108" width="84" height="42" rx="12" fill="#182335"/>
+    <rect x="60" y="114" width="72" height="30" rx="8" fill="#f6f8fd"/>
+    <path d="M72 126h48" stroke="#6ea8b8" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(192 416)">
+    <use href="#frame-base"/>
+    <rect x="54" y="108" width="84" height="42" rx="12" fill="#182335"/>
+    <rect x="60" y="114" width="72" height="30" rx="8" fill="#f6f8fd"/>
+    <path d="M72 126h32" stroke="#6ea8b8" stroke-width="6" stroke-linecap="round"/>
+    <path d="M72 136h46" stroke="#343b51" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(384 416)">
+    <use href="#frame-base"/>
+    <rect x="54" y="108" width="84" height="42" rx="12" fill="#182335"/>
+    <rect x="60" y="114" width="72" height="30" rx="8" fill="#f6f8fd"/>
+    <circle cx="120" cy="126" r="6" fill="#6ea8b8"/>
+  </g>
+  <g transform="translate(576 416)">
+    <use href="#frame-base"/>
+    <rect x="54" y="108" width="84" height="42" rx="12" fill="#182335"/>
+    <rect x="60" y="114" width="72" height="30" rx="8" fill="#f6f8fd"/>
+    <path d="M70 128h52" stroke="#6ea8b8" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(0 624)">
+    <use href="#frame-base"/>
+    <path d="M58 114c12-18 26-28 38-28s26 10 38 28l-8 42H66Z" fill="#2a2530"/>
+    <path d="M88 96c6 10 14 10 20 0" stroke="#d87878" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="84" cy="76" r="4" fill="#d87878"/>
+    <circle cx="108" cy="76" r="4" fill="#d87878"/>
+  </g>
+  <g transform="translate(192 624)">
+    <use href="#frame-base"/>
+    <path d="M58 114c12-18 26-28 38-28s26 10 38 28l-8 42H66Z" fill="#2a2530"/>
+    <path d="M86 98c8 12 16 12 24 0" stroke="#d87878" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(384 624)">
+    <use href="#frame-base"/>
+    <path d="M58 114c12-18 26-28 38-28s26 10 38 28l-8 42H66Z" fill="#2a2530"/>
+    <path d="M90 94c4 8 10 10 14 6" stroke="#d87878" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(576 624)">
+    <use href="#frame-base"/>
+    <path d="M58 114c12-18 26-28 38-28s26 10 38 28l-8 42H66Z" fill="#2a2530"/>
+    <path d="M120 144c18 12 28 24 28 40-2 10-10 16-22 18 8-8 8-16 4-26-4-10-12-18-22-24Z" fill="#0f1420"/>
+  </g>
+
+  <g transform="translate(0 832)">
+    <use href="#frame-base"/>
+    <path d="M146 106c16 6 22 18 18 30-2 8-10 12-20 16l-16-18Z" fill="#f6f8fd"/>
+  </g>
+  <g transform="translate(192 832)">
+    <use href="#frame-base"/>
+    <path d="M144 96c18 4 26 16 24 30-2 8-10 14-22 18l-18-20Z" fill="#f6f8fd"/>
+    <path d="M88 88c4 8 12 8 16 2" stroke="#111621" stroke-width="4" fill="none" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(384 832)">
+    <use href="#frame-base"/>
+    <path d="M144 104c18 8 24 20 20 32-2 8-10 12-20 16l-16-18Z" fill="#f6f8fd"/>
+  </g>
+  <g transform="translate(576 832)">
+    <use href="#frame-base"/>
+    <path d="M142 100c16 4 24 16 22 28-2 10-10 14-20 18l-18-18Z" fill="#f6f8fd"/>
+  </g>
+</svg>

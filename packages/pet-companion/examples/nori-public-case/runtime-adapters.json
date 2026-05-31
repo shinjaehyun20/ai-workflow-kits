@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "pet": {
+    "id": "nori",
+    "display_name": "Nori",
+    "description": "Anthropomorphic fairy companion inspired by a fox and a magpie. Quiet, precise, and practical."
+  },
+  "assets": {
+    "spritesheet": "assets/spritesheet.svg",
+    "avatar": "assets/avatar.svg"
+  },
+  "atlas": {
+    "cell_width": 192,
+    "cell_height": 208,
+    "rows": {
+      "idle": {
+        "row": 0,
+        "frames": [0, 1, 2, 3],
+        "frame_count": 4
+      },
+      "running": {
+        "row": 1,
+        "frames": [0, 1, 2, 3],
+        "frame_count": 4
+      },
+      "review": {
+        "row": 2,
+        "frames": [0, 1, 2, 3],
+        "frame_count": 4
+      },
+      "failed": {
+        "row": 3,
+        "frames": [0, 1, 2, 3],
+        "frame_count": 4
+      },
+      "waving": {
+        "row": 4,
+        "frames": [0, 1, 2, 3],
+        "frame_count": 4
+      }
+    }
+  },
+  "state_contract": {
+    "runtime_states": ["idle", "running", "review", "failed", "waving"],
+    "fallback_order": {
+      "idle": ["idle"],
+      "running": ["running", "idle"],
+      "review": ["review", "idle"],
+      "failed": ["failed", "idle"],
+      "waving": ["waving", "idle"]
+    }
+  },
+  "runtime_support": {
+    "codex": {
+      "status": "active",
+      "mode": "native",
+      "notes": "Best baseline for bundle design and manual activation."
+    },
+    "claude_code": {
+      "status": "draft",
+      "mode": "external_companion",
+      "notes": "Use a small state file and an external viewer."
+    },
+    "copilot": {
+      "status": "draft",
+      "mode": "external_companion",
+      "notes": "Use a webview or overlay that reads the same contract."
+    },
+    "openclaw": {
+      "status": "experimental",
+      "mode": "avatar_plus_companion",
+      "notes": "Map avatar first, then add state-driven rendering if needed."
+    },
+    "paperclip": {
+      "status": "experimental",
+      "mode": "widget_overlay",
+      "notes": "Do not assume a native pet slot."
+    }
+  },
+  "install_surface": {
+    "codex": "Custom pet install and select flow.",
+    "claude_code": "External viewer plus a runtime-owned state file.",
+    "copilot": "Repository webview or external overlay.",
+    "openclaw": "Avatar mapping plus optional state bridge.",
+    "paperclip": "Dashboard or overlay widget only."
+  },
+  "display_mode": "external_companion"
+}

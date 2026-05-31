@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shinjaehyun20/ai-workflow-kits/core/runtime-adapters.schema.json",
+  "title": "RuntimeAdapters",
+  "type": "object",
+  "required": [
+    "version",
+    "pet",
+    "assets",
+    "atlas",
+    "state_contract",
+    "runtime_support",
+    "install_surface",
+    "display_mode"
+  ],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "pet": {
+      "type": "object",
+      "required": ["id", "display_name", "description"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "assets": {
+      "type": "object",
+      "required": ["spritesheet", "avatar"],
+      "properties": {
+        "spritesheet": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "pet_manifest": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "atlas": {
+      "type": "object",
+      "required": ["cell_width", "cell_height", "rows"],
+      "properties": {
+        "cell_width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "cell_height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rows": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["row", "frames", "frame_count"],
+            "properties": {
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "frames": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "minItems": 1
+              },
+              "frame_count": {
+                "type": "integer",
+                "minimum": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "state_contract": {
+      "type": "object",
+      "required": ["runtime_states", "fallback_order"],
+      "properties": {
+        "runtime_states": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "fallback_order": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "runtime_support": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["status", "mode"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["active", "draft", "experimental", "planned"]
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "native",
+              "external_companion",
+              "avatar_plus_companion",
+              "widget_overlay",
+              "planned"
+            ]
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "install_surface": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "type": ["string", "boolean"]
+            }
+          }
+        ]
+      }
+    },
+    "display_mode": {
+      "type": "string",
+      "enum": [
+        "native",
+        "external_companion",
+        "avatar_plus_companion",
+        "widget_overlay"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

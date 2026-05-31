@@ -111,12 +111,17 @@ BINARY_EXTENSIONS = {
 REQUIRED_JSON = [
     "core/task-envelope.schema.json",
     "core/audit-event.schema.json",
+    "core/companion-state.schema.json",
+    "core/runtime-adapters.schema.json",
     "examples/keepworking-basic/task-envelope.example.json",
+    "packages/pet-companion/examples/nori-public-case/runtime-adapters.json",
+    "packages/pet-companion/examples/nori-public-case/state/codex.example.json",
 ]
 
 REQUIRED_YAML = [
     "registry.yaml",
     "packages/keepworking/manifest.yaml",
+    "packages/pet-companion/manifest.yaml",
     "templates/manifest.template.yaml",
 ]
 

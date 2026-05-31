@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-05-27"
+updated_at: "2026-05-31"
 packages:
   - id: package-authoring
     name: Package Authoring
@@ -52,3 +52,30 @@ packages:
       - hook
       - instruction
       - example
+  - id: pet-companion
+    name: Pet Companion
+    description: Cross-runtime companion workflow with a shared state contract and external viewer.
+    category: integration
+    status: experimental
+    path: packages/pet-companion
+    runtimes:
+      codex:
+        status: active
+        path: packages/pet-companion/codex
+      claude:
+        status: draft
+        path: packages/pet-companion/claude
+      gemini:
+        status: planned
+        path: packages/pet-companion/gemini
+      copilot:
+        status: draft
+        path: packages/pet-companion/copilot
+    artifacts:
+      - skill
+      - agent
+      - instruction
+      - plugin
+      - example
+      - guide
+      - schema

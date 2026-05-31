@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shinjaehyun20/ai-workflow-kits/core/companion-state.schema.json",
+  "title": "CompanionState",
+  "type": "object",
+  "required": ["runtime", "state"],
+  "properties": {
+    "runtime": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": ["idle", "running", "review", "failed", "waving"]
+    },
+    "note": {
+      "type": "string"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": {
+        "type": ["string", "number", "boolean"]
+      }
+    }
+  },
+  "additionalProperties": false
+}

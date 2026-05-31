@@ -1,0 +1,35 @@
+id: pet-companion
+name: Pet Companion
+description: Cross-runtime companion workflow with a shared state contract and external viewer.
+category: integration
+status: experimental
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: false
+    status: planned
+    path: gemini/
+  copilot:
+    supported: true
+    status: draft
+    path: copilot/
+artifacts:
+  - skill
+  - agent
+  - instruction
+  - plugin
+  - example
+  - guide
+  - schema
+evidence_required:
+  - file_paths
+  - schema_validation
+  - viewer_render
+  - public_safety_scan

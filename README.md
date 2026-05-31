@@ -49,10 +49,13 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 | --- | --- | --- |
 | [`package-authoring`](packages/package-authoring/README.md) | Add public-safe packages and runtime artifacts consistently | Active |
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Active |
+| [`pet-companion`](packages/pet-companion/README.md) | Publish cross-runtime pet and companion workflows with a shared state contract | Experimental |
 
 `package-authoring` is the meta package for adding future skills, agents, prompts, hooks, commands, plugins, examples, and runtime adapters.
 
 `keepworking` is the first workflow package. It defines a long-running evidence-first loop with tiered routing, parallel worker dispatch, repair, and re-verification.
+
+`pet-companion` shows how to package a runtime-neutral companion bundle, a lightweight viewer, and adapter guidance without publishing private local assets. It is intentionally experimental: Codex is the only runtime with a currently usable path in this repo, while Claude Code and GitHub Copilot are documented as future adapter targets rather than working integrations.
 
 ## Repository Model
 

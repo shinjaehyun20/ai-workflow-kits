@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pet Companion Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="stage">
+        <canvas id="pet-canvas" width="192" height="208" aria-label="Pet preview"></canvas>
+      </section>
+      <section class="panel">
+        <h1 id="pet-name">Pet Companion</h1>
+        <p id="pet-description">Loading bundle...</p>
+        <dl class="meta">
+          <div><dt>Runtime</dt><dd id="runtime-name">-</dd></div>
+          <div><dt>State</dt><dd id="runtime-state">-</dd></div>
+          <div><dt>Resolved Row</dt><dd id="resolved-state">-</dd></div>
+          <div><dt>Mode</dt><dd id="display-mode">-</dd></div>
+          <div><dt>Note</dt><dd id="runtime-note">-</dd></div>
+        </dl>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+  </html>
