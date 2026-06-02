@@ -1,0 +1,35 @@
+id: github-publication-bundle
+name: GitHub Publication Bundle
+description: Public release workflow for user-authored AI workflow packages.
+category: governance
+status: active
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: active
+    path: claude/
+  gemini:
+    supported: true
+    status: draft
+    path: gemini/
+  copilot:
+    supported: true
+    status: active
+    path: copilot/
+artifacts:
+  - skill
+  - command
+  - prompt
+  - instruction
+  - example
+  - guide
+evidence_required:
+  - changed_file_paths
+  - public_safety_scan
+  - readiness_verdict
+  - installability_gaps
+  - manual_ui_steps

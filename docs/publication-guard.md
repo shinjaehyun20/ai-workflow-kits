@@ -25,6 +25,7 @@ Some strings are allowed because they are public repository metadata or runtime 
 - `https://github.com/shinjaehyun20/ai-workflow-kits/...`
 - runtime names and files such as `GEMINI.md`, `AGENTS.md`, and `.github/copilot-instructions.md`
 - `.gitignore` patterns that describe blocked terms such as `.env`, `secret`, or `secrets/`
+- legacy placeholder-only local-path examples, when the scanner allowlist is scoped to one documented example file and no real user path is present
 
 ## Required Checks Before Publishing
 

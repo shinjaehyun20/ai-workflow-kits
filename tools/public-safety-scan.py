@@ -74,6 +74,7 @@ ALLOWLIST = {
         re.compile(r"D:\\\\workspace"),
         re.compile(r"windows_drive_path|windows_user_path|unix_user_path"),
         re.compile(r"Wylie|HF_|AXinnovation|조가인|신재현|재현|jaehy|shinjaehyun2018"),
+        re.compile(r"workspace"),
         re.compile(r"https://github\.com/shinjaehyun20/ai-workflow-kits/"),
         re.compile(r"GEMINI\.md|AGENTS\.md|\.github/copilot-instructions\.md"),
     ],

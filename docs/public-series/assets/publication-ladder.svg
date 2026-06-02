@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Public series reading levels</title>
+  <desc id="desc">Three article levels: easy, middle, and advanced.</desc>
+  <rect width="1200" height="520" fill="#f6f7f4"/>
+  <rect x="72" y="74" width="1056" height="372" rx="18" fill="#ffffff" stroke="#1b1f23" stroke-width="2"/>
+  <path d="M154 344 H994" stroke="#1b1f23" stroke-width="8" stroke-linecap="round"/>
+  <path d="M214 344 L414 246 L614 344 L814 182 L994 344" fill="none" stroke="#2d6a4f" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="214" cy="344" r="24" fill="#ffd166" stroke="#1b1f23" stroke-width="4"/>
+  <circle cx="414" cy="246" r="24" fill="#84a59d" stroke="#1b1f23" stroke-width="4"/>
+  <circle cx="814" cy="182" r="24" fill="#f28482" stroke="#1b1f23" stroke-width="4"/>
+  <text x="120" y="130" font-family="Segoe UI, sans-serif" font-size="44" font-weight="700" fill="#1b1f23">Devlog to Public Series</text>
+  <text x="120" y="176" font-family="Segoe UI, sans-serif" font-size="22" fill="#4b5563">One completed source, three public reading paths.</text>
+  <text x="156" y="410" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#1b1f23">쉬운거</text>
+  <text x="364" y="214" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#1b1f23">중간</text>
+  <text x="732" y="148" font-family="Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#1b1f23">난이도 있는거</text>
+  <text x="156" y="444" font-family="Segoe UI, sans-serif" font-size="18" fill="#4b5563">story and result</text>
+  <text x="364" y="244" font-family="Segoe UI, sans-serif" font-size="18" fill="#4b5563">workflow and ops</text>
+  <text x="732" y="178" font-family="Segoe UI, sans-serif" font-size="18" fill="#4b5563">architecture and tradeoffs</text>
+</svg>

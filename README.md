@@ -49,11 +49,14 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 | --- | --- | --- |
 | [`package-authoring`](packages/package-authoring/README.md) | Add public-safe packages and runtime artifacts consistently | Active |
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Active |
+| [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Release user-authored workflow packages with readiness, verification, and GitHub surface sync | Active |
 | [`pet-companion`](packages/pet-companion/README.md) | Publish cross-runtime pet and companion workflows with a shared state contract | Experimental |
 
 `package-authoring` is the meta package for adding future skills, agents, prompts, hooks, commands, plugins, examples, and runtime adapters.
 
 `keepworking` is the first workflow package. It defines a long-running evidence-first loop with tiered routing, parallel worker dispatch, repair, and re-verification.
+
+`github-publication-bundle` is the release gate for public workflow packages. It blocks publication until install/use/verify docs, examples, verification evidence, and GitHub-facing source-of-truth updates are all present.
 
 `pet-companion` shows how to package a runtime-neutral companion bundle, a lightweight viewer, and adapter guidance without publishing private local assets. It is intentionally experimental: Codex is the only runtime with a currently usable path in this repo, while Claude Code and GitHub Copilot are documented as future adapter targets rather than working integrations.
 
@@ -103,6 +106,16 @@ Do not split one workflow across separate top-level `skills`, `agents`, and `pro
 - Wiki source pages: [`docs/wiki/Home.md`](docs/wiki/Home.md)
 - Public safety guard: [`docs/publication-guard.md`](docs/publication-guard.md)
 - Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+
+## Public Guides
+
+The repository also includes public-safe article series derived from completed workflow cases.
+
+| Series | Purpose |
+| --- | --- |
+| [`docs/public-series`](docs/public-series/README.md) | Turn completed devlog cases into GitHub articles with 쉬운거, 중간, and 난이도 있는거 reading paths |
+
+Public guides are not private logs. They remove local paths, private names, credentials, and runtime state before publication.
 
 ## Public Safety
 

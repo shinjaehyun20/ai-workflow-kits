@@ -52,6 +52,32 @@ packages:
       - hook
       - instruction
       - example
+  - id: github-publication-bundle
+    name: GitHub Publication Bundle
+    description: Public release workflow for user-authored workflow packages.
+    category: governance
+    status: active
+    path: packages/github-publication-bundle
+    runtimes:
+      codex:
+        status: active
+        path: packages/github-publication-bundle/codex
+      claude:
+        status: active
+        path: packages/github-publication-bundle/claude
+      gemini:
+        status: draft
+        path: packages/github-publication-bundle/gemini
+      copilot:
+        status: active
+        path: packages/github-publication-bundle/copilot
+    artifacts:
+      - skill
+      - command
+      - prompt
+      - instruction
+      - example
+      - guide
   - id: pet-companion
     name: Pet Companion
     description: Cross-runtime companion workflow with a shared state contract and external viewer.
