@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-05-31"
+updated_at: "2026-06-10"
 packages:
   - id: package-authoring
     name: Package Authoring
@@ -105,3 +105,29 @@ packages:
       - example
       - guide
       - schema
+  - id: teamwork-preview
+    name: Teamwork Preview
+    description: Goal lock, grill-me review, and launch-packet workflow for safe multi-agent delegation.
+    category: orchestration
+    status: active
+    path: packages/teamwork-preview
+    runtimes:
+      codex:
+        status: active
+        path: packages/teamwork-preview/codex
+      claude:
+        status: draft
+        path: packages/teamwork-preview/claude
+      gemini:
+        status: draft
+        path: packages/teamwork-preview/gemini
+      copilot:
+        status: draft
+        path: packages/teamwork-preview/copilot
+    artifacts:
+      - skill
+      - command
+      - prompt
+      - instruction
+      - example
+      - guide

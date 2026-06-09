@@ -25,6 +25,7 @@ developer-tools
 automation
 llmops
 multi-agent
+multi-agent-orchestration
 workflow-automation
 ```
 

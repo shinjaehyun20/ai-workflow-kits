@@ -1,0 +1,36 @@
+id: teamwork-preview
+name: Teamwork Preview
+description: Goal lock, grill-me review, and launch-packet workflow for safe multi-agent delegation.
+category: orchestration
+status: active
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: true
+    status: draft
+    path: gemini/
+  copilot:
+    supported: true
+    status: draft
+    path: copilot/
+artifacts:
+  - skill
+  - command
+  - prompt
+  - instruction
+  - example
+  - guide
+evidence_required:
+  - prompt_draft
+  - approval_state
+  - branch_status
+  - evidence_paths
+  - unresolved_risks
+  - close_decision

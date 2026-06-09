@@ -123,6 +123,7 @@ REQUIRED_YAML = [
     "registry.yaml",
     "packages/keepworking/manifest.yaml",
     "packages/pet-companion/manifest.yaml",
+    "packages/teamwork-preview/manifest.yaml",
     "templates/manifest.template.yaml",
 ]
 

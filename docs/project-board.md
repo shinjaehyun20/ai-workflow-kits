@@ -21,7 +21,7 @@ AI Workflow Kits Roadmap
 | Field | Values |
 | --- | --- |
 | Status | Backlog, Ready, In Progress, Review, Done |
-| Package | package-authoring, keepworking, new-package |
+| Package | package-authoring, keepworking, teamwork-preview, pet-companion, new-package |
 | Runtime | Codex, Claude Code, Gemini, GitHub Copilot, Cross-runtime |
 | Type | docs, package, adapter, example, scanner, project |
 | Priority | P0, P1, P2 |
@@ -37,6 +37,7 @@ AI Workflow Kits Roadmap
 | Expand keepworking Codex dry-run example | keepworking | Codex | example | P1 |
 | Expand keepworking Gemini example | keepworking | Gemini | example | P1 |
 | Expand keepworking Copilot prompt examples | keepworking | GitHub Copilot | example | P1 |
+| Add runtime parity examples for Teamwork Preview | teamwork-preview | Cross-runtime | example | P1 |
 | Publish pet-companion roadmap and limitations clearly | pet-companion | Cross-runtime | docs | P0 |
 | Add working runtime examples for pet-companion | pet-companion | Cross-runtime | example | P1 |
 
@@ -53,5 +54,6 @@ runtime:copilot
 docs
 public-safety
 package:pet-companion
+package:teamwork-preview
 publish-bundle
 ```
