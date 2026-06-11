@@ -8,6 +8,7 @@ This file is the human-readable catalog for AI Workflow Kits.
 | [`keepworking`](packages/keepworking/README.md) | Long-running evidence-first workflow loop | Active | Active | Draft | Draft | Active |
 | [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Public release workflow for user-authored packages with readiness and GitHub surface sync | Active | Active | Draft | Active | Active |
 | [`pet-companion`](packages/pet-companion/README.md) | Cross-runtime companion workflow with shared state contracts and external viewer | Active | Draft | Planned | Draft | Experimental |
+| [`office-workspace`](packages/office-workspace/README.md) | Stateful "open file" editing layer for office documents (PPTX first) | Stub | Draft | Stub | Stub | Experimental |
 
 ## Status Values
 

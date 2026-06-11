@@ -51,6 +51,7 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Active |
 | [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Release user-authored workflow packages with readiness, verification, and GitHub surface sync | Active |
 | [`pet-companion`](packages/pet-companion/README.md) | Publish cross-runtime pet and companion workflows with a shared state contract | Experimental |
+| [`office-workspace`](packages/office-workspace/README.md) | Stateful "open file" editing layer for office documents, starting with PPTX | Experimental |
 
 `package-authoring` is the meta package for adding future skills, agents, prompts, hooks, commands, plugins, examples, and runtime adapters.
 

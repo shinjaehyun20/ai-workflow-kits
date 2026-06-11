@@ -1,0 +1,32 @@
+id: office-workspace
+name: Office Workspace
+description: Stateful "open file" editing layer for office documents, starting with PPTX.
+category: documents
+status: experimental
+runtimes:
+  codex:
+    supported: true
+    status: stub
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: true
+    status: stub
+    path: gemini/
+  copilot:
+    supported: true
+    status: stub
+    path: copilot/
+artifacts:
+  - skill
+  - plugin
+  - example
+  - guide
+evidence_required:
+  - file_paths
+  - logs_or_tests
+  - unresolved_risks
+  - completion_status

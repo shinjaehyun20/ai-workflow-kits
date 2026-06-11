@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-05-31"
+updated_at: "2026-06-11"
 packages:
   - id: package-authoring
     name: Package Authoring
@@ -105,3 +105,27 @@ packages:
       - example
       - guide
       - schema
+  - id: office-workspace
+    name: Office Workspace
+    description: Stateful "open file" editing layer for office documents, starting with PPTX.
+    category: documents
+    status: experimental
+    path: packages/office-workspace
+    runtimes:
+      codex:
+        status: stub
+        path: packages/office-workspace/codex
+      claude:
+        status: draft
+        path: packages/office-workspace/claude
+      gemini:
+        status: stub
+        path: packages/office-workspace/gemini
+      copilot:
+        status: stub
+        path: packages/office-workspace/copilot
+    artifacts:
+      - skill
+      - plugin
+      - example
+      - guide

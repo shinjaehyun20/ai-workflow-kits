@@ -1,0 +1,9 @@
+# Generated office artifacts must never be committed (public-safety + binaries).
+*.pptx
+*.docx
+*.xlsx
+*.pdf
+*.hwp
+*.hwpx
+__pycache__/
+*.pyc
