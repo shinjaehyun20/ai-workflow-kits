@@ -34,6 +34,42 @@ tmux send-keys -t team:0.0 'claude' C-m
 멤버 역할은 공유 `CLAUDE.md`(또는 팀 차터)로 정의한다. 예시는
 `../../examples/public-safe-team-run/team-charter.example.md` 참고.
 
+### 1-1. 원클릭 팀 실행 — `launch-team.sh`
+
+위 수동 분할을 한 번에 처리하는 런처가
+`../../examples/public-safe-team-run/launch-team.sh`에 있다. 레포 루트에서 실행하면
+tmux 창을 2×2로 쪼개고, 각 패널에서 Claude Code를 **자기 역할 브리핑이 주입된 채로**
+띄운다.
+
+```bash
+# 레포 루트에서
+bash packages/agent-team-ops/examples/public-safe-team-run/launch-team.sh
+```
+
+기본 4-패널 구성:
+
+| 패널 | 역할 | 주입 파일 (`claude/agents/`) |
+| --- | --- | --- |
+| 0 | team-lead | `team-lead.agent.md` |
+| 1 | builder | `builder.agent.md` |
+| 2 | builder-2 | `builder.agent.md` |
+| 3 | reviewer | `reviewer.agent.md` |
+
+각 패널은 `claude --append-system-prompt "$(cat <역할 파일>)"`로 시작하므로, 별도
+복붙 없이 역할이 시스템 프롬프트로 들어간다. 구성을 바꾸려면 스크립트 상단의
+`ROLES` 배열을 편집한다(예: `builder-2`를 `docs`로 교체).
+
+VS Code에서는 통합 터미널(``Ctrl+` ``)에서 위 한 줄을 실행하면 분할 화면이 터미널
+안에 뜬다. 조작:
+
+- 패널 이동: `Ctrl-b` 다음 화살표
+- 화면 떼기(세션 유지): `Ctrl-b` 다음 `d` → 재접속 `tmux attach -t team`
+- 팀 종료: `tmux kill-session -t team`
+
+> 전제: `tmux`와 `claude` CLI가 설치돼 있어야 한다. 스크립트는 둘 중 하나라도 없으면
+> 멈추고 안내한다. 원격(휴대폰) 운영을 쓰려면 VS Code 분할 터미널 대신 이 tmux
+> 방식이어야 세션이 살아남아 재접속된다(3장 참고).
+
 ## 2. 도구 스택 (6장) — Triple Crown 슬롯
 
 | 슬롯 | 도구 | 출처 |
