@@ -124,6 +124,7 @@ REQUIRED_YAML = [
     "packages/keepworking/manifest.yaml",
     "packages/pet-companion/manifest.yaml",
     "packages/teamwork-preview/manifest.yaml",
+    "packages/agent-team-ops/manifest.yaml",
     "templates/manifest.template.yaml",
 ]
 

@@ -26,6 +26,7 @@ automation
 llmops
 multi-agent
 multi-agent-orchestration
+agent-teams
 workflow-automation
 ```
 

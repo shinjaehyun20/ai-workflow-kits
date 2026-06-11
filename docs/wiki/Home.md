@@ -7,6 +7,7 @@ AI Workflow Kits is a public collection of copy-ready workflow packages for Code
 - [Package Authoring](Package-Authoring.md)
 - [Keepworking](Keepworking.md)
 - [Teamwork Preview](Teamwork-Preview.md)
+- [Agent Team Ops](Agent-Team-Ops.md)
 - [Pet Companion](Pet-Companion.md)
 - [Runtime Matrix](Runtime-Matrix.md)
 - [Public Safety](Public-Safety.md)

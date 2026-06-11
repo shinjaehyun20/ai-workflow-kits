@@ -1,5 +1,5 @@
 version: 1
-updated_at: "2026-06-10"
+updated_at: "2026-06-11"
 packages:
   - id: package-authoring
     name: Package Authoring
@@ -127,6 +127,33 @@ packages:
     artifacts:
       - skill
       - command
+      - prompt
+      - instruction
+      - example
+      - guide
+  - id: agent-team-ops
+    name: Agent Team Ops
+    description: Stand up and operate a persistent multi-agent Claude Code team with remote control, a shared tool stack, and conflict-safe fan-in.
+    category: orchestration
+    status: experimental
+    path: packages/agent-team-ops
+    runtimes:
+      claude:
+        status: draft
+        path: packages/agent-team-ops/claude
+      codex:
+        status: draft
+        path: packages/agent-team-ops/codex
+      gemini:
+        status: draft
+        path: packages/agent-team-ops/gemini
+      copilot:
+        status: draft
+        path: packages/agent-team-ops/copilot
+    artifacts:
+      - skill
+      - command
+      - agent
       - prompt
       - instruction
       - example
