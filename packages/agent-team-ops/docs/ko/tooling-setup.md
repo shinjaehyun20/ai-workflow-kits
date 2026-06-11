@@ -70,6 +70,54 @@ VS Code에서는 통합 터미널(``Ctrl+` ``)에서 위 한 줄을 실행하면
 > 멈추고 안내한다. 원격(휴대폰) 운영을 쓰려면 VS Code 분할 터미널 대신 이 tmux
 > 방식이어야 세션이 살아남아 재접속된다(3장 참고).
 
+### 1-2. 윈도우 네이티브 실행 — `launch-team.ps1`
+
+`tmux`는 **윈도우 네이티브(PowerShell/Git Bash)에서 동작하지 않는다.** 윈도우에서는
+`launch-team.sh` 대신 같은 폴더의 **`launch-team.ps1`**(PowerShell + Windows
+Terminal)을 쓴다. Windows Terminal 창 하나를 2×2로 쪼개고 각 패널에서 역할이 주입된
+`claude`를 띄운다 — tmux 불필요.
+
+```powershell
+# 어디서 실행해도 됨: 스크립트가 레포 루트를 스스로 찾는다
+pwsh -File packages\agent-team-ops\examples\public-safe-team-run\launch-team.ps1
+```
+
+전제: **Windows Terminal(`wt.exe`)** 과 `claude` CLI가 PATH에 있어야 한다. 둘 중
+하나라도 없으면 스크립트가 멈추고 안내한다. 팀 종료는 Windows Terminal 창을 닫으면
+된다. 패널 구성은 스크립트 상단 `$Roles` 해시테이블을 편집해 바꾼다.
+
+> 선택 — WSL2: 윈도우에서도 WSL2 안에서는 Linux 경로를 따르므로 `launch-team.sh`가
+> 그대로 동작한다. 휴대폰 Remote-Control(3장)까지 쓰려면 tmux가 살아있는 WSL2 경로를
+> 권장한다.
+
+#### VS Code 원클릭 태스크 (선택)
+
+매번 명령을 치기 싫으면, 작업 중인 워크스페이스의 `.vscode/tasks.json`에 아래를 넣고
+`Ctrl+Shift+P` → *Tasks: Run Task* → "Launch agent team"으로 실행한다. `<레포 경로>`는
+`ai-workflow-kits`를 클론한 실제 경로로 바꾼다.
+
+```jsonc
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Launch agent team",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-File",
+        "<레포 경로>/packages/agent-team-ops/examples/public-safe-team-run/launch-team.ps1"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
+```
+
+> 흔한 실수: 스크립트는 `ai-workflow-kits` **레포 안의 파일**이다. 레포를 클론하지 않은
+> 엉뚱한 작업 폴더에서 상대경로로 부르면 `No such file or directory`가 난다. 먼저
+> 레포를 클론한 뒤, 위처럼 **절대경로**로 호출하거나 레포 루트로 이동해 호출한다.
+
 ## 2. 도구 스택 (6장) — Triple Crown 슬롯
 
 | 슬롯 | 도구 | 출처 |

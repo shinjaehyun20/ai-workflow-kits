@@ -13,17 +13,25 @@ Scenario:
 Files:
 
 - `team-charter.example.md` — the shared charter every member reads.
-- `launch-team.sh` — one-command launcher that opens a 2x2 tmux grid and starts
-  Claude Code in each pane with its role briefing injected via
-  `--append-system-prompt`. Run it from the repo root:
+- `launch-team.sh` — one-command launcher (macOS / Linux / WSL2) that opens a
+  2x2 tmux grid and starts Claude Code in each pane with its role briefing
+  injected via `--append-system-prompt`. Run it from the repo root:
 
   ```bash
   bash packages/agent-team-ops/examples/public-safe-team-run/launch-team.sh
   ```
 
-  Default panes: `team-lead`, `builder`, `builder-2`, `reviewer`. Edit the
-  `ROLES` array near the top of the script to change the team shape. Korean
-  walkthrough: `../../docs/ko/tooling-setup.md` (section 1-1).
+- `launch-team.ps1` — Windows-native counterpart (PowerShell + Windows
+  Terminal, no tmux). Resolves the repo root itself, so it runs from anywhere:
+
+  ```powershell
+  pwsh -File packages\agent-team-ops\examples\public-safe-team-run\launch-team.ps1
+  ```
+
+  Both default to panes `team-lead`, `builder`, `builder-2`, `reviewer`. Edit
+  the `ROLES` array (`.sh`) or `$Roles` table (`.ps1`) to change the team
+  shape. Korean walkthrough: `../../docs/ko/tooling-setup.md` (sections 1-1
+  and 1-2).
 
 The charter and launcher contain no private paths, names, tokens, or runtime
 state. They use placeholder and repo-relative paths only.
