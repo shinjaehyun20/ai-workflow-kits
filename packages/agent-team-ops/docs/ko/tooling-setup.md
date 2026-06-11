@@ -85,8 +85,21 @@ CLI 출력 토큰을 압축해 장시간 팀 세션의 예산을 지킨다.
 cargo install --git https://github.com/rtk-ai/rtk
 ```
 
-RTK는 PreToolUse 훅으로 Bash 호출을 자동 우회시킨다. 글로벌 훅 등록은 프로젝트
-저장소 안내를 따른다.
+설치 후 Claude Code 연동을 켠다 (macOS / Linux):
+
+```bash
+rtk init --global
+```
+
+`rtk init --global`은 PreToolUse 훅을 등록해 Bash 호출을 자동으로 RTK 경유로
+재작성한다. 대략 다음을 만든다:
+
+- `~/.claude/settings.json`에 PreToolUse 훅 항목 추가
+- `~/.claude/hooks/rtk-rewrite.sh` 훅 스크립트 생성
+- `~/.claude/RTK.md` 인식 파일 생성, `~/.claude/CLAUDE.md`에서 참조
+
+> Windows 네이티브에서는 자동 재작성 훅이 동작하지 않고 `CLAUDE.md` 주입 모드로
+> 폴백한다. WSL2에서는 Linux 경로를 따른다.
 
 확인:
 
