@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent vs Skill — Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  /* === THEME (Ferrari chiaroscuro: Rosso Corsa + Modena yellow, razor edges, flat) === */
+  :root{
+    --red:#DA291C; --red-deep:#9D2211; --yellow:#F6E500;
+    --black:#000; --ink:#181818; --surface:#303030;
+    --white:#fff; --gray:#8F8F8F; --gray-d:#666; --silver:#cfcfcf; --line:#2a2a2a;
+    --font-display:'Anton','Pretendard',sans-serif;
+    --font-head:'Archivo','Pretendard',sans-serif;
+    --font-body:'Pretendard','Archivo',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+    --ease:cubic-bezier(0.16,1,0.3,1); --dur:0.7s;
+    /* typography clamps */
+    --title-size:clamp(2.4rem,8vw,7rem);
+    --h2-size:clamp(1.5rem,4.2vw,3.2rem);
+    --h3-size:clamp(1rem,2.3vw,1.6rem);
+    --body-size:clamp(0.8rem,1.5vw,1.15rem);
+    --small-size:clamp(0.65rem,1.05vw,0.9rem);
+    --slide-padding:clamp(1.4rem,5vw,5rem);
+    --content-gap:clamp(0.7rem,2vw,1.8rem);
+    --element-gap:clamp(0.3rem,1vw,1rem);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  /* ====== viewport-base.css (mandatory, included in full) ====== */
+  html,body{height:100%;overflow-x:hidden}
+  html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .slide{width:100vw;height:100vh;height:100dvh;overflow:hidden;scroll-snap-align:start;display:flex;flex-direction:column;position:relative}
+  .slide-content{flex:1;display:flex;flex-direction:column;justify-content:center;max-height:100%;overflow:hidden;padding:var(--slide-padding)}
+  .card,.container,.content-box{max-width:min(90vw,1000px);max-height:min(80vh,700px)}
+  .feature-list,.bullet-list{gap:clamp(0.4rem,1vh,1rem)}
+  .feature-list li,.bullet-list li{font-size:var(--body-size);line-height:1.4}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:clamp(0.5rem,1.5vw,1rem)}
+  img,.image-container{max-width:100%;max-height:min(50vh,400px);object-fit:contain}
+  @media (max-height:700px){:root{--slide-padding:clamp(0.75rem,3vw,2rem);--content-gap:clamp(0.4rem,1.5vw,1rem);--title-size:clamp(1.8rem,6vw,3.6rem);--h2-size:clamp(1.2rem,3.4vw,2.2rem)}}
+  @media (max-height:600px){:root{--slide-padding:clamp(0.5rem,2.5vw,1.5rem);--content-gap:clamp(0.3rem,1vw,0.75rem);--title-size:clamp(1.5rem,5vw,2.6rem);--body-size:clamp(0.7rem,1.2vw,0.95rem)} .nav-dots,.keyboard-hint,.decorative{display:none}}
+  @media (max-height:500px){:root{--slide-padding:clamp(0.4rem,2vw,1rem);--title-size:clamp(1.2rem,4vw,1.9rem);--h2-size:clamp(1rem,2.6vw,1.4rem);--body-size:clamp(0.65rem,1vw,0.85rem)}}
+  @media (max-width:600px){:root{--title-size:clamp(2rem,12vw,3.2rem)} .grid{grid-template-columns:1fr}}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.2s!important} html{scroll-behavior:auto}}
+
+  /* ====== Ferrari base ====== */
+  body{background:var(--black);color:var(--white);font-family:var(--font-body);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .s-black{background:var(--black);color:#fff}
+  .s-white{background:var(--white);color:var(--ink)}
+  .s-red{background:var(--red);color:#fff}
+  .kicker{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.22em;font-size:var(--small-size);font-weight:700;color:var(--gray)}
+  .s-white .kicker{color:var(--gray-d)}
+  .kicker .n{color:var(--red);margin-right:.7em}
+  h2{font-family:var(--font-head);font-weight:900;font-size:var(--h2-size);line-height:1.02;letter-spacing:-.02em;margin:.25em 0 .15em}
+  .accent-r{color:var(--red)} .accent-y{color:#b9a900} .s-black .accent-y{color:var(--yellow)}
+  .redline{height:4px;width:clamp(60px,9vw,130px);background:var(--red);margin:var(--content-gap) 0}
+  .s-red .redline{background:#fff}
+
+  /* reveal (triggered when slide gets .visible) */
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+  .slide.visible .reveal{opacity:1;transform:none}
+  .slide.visible .reveal:nth-child(1){transition-delay:.05s}
+  .slide.visible .reveal:nth-child(2){transition-delay:.14s}
+  .slide.visible .reveal:nth-child(3){transition-delay:.23s}
+  .slide.visible .reveal:nth-child(4){transition-delay:.32s}
+  .slide.visible .reveal:nth-child(5){transition-delay:.41s}
+  .slide.visible .reveal:nth-child(6){transition-delay:.50s}
+
+  /* ===== title slide ===== */
+  .title-slide .slide-content{justify-content:center}
+  .hero-kicker{margin-bottom:clamp(1rem,3vh,2.4rem)}
+  .hero-title{font-family:var(--font-display);font-size:var(--title-size);line-height:.86;letter-spacing:.005em;font-weight:400}
+  .hero-title .vs{color:var(--gray-d);font-size:.5em;vertical-align:.12em;margin:0 .12em}
+  .hero-title .ag{color:var(--red)} .hero-title .sk{color:#fff;position:relative}
+  .hero-title .sk::after{content:"";position:absolute;left:0;right:0;bottom:-.07em;height:.08em;background:var(--yellow);transform:scaleX(0);transform-origin:left;transition:transform 1s .6s var(--ease)}
+  .slide.visible .hero-title .sk::after{transform:scaleX(1)}
+  .hero-sub{font-family:var(--font-head);font-weight:700;font-size:var(--h3-size);color:var(--silver);margin-top:clamp(1.2rem,3.5vh,2.6rem);max-width:22ch}
+  .hero-tag{font-family:var(--font-mono);letter-spacing:.18em;text-transform:uppercase;font-size:var(--small-size);color:var(--gray);margin-top:clamp(.8rem,2vh,1.4rem)}
+
+  /* ===== two-card layout ===== */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.7rem,2vw,1.6rem);margin-top:var(--content-gap)}
+  @media (max-width:680px){.two{grid-template-columns:1fr}}
+  .ccard{border:1px solid var(--line);padding:clamp(1rem,2.4vw,2rem);display:flex;flex-direction:column;gap:.5em;border-top:4px solid var(--line)}
+  .ccard.ag{border-top-color:var(--red)} .ccard.sk{border-top-color:var(--yellow)}
+  .s-white .ccard{border-color:#e2e2e2} .s-white .ccard.ag{background:#0a0a0a;color:#fff} .s-white .ccard.sk{background:#fff;color:var(--ink)}
+  .s-black .ccard{background:#0c0c0c}
+  .lab{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.12em;font-size:var(--small-size);font-weight:700;align-self:flex-start;padding:.32em .7em}
+  .lab.r{background:var(--red);color:#fff} .lab.y{background:var(--yellow);color:#000}
+  .ccard h3{font-family:var(--font-head);font-weight:900;font-size:var(--h3-size);letter-spacing:-.01em}
+  .ccard p,.ccard li{font-size:var(--body-size);line-height:1.45}
+  .ccard .muted{color:var(--gray)} .s-white .ccard.sk .muted{color:var(--gray-d)}
+  .ccard ul{list-style:none;display:flex;flex-direction:column;gap:.35em}
+  .ccard li::before{content:"›";color:var(--red);font-weight:800;margin-right:.5em}
+  .ccard.sk li::before{color:#b9a900} .s-black .ccard.sk li::before{color:var(--yellow)}
+  .mono{font-family:var(--font-mono);font-size:var(--small-size);color:var(--silver);background:#141414;border:1px solid var(--line);padding:.4em .6em;margin-top:.3em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .s-white .ccard.sk .mono{color:var(--ink);background:#f3f3f3;border-color:#e2e2e2}
+  .note{font-family:var(--font-body);font-size:var(--small-size);color:var(--gray);border-left:3px solid var(--yellow);padding:.5em .8em;margin-top:var(--element-gap)}
+  .s-white .note{color:var(--gray-d)}
+
+  /* tool header */
+  .thead{display:flex;align-items:center;gap:clamp(.6rem,1.5vw,1rem)}
+  .logo{width:clamp(2.4rem,4vw,3.4rem);height:clamp(2.4rem,4vw,3.4rem);display:grid;place-items:center;font-family:var(--font-display);font-size:clamp(1rem,1.8vw,1.5rem);color:#fff;flex:none}
+  .logo.cl{background:#d97757} .logo.co{background:#4078c0} .logo.cx{background:#10a37f}
+  .tg{margin-left:auto;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.14em;font-size:var(--small-size);color:var(--gray)}
+
+  /* matrix mini */
+  .mx{display:grid;grid-template-columns:auto 1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--content-gap)}
+  .mx>div{background:var(--black);padding:clamp(.55rem,1.4vw,1rem) clamp(.6rem,1.6vw,1.1rem);font-size:var(--body-size);line-height:1.35}
+  .s-white .mx{background:#e2e2e2;border-color:#e2e2e2} .s-white .mx>div{background:#fff}
+  .mx .hd{font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.1em;font-size:var(--small-size);font-weight:700}
+  .mx .hd.a{color:var(--red)} .mx .hd.s{color:#b9a900} .s-black .mx .hd.s{color:var(--yellow)}
+  .mx .rk{font-family:var(--font-mono);font-size:var(--small-size);color:var(--gray);text-transform:uppercase;letter-spacing:.06em;align-self:center}
+  .mx .ca{border-left:3px solid var(--red)} .mx .cs{border-left:3px solid var(--yellow)}
+
+  /* combine flow */
+  .flow{display:flex;align-items:center;justify-content:center;gap:clamp(.4rem,1.4vw,1.1rem);flex-wrap:wrap;margin-top:var(--content-gap)}
+  .fnode{border:1px solid var(--line);padding:clamp(.6rem,1.6vw,1.2rem) clamp(.7rem,1.8vw,1.4rem);text-align:center;min-width:clamp(7rem,16vw,11rem)}
+  .s-white .fnode{border-color:#ddd}
+  .fnode.ag{background:var(--red);color:#fff;border-color:var(--red)} .fnode.sk{background:var(--yellow);color:#000;border-color:var(--yellow)}
+  .fnode b{font-family:var(--font-head);font-weight:900;font-size:var(--h3-size);display:block}
+  .fnode span{font-size:var(--small-size);opacity:.85}
+  .farrow{font-family:var(--font-mono);color:var(--gray);font-size:clamp(1rem,2vw,1.6rem)}
+  .farrow small{display:block;font-size:.5em;letter-spacing:.1em}
+
+  /* when-use 2col */
+  .when{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.7rem,2vw,1.6rem);margin-top:var(--content-gap)}
+  @media (max-width:680px){.when{grid-template-columns:1fr}}
+  .wcol{border:1px solid var(--line);padding:clamp(1rem,2.4vw,2rem);background:#0c0c0c}
+  .wcol ul{list-style:none;display:flex;flex-direction:column;gap:.55em;margin-top:.7em}
+  .wcol li{font-size:var(--body-size);line-height:1.4}
+  .wcol li::before{content:"—";margin-right:.5em;color:var(--gray)}
+
+  /* closing */
+  .close-big{font-family:var(--font-head);font-weight:900;font-size:clamp(1.6rem,5vw,4rem);line-height:1.05;letter-spacing:-.02em}
+  .src{font-family:var(--font-mono);font-size:var(--small-size);color:rgba(255,255,255,.8);margin-top:var(--content-gap);line-height:1.7}
+  .src a{color:#fff}
+
+  /* progress bar + dots + hint */
+  .progress-bar{position:fixed;top:0;left:0;height:3px;width:0;background:var(--red);z-index:100;transition:width .15s linear}
+  .nav-dots{position:fixed;right:clamp(.8rem,2vw,1.6rem);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:.6rem;z-index:90}
+  .nav-dots button{width:9px;height:9px;border:1px solid var(--gray);background:transparent;cursor:pointer;padding:0;transition:.2s}
+  .nav-dots button.active{background:var(--red);border-color:var(--red);transform:scale(1.25)}
+  .keyboard-hint{position:fixed;bottom:clamp(.7rem,2vh,1.4rem);left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;color:var(--gray);z-index:90;text-transform:uppercase;opacity:.7}
+  .pageno{position:fixed;bottom:clamp(.7rem,2vh,1.4rem);right:clamp(.9rem,2vw,1.6rem);font-family:var(--font-mono);font-size:.75rem;color:var(--gray);z-index:90}
+</style>
+</head>
+<body>
+<div class="progress-bar"></div>
+<nav class="nav-dots" aria-label="슬라이드 이동"></nav>
+<div class="keyboard-hint">← → · Space · Scroll</div>
+<div class="pageno"><span id="pn">01</span> / 12</div>
+
+<!-- 01 TITLE -->
+<section class="slide title-slide s-black" data-label="Title">
+  <div class="slide-content">
+    <div class="kicker hero-kicker reveal"><span class="n">//</span>AI 코딩 도구 · 개념 정리</div>
+    <h1 class="hero-title reveal"><span class="ag">AGENT</span><span class="vs">vs</span><span class="sk">SKILL</span></h1>
+    <div class="redline reveal"></div>
+    <p class="hero-sub reveal">에이전트 vs 스킬 — 채용한 일꾼인가, 펴 보는 매뉴얼인가</p>
+    <div class="hero-tag reveal">Claude · GitHub Copilot · OpenAI Codex</div>
+  </div>
+</section>
+
+<!-- 02 한 줄 요약 -->
+<section class="slide s-white" data-label="요약">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">01</span>SUMMARY · 한 줄 요약</div>
+    <h2 class="reveal">한 줄이면 <span class="accent-r">일꾼</span>이거나 <span class="accent-y">매뉴얼</span></h2>
+    <div class="two">
+      <div class="ccard ag reveal"><span class="lab r">Agent · 에이전트</span><h3>전문 일꾼</h3>
+        <p>자체 컨텍스트·도구·권한·판단으로 위임받은 일감을 <b>통째로 끝까지</b> 수행하고 요약만 반환.</p></div>
+      <div class="ccard sk reveal"><span class="lab y">Skill · 스킬</span><h3>작업 매뉴얼</h3>
+        <p>특정 작업 수행법을 묶은 <b>SKILL.md 플레이북</b>. description이 맞을 때만 펼쳐져 컨텍스트를 아낌.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 비유 -->
+<section class="slide s-black" data-label="비유">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">02</span>ANALOGY · 사무실 풍경</div>
+    <h2 class="reveal"><span class="accent-r">채용</span>할까, <span class="accent-y">펼칠</span>까</h2>
+    <div class="two">
+      <div class="ccard ag reveal"><span class="lab r">에이전트</span><h3>🧑‍💼 채용한 전문가</h3>
+        <p class="muted">자기 책상(별도 컨텍스트)·도구·판단으로 일을 통째로 맡아 끝낸다.</p></div>
+      <div class="ccard sk reveal"><span class="lab y">스킬</span><h3>📚 책장 속 매뉴얼</h3>
+        <p class="muted">관련 작업을 만났을 때만 꺼내 펼친다. 평소엔 자리를 거의 안 차지.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 정의 -->
+<section class="slide s-white" data-label="정의">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">03</span>DEFINITION · 한 줄 정의</div>
+    <h2 class="reveal">정확히 말하면</h2>
+    <div class="two">
+      <div class="ccard ag reveal"><span class="lab r">Agent</span>
+        <p>자체 컨텍스트·도구·권한·판단을 갖고 위임받은 작업을 수행하는 <b>재사용 가능한 전문 일꾼(페르소나) 정의</b>.</p></div>
+      <div class="ccard sk reveal"><span class="lab y">Skill</span>
+        <p>작업 수행법을 instructions·스크립트·리소스로 묶은 <b>SKILL.md 폴더</b>로, description 매칭 시 본문이 로드되는 재사용 플레이북.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 비교 1 -->
+<section class="slide s-black" data-label="비교①">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">04</span>COMPARE ① · 본질</div>
+    <h2 class="reveal">무엇이 다른가</h2>
+    <div class="mx reveal">
+      <div class="hd rk">축</div><div class="hd a">에이전트</div><div class="hd s">스킬</div>
+      <div class="rk">정의</div><div class="ca">전문 일꾼 정의 · 위임 후 요약 반환</div><div class="cs">SKILL.md 작업 패키지 · 임시 전문화</div>
+      <div class="rk">목적</div><div class="ca">역할/페르소나 분리</div><div class="cs">능력/지식 주입</div>
+      <div class="rk">자율성</div><div class="ca">높음 — 스스로 판단·완수</div><div class="cs">낮음 — 호출 주체 판단 안에서</div>
+      <div class="rk">호출</div><div class="ca">자동 + 이름·@mention·세션 채택</div><div class="cs">자동 + /skill명 · $skill명</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 비교 2 -->
+<section class="slide s-white" data-label="비교②">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">05</span>COMPARE ② · 운용</div>
+    <h2 class="reveal">어떻게 쓰이나</h2>
+    <div class="mx reveal">
+      <div class="hd rk">축</div><div class="hd a">에이전트</div><div class="hd s">스킬</div>
+      <div class="rk">재사용 단위</div><div class="ca">Markdown(+YAML) 정의 1개 = 일꾼</div><div class="cs">SKILL.md + 번들 폴더 = 패키지</div>
+      <div class="rk">컨텍스트</div><div class="ca">별도 윈도우 소비 · 요약만 합류</div><div class="cs">점진적 공개 — 평소 메타데이터만</div>
+      <div class="rk">위치</div><div class="ca">.claude/agents · .github/agents · AGENTS.md</div><div class="cs">SKILL.md (.../skills/)</div>
+      <div class="rk">예시</div><div class="ca">code-reviewer · test-specialist</div><div class="cs">pdf-processing · CI 디버깅</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 Claude -->
+<section class="slide s-black" data-label="Claude">
+  <div class="slide-content">
+    <div class="thead reveal"><span class="logo cl">Cl</span><h2 style="margin:0">Claude / Claude Code</h2><span class="tg">두 개념의 본가</span></div>
+    <div class="two">
+      <div class="ccard ag reveal"><span class="lab r">Agent → Subagent</span>
+        <ul><li>자체 컨텍스트·프롬프트·도구·권한, 요약만 반환</li><li>.claude/agents · ~/.claude/agents (재귀, 정체성=name)</li></ul>
+        <div class="mono">name · description · tools · model · skills</div></div>
+      <div class="ccard sk reveal"><span class="lab y">Skill → Agent Skill</span>
+        <ul><li>SKILL.md + 점진적 공개(L1 메타 / L2 본문 / L3 번들)</li><li>~/.claude/skills · .claude/skills (enterprise &gt; personal &gt; project)</li></ul>
+        <div class="mono">/skill명 · disable-model-invocation</div></div>
+    </div>
+    <div class="note reveal">함께: 서브에이전트 <b>skills</b> 필드로 스킬 프리로드 · 스킬 <b>context: fork</b>로 격리 서브에이전트 실행</div>
+  </div>
+</section>
+
+<!-- 08 Copilot -->
+<section class="slide s-white" data-label="Copilot">
+  <div class="slide-content">
+    <div class="thead reveal"><span class="logo co">Co</span><h2 style="margin:0">GitHub Copilot</h2><span class="tg">agent 과부하 주의</span></div>
+    <div class="two">
+      <div class="ccard ag reveal"><span class="lab r">Agent → Custom agents</span>
+        <ul><li>역할 특화 재사용 파일 .agent.md (.md도 허용)</li><li>.github/agents · CLI ~/.copilot/agents · 본문 ≤ 30,000자</li></ul>
+        <div class="mono">명시/사용자 선택 중심</div></div>
+      <div class="ccard sk reveal"><span class="lab y">Skill → Agent Skills</span>
+        <ul><li>SKILL.md (Anthropic 오픈 표준 채택) — Claude의 직접 대응물</li><li>⚠ Skillset(최대 5개 API 엔드포인트)은 <b>별개</b> — SKILL.md 아님</li></ul>
+        <div class="mono">.github/skills/&lt;name&gt;/SKILL.md</div></div>
+    </div>
+    <div class="note reveal">'agent'는 과부하 용어 — 자율 cloud agent · Extension agent · agent mode와 구분</div>
+  </div>
+</section>
+
+<!-- 09 Codex -->
+<section class="slide s-black" data-label="Codex">
+  <div class="slide-content">
+    <div class="thead reveal"><span class="logo cx">Cx</span><h2 style="margin:0">OpenAI Codex</h2><span class="tg">공유 지침 + 스킬</span></div>
+    <div class="two">
+      <div class="ccard ag reveal"><span class="lab r">Agent → AGENTS.md</span>
+        <ul><li>스키마 없는 순수 Markdown 지침("README for agents")</li><li>레포 루트 + ~/.codex/AGENTS.md · 자동·실행당 1회</li></ul>
+        <div class="mono">페르소나 아님 — 여러 에이전트가 공유</div></div>
+      <div class="ccard sk reveal"><span class="lab y">Skill → Agent Skills</span>
+        <ul><li>SKILL.md(필수 name+description) + scripts/·references/·assets/</li><li>.agents/skills · ~/.agents/skills · /skills · $skill명</li></ul>
+        <div class="mono">선행 Custom Prompts는 deprecated</div></div>
+    </div>
+    <div class="note reveal">SKILL.md 오픈 표준 = <b>Anthropic 2025-12-18 공개</b> → Codex 채택 (OpenAI 원작 아님)</div>
+  </div>
+</section>
+
+<!-- 10 함께 쓰기 -->
+<section class="slide s-white" data-label="함께">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">06</span>TOGETHER · 함께 쓰기</div>
+    <h2 class="reveal">일꾼 + 매뉴얼</h2>
+    <div class="flow reveal">
+      <div class="fnode"><b>메인</b><span>사용자 + 모델</span></div>
+      <div class="farrow">→<small>위임</small></div>
+      <div class="fnode ag"><b>에이전트</b><span>별도 컨텍스트·도구</span></div>
+      <div class="farrow">→<small>skills 로드</small></div>
+      <div class="fnode sk"><b>스킬</b><span>매칭 시 펼침</span></div>
+    </div>
+    <p class="reveal" style="text-align:center;color:var(--gray-d);font-size:var(--body-size);margin-top:var(--content-gap)">결과는 <b>요약만</b> 메인으로 반환 — 전문 페르소나(에이전트)에 재사용 능력(스킬)을 얹는다.</p>
+  </div>
+</section>
+
+<!-- 11 언제 무엇을 -->
+<section class="slide s-black" data-label="언제">
+  <div class="slide-content">
+    <div class="kicker reveal"><span class="n">07</span>DECISION · 언제 무엇을</div>
+    <h2 class="reveal">일꾼을 부를까, 매뉴얼을 펼칠까</h2>
+    <div class="when">
+      <div class="wcol reveal"><span class="lab r">에이전트를 쓸 때</span>
+        <ul><li>한 역할(리뷰어·테스트·보안)을 분리된 맥락에서 통째로</li><li>작업이 길거나 메인 컨텍스트 오염 방지</li><li>권한·도구 격리 · 멀티에이전트 오케스트레이션</li></ul></div>
+      <div class="wcol reveal"><span class="lab y">스킬을 쓸 때</span>
+        <ul><li>작업 절차·도메인 지식을 여러 곳에서 재사용</li><li>평소 컨텍스트를 안 차지하게 (점진적 공개)</li><li>스크립트·템플릿·참조문서를 번들로 배포</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 닫기 -->
+<section class="slide s-red" data-label="정리">
+  <div class="slide-content">
+    <div class="kicker reveal" style="color:rgba(255,255,255,.85)"><span class="n" style="color:#fff">//</span>SUMMARY</div>
+    <div class="close-big reveal">AGENT는 <u>일꾼</u>,<br>SKILL은 <u>매뉴얼</u>.</div>
+    <div class="redline reveal"></div>
+    <p class="reveal" style="font-size:var(--body-size);max-width:46ch">대체재가 아니라 보완재 — 전문 페르소나에 재사용 작업 능력을 얹어 함께 동작한다.</p>
+    <div class="src reveal">출처: code.claude.com/docs · docs.github.com/copilot · agents.md · developers.openai.com/codex<br>
+      ⚠ 버전 게이팅·경로·토큰 수치·GA 시점은 도구 버전/시점에 따라 다를 수 있음 (2026-06-15 기준)</div>
+  </div>
+</section>
+
+<script>
+/* === SLIDE PRESENTATION CONTROLLER === */
+class SlidePresentation{
+  constructor(){
+    this.slides=[...document.querySelectorAll('.slide')];
+    this.cur=0;
+    this.bar=document.querySelector('.progress-bar');
+    this.dotsWrap=document.querySelector('.nav-dots');
+    this.pn=document.getElementById('pn');
+    this.buildDots();
+    this.observe();
+    this.keys();
+    this.touch();
+    this.slides[0].classList.add('visible');
+  }
+  buildDots(){
+    this.dotsWrap.innerHTML='';               /* clear before building (avoid dup on re-open) */
+    this.dots=this.slides.map((s,i)=>{
+      const b=document.createElement('button');
+      b.setAttribute('aria-label',(s.dataset.label||('슬라이드 '+(i+1))));
+      b.addEventListener('click',()=>this.go(i));
+      this.dotsWrap.appendChild(b); return b;
+    });
+  }
+  setActive(i){
+    this.cur=i;
+    this.dots.forEach((d,j)=>d.classList.toggle('active',j===i));
+    this.bar.style.width=((i+1)/this.slides.length*100)+'%';
+    if(this.pn) this.pn.textContent=String(i+1).padStart(2,'0');
+  }
+  observe(){
+    const io=new IntersectionObserver((es)=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('visible');
+          this.setActive(this.slides.indexOf(e.target));
+        }
+      });
+    },{threshold:.55});
+    this.slides.forEach(s=>io.observe(s));
+  }
+  go(i){ i=Math.max(0,Math.min(this.slides.length-1,i)); this.slides[i].scrollIntoView({behavior:'smooth'}); }
+  keys(){
+    document.addEventListener('keydown',(e)=>{
+      if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();this.go(this.cur+1);}
+      else if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();this.go(this.cur-1);}
+      else if(e.key==='Home'){this.go(0);} else if(e.key==='End'){this.go(this.slides.length-1);}
+    });
+  }
+  touch(){
+    let y0=null;
+    addEventListener('touchstart',e=>{y0=e.touches[0].clientY;},{passive:true});
+    addEventListener('touchend',e=>{
+      if(y0===null)return; const dy=y0-e.changedTouches[0].clientY;
+      if(Math.abs(dy)>50){ this.go(this.cur+(dy>0?1:-1)); } y0=null;
+    },{passive:true});
+  }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>
