@@ -3,7 +3,7 @@
 > **한 줄 요약**: AI 에이전트(Agent)는 자체 맥락·도구·판단을 갖고 일감을 통째로 맡는 '전문 일꾼'이고, 스킬(Skill)은 그 일꾼이 필요할 때만 펼쳐 읽는 '작업 매뉴얼'이다.
 
 [![인터랙티브 시각자료](https://img.shields.io/badge/Interactive-index.html-DA291C?style=flat-square)](index.html)
-[![발표자료](https://img.shields.io/badge/Slides-slides%2F-303030?style=flat-square)](slides/)
+[![나레이션 대본](https://img.shields.io/badge/Narration-slides%2Fnarration-303030?style=flat-square)](slides/narration-script.md)
 
 ---
 
@@ -12,7 +12,7 @@
 | 자료 | 경로 | 설명 |
 |---|---|---|
 | 인터랙티브 가이드 | [`index.html`](index.html) | Ferrari 디자인 · 계층형 설명(비유 → 개발자) · 인터랙티브 비교 |
-| 발표 슬라이드 | [`slides/`](slides/) | 발표·교육용 자료 |
+| 발표 나레이션 | [`slides/narration-script.md`](slides/narration-script.md) | 슬라이드별 화면 큐 + 나레이션 대본 (시각 슬라이드는 위 인터랙티브 HTML) |
 | 검증 정본 | [`knowledge/verified-facts.md`](knowledge/verified-facts.md) | 6개 타깃 병렬 리서치 + 적대적 교차검증 |
 | 종합 분석 | [`knowledge/synthesis.md`](knowledge/synthesis.md) | 비유·8축 비교표·도구 요약 |
 
