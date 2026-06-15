@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workflow Kits</title>
+<style>
+  :root{--bg:#0b0d12;--panel:#13161d;--line:#262b36;--tx:#e8eaf0;--tx2:#9aa3b5;--red:#DA291C;--yellow:#F6E500}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:radial-gradient(1000px 500px at 50% -200px,#1a2030,#0b0d12);color:var(--tx);
+    font-family:'Segoe UI','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;line-height:1.6;min-height:100vh}
+  .wrap{max-width:880px;margin:0 auto;padding:clamp(40px,9vw,90px) 22px}
+  .eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--tx2);
+    border:1px solid var(--line);border-radius:999px;padding:6px 14px;display:inline-block;margin-bottom:22px}
+  h1{font-size:clamp(30px,6vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1.05}
+  h1 .r{color:var(--red)}
+  .tag{color:var(--tx2);font-size:clamp(15px,2.2vw,18px);margin-top:12px;max-width:60ch}
+  .rule{height:4px;width:120px;background:var(--red);margin:30px 0}
+  .feature{background:linear-gradient(180deg,#16101a,var(--panel));border:1px solid #3a2230;border-radius:16px;
+    padding:clamp(22px,4vw,34px);margin-top:18px}
+  .feature .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--yellow);font-weight:700}
+  .feature h2{font-size:clamp(22px,3.6vw,30px);margin:8px 0 6px;font-weight:800;letter-spacing:-.01em}
+  .feature h2 b{color:var(--red)}
+  .feature p{color:var(--tx2);font-size:15px;margin-bottom:18px}
+  .btns{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:9px;text-decoration:none;font-weight:700;font-size:15px;
+    padding:13px 20px;border-radius:10px;transition:.18s;border:1px solid transparent}
+  .btn.primary{background:var(--red);color:#fff} .btn.primary:hover{background:#b01e0a}
+  .btn.ghost{background:transparent;color:var(--tx);border-color:var(--line)} .btn.ghost:hover{border-color:var(--red);color:#fff}
+  .more{margin-top:34px;display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+  .more a{color:var(--tx2);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+  .more a:hover{color:var(--tx);border-color:var(--red)}
+  footer{color:#6b7283;font-size:12.5px;margin-top:46px;border-top:1px solid var(--line);padding-top:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="eyebrow">Copy-ready workflow packs</span>
+  <h1>AI <span class="r">Workflow</span> Kits</h1>
+  <p class="tag">Codex · Claude Code · Gemini · GitHub Copilot 용 복사-즉시-사용 워크플로우 팩.
+    하나의 워크플로우 → 여러 AI 런타임 → 증거 기반 완료.</p>
+  <div class="rule"></div>
+
+  <div class="feature">
+    <div class="k">Featured Guide</div>
+    <h2><b>Agent</b> vs <span style="color:var(--yellow)">Skill</span></h2>
+    <p>Claude · Copilot · Codex로 보는 에이전트와 스킬의 차이 — 쉬운 비유부터 실제 코드 샘플까지.</p>
+    <div class="btns">
+      <a class="btn primary" href="docs/guides/agent-vs-skill/">📖 인터랙티브 가이드</a>
+      <a class="btn ghost" href="docs/guides/agent-vs-skill/slides/">🖥 발표 슬라이드</a>
+    </div>
+  </div>
+
+  <div class="more">
+    <a href="https://github.com/shinjaehyun20/ai-workflow-kits">▸ 전체 리포 (README · 패키지)</a>
+    <a href="https://github.com/shinjaehyun20/ai-workflow-kits/blob/main/REGISTRY.md">▸ 패키지 레지스트리</a>
+  </div>
+
+  <footer>github.com/shinjaehyun20/ai-workflow-kits · MIT</footer>
+</div>
+</body>
+</html>
