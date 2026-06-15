@@ -2,8 +2,8 @@
 
 > **한 줄 요약**: AI 에이전트(Agent)는 자체 맥락·도구·판단을 갖고 일감을 통째로 맡는 '전문 일꾼'이고, 스킬(Skill)은 그 일꾼이 필요할 때만 펼쳐 읽는 '작업 매뉴얼'이다.
 
-[![인터랙티브 시각자료](https://img.shields.io/badge/Interactive-index.html-DA291C?style=flat-square)](index.html)
-[![발표 슬라이드](https://img.shields.io/badge/Slides-slides%2Findex.html-DA291C?style=flat-square)](slides/index.html)
+[![인터랙티브 시각자료](https://img.shields.io/badge/Guide-Interactive-DA291C?style=flat-square)](https://shinjaehyun20.github.io/ai-workflow-kits/docs/guides/agent-vs-skill/)
+[![발표 슬라이드](https://img.shields.io/badge/Slides-Deck-303030?style=flat-square)](https://shinjaehyun20.github.io/ai-workflow-kits/docs/guides/agent-vs-skill/slides/)
 
 ---
 
@@ -11,8 +11,8 @@
 
 | 자료 | 경로 | 설명 |
 |---|---|---|
-| 인터랙티브 가이드 | [`index.html`](index.html) | Ferrari 디자인 · 계층형 설명(비유 → 개발자) · 인터랙티브 비교 |
-| 발표 슬라이드 | [`slides/index.html`](slides/index.html) | 풀스크린 프레젠테이션 12장 — Ferrari 디자인, 키보드/스크롤 네비게이션 |
+| 인터랙티브 가이드 | [`index.html`](https://shinjaehyun20.github.io/ai-workflow-kits/docs/guides/agent-vs-skill/) | Ferrari 디자인 · 계층형 설명(비유 → 개발자) · 인터랙티브 비교 |
+| 발표 슬라이드 | [`slides/index.html`](https://shinjaehyun20.github.io/ai-workflow-kits/docs/guides/agent-vs-skill/slides/) | 풀스크린 프레젠테이션 12장 — Ferrari 디자인, 키보드/스크롤 네비게이션 |
 | 발표 나레이션 | [`slides/narration-script.md`](slides/narration-script.md) | 슬라이드별 화면 큐 + 나레이션 대본 |
 | 검증 정본 | [`knowledge/verified-facts.md`](knowledge/verified-facts.md) | 6개 타깃 병렬 리서치 + 적대적 교차검증 |
 | 종합 분석 | [`knowledge/synthesis.md`](knowledge/synthesis.md) | 비유·8축 비교표·도구 요약 |
