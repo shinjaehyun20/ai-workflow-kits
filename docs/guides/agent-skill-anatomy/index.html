@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent &amp; Skill — 해부 (Anatomy)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;510;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+/* ===== Linear Design Tokens ===== */
+:root {
+  --canvas:     #08090a;
+  --panel:      #0f1011;
+  --elevated:   #191a1b;
+  --secondary:  #28282c;
+  --text-pri:   #f7f8f8;
+  --text-sec:   #d0d6e0;
+  --text-ter:   #8a8f98;
+  --text-qua:   #62666d;
+  --indigo:     #5e6ad2;
+  --violet:     #7170ff;
+  --violet-hov: #828fff;
+  --green:      #27a644;
+  --emerald:    #10b981;
+  --border-lo:  rgba(255,255,255,0.05);
+  --border-hi:  rgba(255,255,255,0.08);
+  --r:          5px;
+  --font: 'Inter','Pretendard',system-ui,-apple-system,sans-serif;
+  --mono: ui-monospace,'SF Mono',Menlo,'JetBrains Mono',monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--canvas);
+  color: var(--text-pri);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  font-feature-settings: "cv01","ss03";
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ===== scroll progress bar ===== */
+#prog {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: var(--violet); z-index: 100;
+  transition: width 0.08s linear;
+}
+
+/* ===== nav ===== */
+nav {
+  position: fixed; top: 2px; left: 0; right: 0; z-index: 90;
+  background: rgba(8,9,10,0.85);
+  backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid var(--border-lo);
+}
+nav .wrap {
+  display: flex; align-items: center; gap: 8px; height: 52px;
+}
+.nav-brand {
+  font-size: 13.5px; font-weight: 700; letter-spacing: -0.01em;
+  color: var(--text-pri); white-space: nowrap; margin-right: 8px;
+}
+.nav-brand .dot { color: var(--violet); }
+.nav-links {
+  display: flex; gap: 2px; margin-left: auto; overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-ter);
+  font-size: 12.5px; font-weight: 510;
+  padding: 6px 10px; border-radius: var(--r);
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+.nav-links a:hover { color: var(--text-pri); background: var(--border-lo); }
+.nav-links a.active { color: var(--violet); }
+
+/* ===== hero ===== */
+.hero {
+  min-height: 88vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 0 80px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(94,106,210,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--violet);
+  border: 1px solid rgba(113,112,255,0.25);
+  background: rgba(113,112,255,0.06);
+  padding: 5px 12px; border-radius: 99px;
+  margin-bottom: 28px;
+}
+.hero-badge .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--violet); flex: none;
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(113,112,255,0.5); }
+  70%  { box-shadow: 0 0 0 7px rgba(113,112,255,0); }
+  100% { box-shadow: 0 0 0 0 rgba(113,112,255,0); }
+}
+.hero h1 {
+  font-size: clamp(36px, 7vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  margin-bottom: 24px;
+  color: var(--text-pri);
+}
+.hero h1 .accent { color: var(--violet); }
+.hero .sub {
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--text-sec);
+  max-width: 620px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+.hero .note-pill {
+  display: inline-flex; align-items: flex-start; gap: 10px;
+  background: var(--panel);
+  border: 1px solid var(--border-hi);
+  border-left: 2px solid var(--indigo);
+  border-radius: var(--r);
+  padding: 12px 16px;
+  font-size: 13px; color: var(--text-ter);
+  max-width: 640px; line-height: 1.55;
+}
+.hero .note-pill .icon { color: var(--indigo); flex: none; margin-top: 1px; }
+.hero-scroll {
+  position: absolute; bottom: 60px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--text-qua); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.scroll-ring {
+  width: 20px; height: 32px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 10px; position: relative;
+}
+.scroll-ring::after {
+  content: "";
+  position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+  width: 3px; height: 6px;
+  background: var(--violet);
+  border-radius: 2px;
+  animation: scrolldot 1.8s infinite;
+}
+@keyframes scrolldot {
+  0%   { opacity: 0; top: 5px; }
+  40%  { opacity: 1; }
+  80%  { opacity: 0; top: 18px; }
+  100% { opacity: 0; }
+}
+@media (max-width: 680px) { .hero-scroll { display: none; } }
+
+/* ===== section base ===== */
+section { padding: 88px 0; position: relative; }
+section:not(:last-of-type) {
+  border-bottom: 1px solid var(--border-lo);
+}
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--indigo);
+  margin-bottom: 12px;
+}
+section h2 {
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 800; letter-spacing: -0.03em;
+  color: var(--text-pri); margin-bottom: 12px; line-height: 1.1;
+}
+section h3 {
+  font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--text-pri); margin-bottom: 10px;
+}
+.lead-text {
+  font-size: 15px; color: var(--text-sec);
+  max-width: 680px; line-height: 1.7; margin-bottom: 40px;
+}
+section a { color: var(--violet); text-decoration: none; }
+section a:hover { color: var(--violet-hov); text-decoration: underline; }
+
+/* ===== reveal ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.2,0.7,0.2,1),
+              transform 0.6s cubic-bezier(0.2,0.7,0.2,1);
+}
+.reveal.in { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+.reveal[data-delay="4"] { transition-delay: 0.32s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ===== pipeline diagram (inline SVG-style via CSS) ===== */
+.pipeline-wrap {
+  background: var(--panel);
+  border: 1px solid var(--border-hi);
+  border-radius: 8px;
+  padding: 28px 24px 24px;
+  overflow-x: auto;
+}
+.pipeline {
+  display: flex; align-items: center; gap: 0;
+  min-width: 760px; flex-wrap: nowrap;
+}
+.p-node {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1;
+}
+.p-box {
+  background: var(--elevated);
+  border: 1px solid var(--border-hi);
+  border-radius: var(--r);
+  padding: 10px 14px;
+  text-align: center;
+  font-size: 12.5px; font-weight: 600;
+  color: var(--text-pri);
+  white-space: nowrap;
+  position: relative;
+  min-width: 100px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.p-box:hover { border-color: var(--violet); background: rgba(113,112,255,0.05); }
+.p-box.router { border-color: var(--indigo); color: var(--text-sec); }
+.p-box .p-sub { font-size: 10.5px; color: var(--text-qua); font-weight: 400; margin-top: 2px; }
+.p-arrow {
+  font-size: 14px; color: var(--text-qua);
+  padding: 0 4px; flex-shrink: 0;
+  display: flex; align-items: center; align-self: flex-start; margin-top: 20px;
+}
+.p-loop-note {
+  margin-top: 6px; font-size: 10px; color: var(--text-qua);
+  white-space: nowrap;
+}
+.pipeline-caption {
+  margin-top: 16px; font-size: 12.5px; color: var(--text-ter);
+  border-top: 1px solid var(--border-lo); padding-top: 12px;
+}
+
+/* ===== anatomy: 9-component grid ===== */
+.anatomy-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-lo);
+  border: 1px solid var(--border-lo);
+  border-radius: 8px; overflow: hidden;
+  margin-bottom: 32px;
+}
+@media (max-width: 800px) { .anatomy-wrap { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .anatomy-wrap { grid-template-columns: 1fr; } }
+.anat-card {
+  background: var(--panel);
+  padding: 18px 20px;
+  transition: background 0.2s;
+}
+.anat-card:hover { background: var(--elevated); }
+.anat-num {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+  color: var(--violet); margin-bottom: 6px; text-transform: uppercase;
+}
+.anat-title {
+  font-size: 13.5px; font-weight: 700; color: var(--text-pri);
+  margin-bottom: 5px;
+}
+.anat-desc { font-size: 12px; color: var(--text-ter); line-height: 1.5; }
+
+/* ===== code block ===== */
+.code-wrap {
+  background: var(--panel);
+  border: 1px solid var(--border-hi);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.code-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-lo);
+  background: rgba(255,255,255,0.02);
+}
+.code-dots { display: flex; gap: 5px; }
+.code-dots span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--border-hi);
+}
+.code-title {
+  font-size: 11.5px; color: var(--text-qua); font-family: var(--mono);
+  margin-left: 2px;
+}
+pre {
+  margin: 0; padding: 20px 20px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 12.5px; line-height: 1.6;
+  color: var(--text-sec);
+}
+.k { color: #6e7fff; }       /* keyword / yaml key */
+.v { color: #86efac; }       /* value / string */
+.c { color: var(--text-qua); font-style: italic; }  /* comment */
+.s { color: #fbbf24; }       /* string highlight */
+.p { color: #c4b5fd; }       /* property name */
+.h { color: #f472b6; }       /* heading / special */
+
+/* ===== info table ===== */
+.tbl-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-hi);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13.5px;
+}
+thead th {
+  background: var(--elevated);
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-ter);
+  border-bottom: 1px solid var(--border-hi);
+}
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-lo);
+  color: var(--text-sec); vertical-align: top;
+  line-height: 1.5;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: rgba(255,255,255,0.015); }
+tbody td:first-child {
+  font-weight: 600; color: var(--text-pri);
+  font-family: var(--mono); font-size: 12.5px;
+  white-space: nowrap;
+}
+tbody td code {
+  font-family: var(--mono); font-size: 11.5px;
+  background: var(--elevated);
+  color: var(--violet);
+  padding: 1px 6px; border-radius: 3px;
+}
+
+/* ===== handoff fields cards ===== */
+.fields-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  margin: 20px 0;
+}
+@media (max-width: 640px) { .fields-grid { grid-template-columns: 1fr; } }
+.field-card {
+  background: var(--panel);
+  border: 1px solid var(--border-lo);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  transition: border-color 0.2s;
+}
+.field-card:hover { border-color: var(--border-hi); }
+.field-name {
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  color: var(--violet); margin-bottom: 4px;
+}
+.field-desc { font-size: 12.5px; color: var(--text-ter); line-height: 1.5; }
+
+/* ===== shared files ===== */
+.shared-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  margin: 20px 0;
+}
+@media (max-width: 640px) { .shared-grid { grid-template-columns: 1fr; } }
+.shared-card {
+  background: var(--panel);
+  border: 1px solid var(--border-lo);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.shared-card:hover { border-color: var(--indigo); background: rgba(94,106,210,0.04); }
+.shared-filename {
+  font-family: var(--mono); font-size: 11.5px; font-weight: 600;
+  color: var(--indigo); margin-bottom: 6px;
+}
+.shared-desc { font-size: 13px; color: var(--text-ter); line-height: 1.5; }
+
+/* ===== use-case flow ===== */
+.flow-tree {
+  background: var(--panel);
+  border: 1px solid var(--border-hi);
+  border-radius: 8px;
+  padding: 20px 24px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--text-sec);
+  overflow-x: auto;
+  margin: 20px 0;
+}
+.flow-tree .fu { color: var(--violet); }
+.flow-tree .fa { color: var(--emerald); }
+.flow-tree .fb { color: var(--text-qua); }
+
+/* ===== catalog groups ===== */
+.catalog-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  margin: 20px 0;
+}
+@media (max-width: 640px) { .catalog-grid { grid-template-columns: 1fr; } }
+.cat-card {
+  background: var(--panel);
+  border: 1px solid var(--border-lo);
+  border-radius: var(--r); overflow: hidden;
+}
+.cat-header {
+  padding: 10px 14px;
+  background: var(--elevated);
+  border-bottom: 1px solid var(--border-lo);
+  font-size: 12px; font-weight: 700; color: var(--text-pri);
+  letter-spacing: -0.01em;
+}
+.cat-body {
+  padding: 12px 14px;
+  font-size: 12.5px; color: var(--text-ter); line-height: 1.6;
+}
+.cat-agents {
+  font-family: var(--mono); font-size: 11.5px; color: var(--indigo);
+  margin-top: 4px;
+}
+
+/* ===== Part B ===== */
+.skill-struct {
+  background: var(--panel);
+  border: 1px solid var(--border-hi);
+  border-radius: 8px; overflow: hidden;
+  margin: 20px 0;
+}
+.skill-struct-header {
+  padding: 10px 16px;
+  background: rgba(94,106,210,0.08);
+  border-bottom: 1px solid rgba(94,106,210,0.15);
+  font-size: 12px; font-weight: 600;
+  color: var(--indigo); font-family: var(--mono);
+}
+
+/* session-to-skill anatomy */
+.skill-parts {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  margin: 20px 0;
+}
+@media (max-width: 580px) { .skill-parts { grid-template-columns: 1fr; } }
+.skill-part {
+  background: var(--panel);
+  border: 1px solid var(--border-lo);
+  border-radius: var(--r); padding: 14px 16px;
+}
+.skill-part-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+  text-transform: uppercase; color: var(--emerald); margin-bottom: 5px;
+}
+.skill-part-desc { font-size: 12.5px; color: var(--text-ter); line-height: 1.5; }
+
+/* orchestration diagram */
+.orch-diagram {
+  background: var(--panel);
+  border: 1px solid var(--border-hi);
+  border-radius: 8px; padding: 24px;
+  margin: 20px 0;
+}
+.orch-diagram svg { width: 100%; height: auto; display: block; }
+
+/* ===== comparison table ===== */
+.compare-tbl thead th:first-child { width: 140px; }
+.compare-tbl thead th.col-a { color: var(--indigo); }
+.compare-tbl thead th.col-b { color: var(--emerald); }
+.compare-tbl tbody td:nth-child(2) { border-left: 2px solid rgba(94,106,210,0.2); }
+.compare-tbl tbody td:nth-child(3) { border-left: 2px solid rgba(16,185,129,0.2); }
+
+/* ===== info callout ===== */
+.callout {
+  background: var(--panel);
+  border: 1px solid var(--border-lo);
+  border-left: 3px solid var(--indigo);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 14px 18px; margin: 20px 0;
+  font-size: 13.5px; color: var(--text-sec); line-height: 1.6;
+}
+.callout strong { color: var(--text-pri); }
+.callout.emerald { border-left-color: var(--emerald); }
+.callout.violet  { border-left-color: var(--violet); }
+
+/* ===== badge ===== */
+.badge {
+  display: inline-block;
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px; border-radius: 4px;
+  vertical-align: middle; margin-left: 6px;
+}
+.badge-indigo { background: rgba(94,106,210,0.15); color: var(--indigo); }
+.badge-emerald { background: rgba(16,185,129,0.12); color: var(--emerald); }
+
+/* ===== proceed pattern ===== */
+.proceed-rule {
+  display: flex; gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border-lo);
+  border-radius: var(--r); padding: 14px 16px;
+  margin: 10px 0;
+}
+.proceed-icon {
+  flex: none; width: 28px; height: 28px;
+  border-radius: 50%; display: grid; place-items: center;
+  font-size: 13px;
+}
+.proceed-icon.ok { background: rgba(16,185,129,0.12); color: var(--emerald); }
+.proceed-icon.no { background: rgba(239,68,68,0.1); color: #f87171; }
+.proceed-content { font-size: 13px; color: var(--text-ter); line-height: 1.55; }
+.proceed-content strong { color: var(--text-pri); }
+
+/* ===== footer ===== */
+footer {
+  background: var(--panel);
+  border-top: 1px solid var(--border-lo);
+  padding: 48px 0 60px;
+  color: var(--text-qua); font-size: 13px;
+}
+footer h4 {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--text-ter);
+  margin-bottom: 14px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+}
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+.disclaimer {
+  background: var(--elevated);
+  border: 1px solid var(--border-lo);
+  border-left: 2px solid var(--indigo);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 14px 18px; margin-bottom: 24px;
+  font-size: 12.5px; line-height: 1.6; color: var(--text-ter);
+}
+.disclaimer strong { color: var(--text-sec); }
+.footer-link {
+  color: var(--text-qua); text-decoration: none;
+  border-bottom: 1px solid var(--border-lo);
+  transition: color 0.15s, border-color 0.15s;
+}
+.footer-link:hover { color: var(--violet); border-color: var(--violet); }
+.made-by { margin-top: 32px; color: var(--text-qua); font-size: 12px; }
+
+/* ===== responsive tweaks ===== */
+@media (max-width: 768px) {
+  section { padding: 64px 0; }
+  .hero { min-height: 75vh; padding: 100px 0 60px; }
+  .anatomy-wrap { grid-template-columns: 1fr 1fr; }
+  .catalog-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .anatomy-wrap { grid-template-columns: 1fr; }
+  .pipeline { min-width: 640px; }
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="wrap">
+    <div class="nav-brand">Agent &amp; Skill<span class="dot"> ·</span> 해부</div>
+    <div class="nav-links">
+      <a href="#part-a">Part A — Copilot</a>
+      <a href="#anatomy">9구성요소</a>
+      <a href="#handoff">Handoff</a>
+      <a href="#shared">공통규약</a>
+      <a href="#usage">사용법</a>
+      <a href="#catalog">카탈로그</a>
+      <a href="#part-b">Part B — Claude</a>
+      <a href="#compare">비교표</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-badge">
+      <span class="pulse"></span>
+      심화편 — 실제 표본 해부
+    </div>
+    <h1>Agent &amp; Skill<br><span class="accent">Anatomy</span></h1>
+    <p class="sub">
+      개념편이 "에이전트 vs 스킬"을 추상으로 비교했다면, 이 심화편은 실제 표본을 뜯어서 구조·사용법·패턴을 보여준다.
+      표본 1: GitHub Copilot 커스텀 에이전트 멀티 SDLC 파이프라인. 표본 2: Claude 스킬 2종.
+    </p>
+    <div class="hero .note-pill" style="display:inline-flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--border-hi);border-left:2px solid var(--indigo);border-radius:var(--r);padding:12px 16px;font-size:13px;color:var(--text-ter);max-width:620px;line-height:1.55;">
+      <span class="icon" style="color:var(--indigo);flex:none;margin-top:1px;">&#9432;</span>
+      <span>모든 표본은 <strong style="color:var(--text-sec);">익명화</strong>되어 있다 — 사설 경로·개인/회사 이름·내부 프로젝트 코드명은 제거하고 구조와 패턴만 남겼다.</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-ring"></div>
+    <span>scroll</span>
+  </div>
+</div>
+
+<!-- ===== PART A ===== -->
+<section id="part-a">
+  <div class="wrap">
+    <div class="section-label">Part A</div>
+    <h2>GitHub Copilot 커스텀 에이전트 해부</h2>
+    <p class="lead-text reveal">
+      이 표본은 단일 에이전트가 아니라, <strong>서로 handoff로 연결된 ~70개 커스텀 에이전트</strong>로 이뤄진 멀티에이전트 시스템이다. 크게 두 계층이다.
+    </p>
+
+    <!-- A-1 pipeline diagram -->
+    <div class="callout reveal" data-delay="1">
+      <strong>라우팅 계층:</strong> 입구(meta-router)가 요청 의도를 읽어 적절한 도메인 담당자에게 넘긴다. 라우터는 실무를 안 한다.<br>
+      <strong style="margin-top:6px;display:block;">SDLC 파이프라인 계층:</strong> 기획 → 설계 → UX → 환경 → 구현 → 테스트 → 보안이 한 줄로 이어진다.
+    </div>
+
+    <div class="pipeline-wrap reveal" data-delay="2">
+      <div class="pipeline">
+        <div class="p-node">
+          <div class="p-box">사용자 요청<div class="p-sub">User</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box router">meta-router<div class="p-sub">입구 · 분류만</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box router">도메인 라우터<div class="p-sub">workflow / 문서 ...</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">planner<div class="p-sub">기획·분해</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">architect<div class="p-sub">아키텍처·계약</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">uiux<div class="p-sub">플로우·컴포넌트</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">env-analyzer<div class="p-sub">환경 검증</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">developer<div class="p-sub">구현 가이드</div></div>
+          <div class="p-loop-note">↺ 실패 리포트 ↖ test</div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">test-specialist<div class="p-sub">테스트 전략</div></div>
+        </div>
+        <div class="p-arrow">→</div>
+        <div class="p-node">
+          <div class="p-box">security-reviewer<div class="p-sub">OWASP·Zero Trust</div></div>
+        </div>
+      </div>
+      <div class="pipeline-caption">
+        핵심: <strong>각 에이전트는 자기 단계만 하고, 다음 단계로 "handoff" 한다.</strong>
+        Copilot은 frontmatter의 <code style="font-family:var(--mono);font-size:11.5px;background:var(--elevated);color:var(--violet);padding:1px 6px;border-radius:3px;">handoffs</code>로 명시적으로 잇는다.
+        Claude 서브에이전트는 모델이 위임하는 방식과 대비된다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== A-2 ANATOMY ===== -->
+<section id="anatomy" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="section-label">A-2</div>
+    <h2>에이전트 1개 해부 — 9개 구성요소</h2>
+    <p class="lead-text reveal">
+      <code style="font-family:var(--mono);font-size:13px;background:var(--elevated);color:var(--violet);padding:2px 8px;border-radius:3px;">planner</code> 에이전트를 통째로 뜯으면 9개 부위로 나뉜다.
+    </p>
+
+    <!-- 9 component grid -->
+    <div class="anatomy-wrap reveal" data-delay="1">
+      <div class="anat-card">
+        <div class="anat-num">① Frontmatter</div>
+        <div class="anat-title">정체성·도구·연결</div>
+        <div class="anat-desc">name·description·argument-hint·tools·handoffs·model — 에이전트의 기본 설정 전체</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">② Shared References</div>
+        <div class="anat-title">공통 규약 링크</div>
+        <div class="anat-desc">~70개 일관성의 핵심. 스키마·경계·handoff·경로를 shared/ 에서 공통 링크</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">③ handoffs[]</div>
+        <div class="anat-title">다음 단계 버튼</div>
+        <div class="anat-desc">label / agent / prompt / send / showContinueOn / model 로 다음 에이전트를 잇는다</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">④ 역할 선언</div>
+        <div class="anat-title">단일 책임 못박기</div>
+        <div class="anat-desc">"You are a PLANNING AGENT, not an implementation agent" — 역할 이탈을 언어 수준에서 차단</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">⑤ runtime_config</div>
+        <div class="anat-title">단계별 모델·온도</div>
+        <div class="anat-desc">model / provider / temperature / max_tokens — 단계마다 다른 모델과 파라미터를 명시</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">⑥ stopping_rules</div>
+        <div class="anat-title">역할 이탈 즉시 STOP</div>
+        <div class="anat-desc">기획자가 구현을 시작하는 것을 차단. 규율을 모델 행동으로 명문화</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">⑦ Handoff Contract</div>
+        <div class="anat-title">통관 심사</div>
+        <div class="anat-desc">source→target / required_paths / validation_checks / failure_codes — 계약 위반 시 중단</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">⑧ workflow</div>
+        <div class="anat-title">번호 단계 + MANDATORY</div>
+        <div class="anat-desc">실행 순서를 번호로 명시. MANDATORY handoff 표시로 건너뛰기 불가</div>
+      </div>
+      <div class="anat-card">
+        <div class="anat-num">⑨ style_guide</div>
+        <div class="anat-title">출력 형식 규칙</div>
+        <div class="anat-desc">task 불릿·의존성 명확히, 구현 디테일 회피 등 산출물 포맷 제약</div>
+      </div>
+    </div>
+
+    <!-- planner code -->
+    <div class="code-wrap reveal" data-delay="2">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <div class="code-title">planner.agent.md — 전체 해부 예시</div>
+      </div>
+      <pre><span class="c">---</span>
+<span class="c"># ① Frontmatter — 정체성·도구·연결</span>
+<span class="k">name:</span> <span class="v">planner</span>
+<span class="k">description:</span> <span class="v">Decomposes specifications into clear, actionable tasks</span>
+<span class="k">argument-hint:</span> <span class="v">Provide the specification or change request to plan</span>
+<span class="k">tools:</span> <span class="v">["vscode", "execute", "read", "edit", "search", "web", "agent", "todo"]</span>
+<span class="k">handoffs:</span>
+  <span class="p">- label:</span> <span class="v">Continue to Architecture</span>     <span class="c"># ③ 다음 단계로 잇는 버튼</span>
+    <span class="p">agent:</span> <span class="v">architect</span>
+    <span class="p">prompt:</span> <span class="v">|</span>
+      <span class="v">Consume the plan at projects/active/{slug}/docs/planning/plan.md and</span>
+      <span class="v">produce an architecture outline, module interfaces, and handoffs.</span>
+    <span class="p">send:</span> <span class="v">true</span>                              <span class="c"># 자동 전달</span>
+    <span class="p">showContinueOn:</span> <span class="v">false</span>
+<span class="c">---</span>
+<span class="c">## Shared References                          # ② 공통 규약 링크 (shared/)</span>
+<span class="h">- VS Code schema · role boundaries · handoff rules · output conventions</span>
+
+<span class="v">You are a PLANNING AGENT, not an implementation agent.</span>   <span class="c"># ④ 역할 선언(경계)</span>
+
+<span class="p">&lt;runtime_config&gt;</span>                              <span class="c"># ⑤ 런타임 설정</span>
+<span class="k">model:</span> <span class="v">gpt-5-mini</span>
+<span class="k">provider:</span> <span class="v">openai</span>
+<span class="k">temperature:</span> <span class="v">0.5</span>
+<span class="k">max_tokens:</span> <span class="v">10000</span>
+<span class="p">&lt;/runtime_config&gt;</span>
+
+<span class="p">&lt;stopping_rules&gt;</span>                              <span class="c"># ⑥ 규율 가드 — 역할 이탈 차단</span>
+<span class="v">STOP IMMEDIATELY if you consider starting implementation.</span>
+<span class="v">Plans describe steps for the USER or another agent to execute later.</span>
+<span class="p">&lt;/stopping_rules&gt;</span>
+
+<span class="c">## Handoff Contract (v1.0)                     # ⑦ 계약 — 품질·추적 보장</span>
+<span class="h">### source -> target</span>
+<span class="h">- source_agent: planner  ->  target_agent: architect</span>
+<span class="h">### required_paths</span>
+<span class="v">- projects/active/{slug}/docs/specification/spec.md</span>
+<span class="v">- projects/active/{slug}/docs/planning/plan.md</span>
+<span class="h">### validation_checks</span>
+<span class="v">- 출력 계획에 task, dependency, acceptance criteria 포함</span>
+<span class="v">- 미완성 계획은 handoff 금지</span>
+<span class="h">### failure_codes</span>
+<span class="v">- SPEC_MISSING · PLAN_INCOMPLETE · TASK_DEPENDENCY_MISSING · UPSTREAM_INCOMPLETE</span>
+
+<span class="p">&lt;workflow&gt;</span>                                    <span class="c"># ⑧ 실행 순서 (MANDATORY handoff 포함)</span>
+<span class="v">1. 스펙·코드에서 컨텍스트 수집</span>
+<span class="v">2. workstream·task·의존성·수용기준 도출</span>
+<span class="v">3. MANDATORY: 사용자 리뷰용으로 계획 스테이징</span>
+<span class="v">4. MANDATORY: architect 로 handoff</span>
+<span class="p">&lt;/workflow&gt;</span>
+
+<span class="p">&lt;style_guide&gt;</span>                                 <span class="c"># ⑨ 출력 스타일 규칙</span>
+<span class="v">- task 불릿·의존성 명확히, 구현 디테일 회피</span>
+<span class="p">&lt;/style_guide&gt;</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ===== A-3 HANDOFF ===== -->
+<section id="handoff">
+  <div class="wrap">
+    <div class="section-label">A-3</div>
+    <h2>handoff — 에이전트를 잇는 메커니즘</h2>
+    <p class="lead-text reveal">
+      <code style="font-family:var(--mono);font-size:13px;background:var(--elevated);color:var(--violet);padding:2px 8px;border-radius:3px;">handoffs[]</code>의 각 항목이 "다음 단계 버튼" 하나다.
+    </p>
+
+    <div class="fields-grid reveal" data-delay="1">
+      <div class="field-card">
+        <div class="field-name">label</div>
+        <div class="field-desc">버튼에 표시되는 이름 (예: "Continue to Architecture")</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">agent</div>
+        <div class="field-desc">넘길 대상 에이전트 이름 또는 특수 타깃</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">prompt</div>
+        <div class="field-desc">다음 에이전트에게 전달할 짧은 지시 — 컨텍스트 인계</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">send</div>
+        <div class="field-desc"><code>true</code>면 자동 전달, <code>false</code>면 사용자 확인 후 실행</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">showContinueOn</div>
+        <div class="field-desc">체크포인트(Proceed) 버튼 노출 여부 — 리뷰 경계 제어</div>
+      </div>
+      <div class="field-card">
+        <div class="field-name">model</div>
+        <div class="field-desc">다음 단계에서 사용할 모델 재지정 (선택)</div>
+      </div>
+    </div>
+
+    <!-- A-4 Handoff Contract -->
+    <div class="section-label" style="margin-top:48px;">A-4</div>
+    <h3>Handoff Contract — 계약으로 품질을 강제</h3>
+    <p class="lead-text" style="margin-top:8px;">
+      handoff가 "연결선"이라면, <strong>Handoff Contract는 "통관 심사"</strong>다.
+    </p>
+
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>내용</th>
+            <th>역할</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>required_paths</td>
+            <td>이 단계가 반드시 만들어야 하는 산출물 경로</td>
+            <td>출력 존재를 계약으로 강제</td>
+          </tr>
+          <tr>
+            <td>validation_checks</td>
+            <td>넘기기 전 통과해야 하는 점검 목록</td>
+            <td>"계획에 AC 포함" 등 품질 기준 명시</td>
+          </tr>
+          <tr>
+            <td>failure_codes</td>
+            <td>실패 시 코드와 함께 <strong>중단</strong></td>
+            <td><code>SPEC_MISSING</code>·<code>PLAN_INCOMPLETE</code> 등 — 조용히 다음으로 안 넘어간다</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout violet reveal" data-delay="1">
+      이래서 파이프라인이 <strong>결정적이고 감사 가능</strong>해진다. 체인이 "대충 이어지는" 게 아니라, 계약 위반이면 멈춘다.
+    </div>
+
+    <!-- Proceed pattern -->
+    <h3 style="margin-top:32px;">Proceed 패턴 규율</h3>
+    <div class="proceed-rule reveal" data-delay="2">
+      <div class="proceed-icon ok">✓</div>
+      <div class="proceed-content">
+        <strong>허용:</strong> <code style="font-family:var(--mono);font-size:11.5px;background:var(--elevated);color:var(--violet);padding:1px 5px;border-radius:3px;">showContinueOn: true</code>는 자연스러운 리뷰 경계에서만 — 현재 산출물을 완료로 표시하고, 체크리스트를 제안하고, 사용자 확인 후에만 다음 자동화를 발화한다.
+      </div>
+    </div>
+    <div class="proceed-rule reveal" data-delay="3">
+      <div class="proceed-icon no">✕</div>
+      <div class="proceed-content">
+        <strong>금지:</strong> 숨은 자동화를 proceed 버튼 안에 욱여넣는 것. 사용자가 모르는 사이에 여러 단계가 실행되면 안 된다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== A-5 SHARED ===== -->
+<section id="shared" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="section-label">A-5</div>
+    <h2>shared/ — ~70개를 일관되게 묶는 공통 규약</h2>
+    <p class="lead-text reveal">
+      개별 <code style="font-family:var(--mono);font-size:13px;background:var(--elevated);color:var(--violet);padding:2px 8px;border-radius:3px;">.agent.md</code>에 안 넣고 공통으로 빼둔 4개 규약 파일.
+    </p>
+
+    <div class="shared-grid reveal" data-delay="1">
+      <div class="shared-card">
+        <div class="shared-filename">vscode-agent-contract.md</div>
+        <div class="shared-desc">지원 frontmatter 필드 목록 + naming/compat 규칙. <code style="font-family:var(--mono);font-size:11px;background:var(--elevated);color:var(--violet);padding:1px 4px;border-radius:3px;">name</code>은 파일명과 일치, 미지원 <code style="font-family:var(--mono);font-size:11px;background:var(--elevated);color:var(--violet);padding:1px 4px;border-radius:3px;">skills</code> 필드 금지</div>
+      </div>
+      <div class="shared-card">
+        <div class="shared-filename">role-boundaries.md</div>
+        <div class="shared-desc">4가지 경계 — Route-only(분류·handoff만) / Planning(계획·계약) / Review/Gate(pass·fail·risk만) / Web-patch(브라우저 검증)</div>
+      </div>
+      <div class="shared-card">
+        <div class="shared-filename">handoff-and-proceed.md</div>
+        <div class="shared-desc">handoff 지원 필드 전체 목록 + proceed 패턴 제약. 숨은 자동화 차단 규율 포함</div>
+      </div>
+      <div class="shared-card">
+        <div class="shared-filename">output-and-path-conventions.md</div>
+        <div class="shared-desc">표준 출력 경로 <code style="font-family:var(--mono);font-size:11px;background:var(--elevated);color:var(--indigo);padding:1px 4px;border-radius:3px;">projects/active/{slug}/docs/&lt;category&gt;/</code> + 카테고리 목록</div>
+      </div>
+    </div>
+
+    <div class="callout reveal" data-delay="2">
+      <strong>규율:</strong> 에이전트별 런타임 규칙이 우선, 공통 규약은 반복 가이드용. 충돌 시 에이전트 파일을 명시적으로 고친다.
+    </div>
+  </div>
+</section>
+
+<!-- ===== A-6 USAGE ===== -->
+<section id="usage">
+  <div class="wrap">
+    <div class="section-label">A-6 · A-7</div>
+    <h2>사용법 &amp; 사용예</h2>
+
+    <div class="tbl-wrap reveal">
+      <table>
+        <thead><tr><th>항목</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>위치</td>
+            <td>리포의 <code>.github/agents/&lt;name&gt;.agent.md</code>. 공통 규약은 <code>.github/agents/shared/</code></td>
+          </tr>
+          <tr>
+            <td>호출 (VS Code)</td>
+            <td>Chat의 에이전트 드롭다운에서 선택, 또는 작업을 <code>meta-router</code>에 던지면 적절한 owner로 분기</td>
+          </tr>
+          <tr>
+            <td>체이닝</td>
+            <td>한 에이전트 끝의 handoff 버튼 → 다음 단계. <code>send: true</code>면 자동 전달</td>
+          </tr>
+          <tr>
+            <td>규율</td>
+            <td>각 에이전트는 자기 역할만(<code>stopping_rules</code>), 산출물은 계약된 경로에(<code>required_paths</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:36px;">사용예 — "새 기능 X" 한 바퀴</h3>
+    <div class="flow-tree reveal" data-delay="1">
+<span class="fu">사용자:</span> <span class="v">"기능 X 구현해줘"</span>
+  <span class="fb">└▶</span> <span class="fu">meta-router</span>        <span class="fa">→ 구현 작업으로 분류, workflow-router로 분기</span>
+     <span class="fb">└▶</span> <span class="fu">planner</span>         <span class="fa">→ docs/planning/plan.md</span>  <span class="c">(task·의존성·AC)</span>
+        <span class="fb">│  [Continue to Architecture]</span>
+        <span class="fb">└▶</span> <span class="fu">architect</span>    <span class="fa">→ docs/architecture/architecture.md</span>
+           <span class="fb">│  [Continue to UI/UX]</span>
+           <span class="fb">└▶</span> <span class="fu">uiux</span>       <span class="fa">→ 플로우·컴포넌트 계약</span>
+              <span class="fb">│  [Pre-dev gate]</span>
+              <span class="fb">└▶</span> <span class="fu">environment-analyzer</span>  <span class="fa">→ 실행 환경 검증</span>
+                 <span class="fb">│  [Develop]</span>
+                 <span class="fb">└▶</span> <span class="fu">developer</span>  <span class="fa">→ docs/implementation/{guidance,patches}.md</span>
+                    <span class="fb">│  [Test &amp; Validate]</span>     <span class="c">↺ 실패 시 developer로 리포트</span>
+                    <span class="fb">└▶</span> <span class="fu">test-specialist</span>  <span class="fa">→ docs/testing/test-plan.md</span>
+                       <span class="fb">└▶</span> <span class="fu">security-reviewer</span>  <span class="fa">→ OWASP·Zero Trust 리뷰</span></div>
+
+    <div class="callout emerald reveal" data-delay="2">
+      각 화살표에서 <strong>required_paths 산출 + validation_checks 통과</strong>가 안 되면 <code style="font-family:var(--mono);font-size:12px;background:var(--elevated);color:var(--violet);padding:1px 5px;border-radius:3px;">failure_code</code>로 멈춘다.
+    </div>
+  </div>
+</section>
+
+<!-- ===== A-8 CATALOG ===== -->
+<section id="catalog" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="section-label">A-8</div>
+    <h2>전체 카탈로그 (~70개, 기능별)</h2>
+    <p class="lead-text reveal">
+      ~70개 중 사내 프로젝트에 묶인 도메인 에이전트는 이름을 일반화해 표기했다. 패턴은 모두 위 9개 구성요소를 따른다.
+    </p>
+
+    <div class="catalog-grid reveal" data-delay="1">
+      <div class="cat-card">
+        <div class="cat-header">라우팅</div>
+        <div class="cat-body">
+          의도 분류 → owner로 handoff. 실무를 직접 하지 않는다.
+          <div class="cat-agents">meta-router · workflow-router · 도메인 라우터들</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-header">SDLC 코어 <span class="badge badge-indigo">핵심 파이프라인</span></div>
+        <div class="cat-body">
+          기획→배포 파이프라인. 각 단계가 Handoff Contract로 연결.
+          <div class="cat-agents">planner · architect · uiux · environment-analyzer · developer · test-specialist · security-reviewer · deployer</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-header">SE 전문 리뷰어</div>
+        <div class="cat-body">
+          분야별 심층 리뷰. 코어 파이프라인에서 분기하거나 병렬 호출.
+          <div class="cat-agents">se-security-reviewer · se-system-architecture-reviewer · se-product-manager-advisor · se-technical-writer · se-ux-ui-designer · se-gitops-ci-specialist</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-header">QA / 게이트</div>
+        <div class="cat-body">
+          검증·품질 게이트. pass/fail/risk 만 판단하고 실무 진행 안 함(role-boundaries).
+          <div class="cat-agents">audit-qa · qa-subagent · proposal-qa-reviewer · monitor · security-reviewer</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-header">문서·산출물</div>
+        <div class="cat-body">
+          문서화 전담. 산출물 경로 규약(output-and-path-conventions) 준수.
+          <div class="cat-agents">doc-writer · dev-log · knowledge-base-updater · specification · requirements-analyst · portfolio-writer</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-header">에이전트 메타 <span class="badge badge-emerald">자기개선</span></div>
+        <div class="cat-body">
+          에이전트를 만들고 고치는 에이전트. 시스템 자체를 진화시킨다.
+          <div class="cat-agents">agent-modernizer · custom-agent-foundry · context-architect · rug-orchestrator</div>
+        </div>
+      </div>
+      <div class="cat-card">
+        <div class="cat-header">도메인 워크플로우</div>
+        <div class="cat-body">
+          업무별 파이프라인. 세부명은 익명화됨. 패턴은 모두 동일.
+          <div class="cat-agents">문서 생성 · 리서치 · 콘텐츠 · 미디어 · 일정 등 라우터/워커</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PART B ===== -->
+<section id="part-b">
+  <div class="wrap">
+    <div class="section-label">Part B</div>
+    <h2>Claude 스킬 해부</h2>
+    <p class="lead-text reveal">
+      Copilot 에이전트가 <strong>여러 파일이 handoff로 엮인 시스템</strong>이라면, Claude 스킬은 <strong><code style="font-family:var(--mono);font-size:13px;background:var(--elevated);color:var(--violet);padding:2px 8px;border-radius:3px;">SKILL.md</code> 한 폴더에 자족적으로 패키징</strong>된다.
+      두 표본으로 단순 ↔ 복잡 스펙트럼을 본다.
+    </p>
+
+    <!-- B-1 minimal structure -->
+    <div class="section-label" style="margin-top:0;">B-1</div>
+    <h3>SKILL.md 최소 구조</h3>
+    <div class="code-wrap reveal" data-delay="1">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <div class="code-title">SKILL.md — 최소 구조</div>
+      </div>
+      <pre><span class="c">---</span>
+<span class="k">name:</span> <span class="v">&lt;skill-name&gt;</span>                <span class="c"># 폴더명과 일치 (Claude Code는 선택)</span>
+<span class="k">description:</span> <span class="v">|</span>                     <span class="c"># ★ 발견의 핵심 — "무엇을" + "언제(트리거)"</span>
+  <span class="v">[무엇을 하는가] + 트리거 표현:</span>
+  <span class="v">"..." , "..." 라고 말하면 반드시 이 스킬 사용.</span>
+<span class="c">---</span>
+
+<span class="h"># [스킬 제목]</span>
+[한 줄 목적]
+
+<span class="h">## 워크플로우</span>
+<span class="h">### Step 1: ...</span></pre>
+    </div>
+
+    <div class="callout reveal" data-delay="2">
+      <strong>frontmatter <code style="font-family:var(--mono);font-size:12px;background:var(--elevated);color:var(--violet);padding:1px 5px;border-radius:3px;">name</code> + <code style="font-family:var(--mono);font-size:12px;background:var(--elevated);color:var(--violet);padding:1px 5px;border-radius:3px;">description</code></strong>만 필수.
+      description이 트리거 매칭을 결정한다 → "무엇을"뿐 아니라 <strong>"언제 써야 하는지"</strong>를 구체적 표현으로 적는다.
+      <br><br>
+      본문은 점진적 공개: 메타데이터(name+desc)는 상시, 본문은 트리거 시, 번들 파일(scripts/·references/)은 참조 시 로드.
+    </div>
+
+    <!-- B-2 session-to-skill -->
+    <div class="section-label" style="margin-top:48px;">B-2</div>
+    <h3>깨끗한 표본 — <code style="font-family:var(--mono);font-size:14px;">session-to-skill</code></h3>
+    <p style="color:var(--text-sec);font-size:14px;margin:8px 0 20px;">
+      "이 세션을 스킬로 만들어줘" → 대화를 분석해 재사용 가능한 SKILL.md로 자동 변환·패키징하는 메타 스킬. 자족적이라 통째로 해부하기 좋다.
+    </p>
+
+    <div class="code-wrap reveal">
+      <div class="code-header">
+        <div class="code-dots"><span></span><span></span><span></span></div>
+        <div class="code-title">session-to-skill/SKILL.md</div>
+      </div>
+      <pre><span class="c">---</span>
+<span class="k">name:</span> <span class="v">session-to-skill</span>
+<span class="k">description:</span> <span class="v">|</span>
+  <span class="v">대화 세션의 내용을 분석해 재사용 가능한 SKILL.md로 자동 변환하고</span>
+  <span class="v">.skill 파일로 패키징해 등록까지 완료하는 스킬.</span>
+  <span class="v">"이 세션을 skill로 만들어줘", "이 워크플로우를 스킬로 등록해줘" 라고</span>
+  <span class="v">말할 때 반드시 이 스킬을 사용할 것.</span>       <span class="c"># ← 트리거 표현이 description 안에</span>
+<span class="c">---</span>
+
+<span class="h"># Session → Skill 자동 변환기</span>
+
+<span class="h">## Step 1: 세션 분석</span>     <span class="c">← 추측 금지, 대화에서 확인된 것만 추출</span>
+  <span class="v">- 사용된 도구 &amp; 순서 / 트리거 패턴 / 산출물 형식 / 반복수정·엣지케이스</span>
+<span class="h">## Step 2: 사용자 확인</span>   <span class="c">← 분석 결과를 정형 포맷으로 제시하고 승인 게이트</span>
+<span class="h">## Step 3: SKILL.md 작성</span> <span class="c">← 필수 구조(frontmatter+워크플로우)로 생성</span>
+<span class="h">## Step 4: .skill 패키징</span>
+<span class="h">## Step 5: present_files 전달</span></pre>
+    </div>
+
+    <div class="skill-parts reveal" data-delay="1">
+      <div class="skill-part">
+        <div class="skill-part-label">트리거</div>
+        <div class="skill-part-desc">description 안의 따옴표 표현들 ("이 세션을 skill로...") — 여기서 자동 매칭이 일어난다</div>
+      </div>
+      <div class="skill-part">
+        <div class="skill-part-label">게이트</div>
+        <div class="skill-part-desc">Step 2 사용자 승인 — 자동 진행 전 확인. 숨은 자동화 차단과 같은 맥락</div>
+      </div>
+      <div class="skill-part">
+        <div class="skill-part-label">산출물</div>
+        <div class="skill-part-desc">SKILL.md + .skill 패키지. 재사용 가능한 형태로 굳어진다</div>
+      </div>
+      <div class="skill-part">
+        <div class="skill-part-label">자족성</div>
+        <div class="skill-part-desc">외부 사설 의존 0 — 그래서 공개 표본으로 적합. 경로·이름 없음</div>
+      </div>
+    </div>
+
+    <!-- B-3 orchestration -->
+    <div class="section-label" style="margin-top:48px;">B-3</div>
+    <h3>복잡 표본 — 오케스트레이션 스킬 (익명화)</h3>
+    <p style="color:var(--text-sec);font-size:14px;margin:8px 0 20px;">
+      단순 스킬과 반대 극단. 실제 주간 리포트 자동화 스킬의 <em>패턴만</em> 익명화. 한 폴더의 SKILL.md가 다단계 + 서브에이전트 + 게이트를 지휘한다.
+    </p>
+
+    <!-- Orchestration SVG diagram -->
+    <div class="orch-diagram reveal">
+      <svg viewBox="0 0 720 340" xmlns="http://www.w3.org/2000/svg" aria-label="오케스트레이션 스킬 흐름도">
+        <defs>
+          <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#5e6ad2" />
+          </marker>
+          <marker id="arrowhead2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#10b981" />
+          </marker>
+        </defs>
+
+        <!-- S0 -->
+        <rect x="20" y="20" width="140" height="44" rx="5" fill="#191a1b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="90" y="38" text-anchor="middle" font-size="10.5" fill="#f7f8f8" font-family="'Inter',sans-serif" font-weight="600">STEP 0</text>
+        <text x="90" y="54" text-anchor="middle" font-size="9.5" fill="#8a8f98" font-family="'Inter',sans-serif">날짜 범위 계산</text>
+
+        <!-- arrow S0 → S0.5 -->
+        <line x1="160" y1="42" x2="186" y2="42" stroke="#5e6ad2" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+        <!-- S0.5 -->
+        <rect x="187" y="20" width="150" height="44" rx="5" fill="#191a1b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="262" y="38" text-anchor="middle" font-size="10.5" fill="#f7f8f8" font-family="'Inter',sans-serif" font-weight="600">STEP 0.5</text>
+        <text x="262" y="54" text-anchor="middle" font-size="9.5" fill="#8a8f98" font-family="'Inter',sans-serif">타임라인 인덱스 1순위 조회</text>
+
+        <!-- arrow S0.5 → S1 -->
+        <line x1="337" y1="42" x2="363" y2="42" stroke="#5e6ad2" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+        <!-- S1 -->
+        <rect x="364" y="20" width="170" height="44" rx="5" fill="#191a1b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="449" y="38" text-anchor="middle" font-size="10.5" fill="#f7f8f8" font-family="'Inter',sans-serif" font-weight="600">STEP 1</text>
+        <text x="449" y="54" text-anchor="middle" font-size="9.5" fill="#8a8f98" font-family="'Inter',sans-serif">N개 소스 전수 스캔 (순서 엄수)</text>
+
+        <!-- S1 → 수집 서브에이전트 (down) -->
+        <line x1="449" y1="64" x2="449" y2="90" stroke="#5e6ad2" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+        <!-- 수집 서브에이전트 박스 (wide) -->
+        <rect x="220" y="91" width="460" height="44" rx="5" fill="#191a1b" stroke="rgba(94,106,210,0.25)" stroke-width="1"/>
+        <text x="450" y="109" text-anchor="middle" font-size="10.5" fill="#7170ff" font-family="'Inter',sans-serif" font-weight="600">수집 서브에이전트 병렬</text>
+        <text x="450" y="124" text-anchor="middle" font-size="9.5" fill="#8a8f98" font-family="'Inter',sans-serif">채팅 · 메일 · 캘린더 · 이슈</text>
+
+        <!-- 수집 → GATE -->
+        <line x1="450" y1="135" x2="450" y2="161" stroke="#5e6ad2" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+        <!-- GATE -->
+        <rect x="310" y="162" width="280" height="44" rx="5" fill="#191a1b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="450" y="180" text-anchor="middle" font-size="10.5" fill="#f7f8f8" font-family="'Inter',sans-serif" font-weight="600">MCP 수집 게이트</text>
+        <text x="450" y="196" text-anchor="middle" font-size="9.5" fill="#8a8f98" font-family="'Inter',sans-serif">필수 소스 호출 판정</text>
+
+        <!-- GATE → cross-check -->
+        <line x1="450" y1="206" x2="450" y2="232" stroke="#5e6ad2" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+        <!-- cross-check -->
+        <rect x="330" y="233" width="240" height="44" rx="5" fill="#191a1b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="450" y="251" text-anchor="middle" font-size="10.5" fill="#f7f8f8" font-family="'Inter',sans-serif" font-weight="600">지난 결과 cross-check</text>
+        <text x="450" y="267" text-anchor="middle" font-size="9.5" fill="#8a8f98" font-family="'Inter',sans-serif">연속성 보장</text>
+
+        <!-- cross-check → 합성 -->
+        <line x1="450" y1="277" x2="450" y2="300" stroke="#5e6ad2" stroke-width="1.2" marker-end="url(#arrowhead)"/>
+
+        <!-- 합성 -->
+        <rect x="310" y="300" width="180" height="36" rx="5" fill="#191a1b" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <text x="400" y="314" text-anchor="middle" font-size="10.5" fill="#f7f8f8" font-family="'Inter',sans-serif" font-weight="600">합성 — 본부별 초안</text>
+        <text x="400" y="327" text-anchor="middle" font-size="9" fill="#8a8f98" font-family="'Inter',sans-serif"></text>
+
+        <!-- 합성 → 검수 게이트 -->
+        <line x1="490" y1="318" x2="540" y2="318" stroke="#10b981" stroke-width="1.2" marker-end="url(#arrowhead2)"/>
+
+        <!-- 검수 게이트 -->
+        <rect x="541" y="300" width="160" height="36" rx="5" fill="#191a1b" stroke="rgba(16,185,129,0.2)" stroke-width="1"/>
+        <text x="621" y="314" text-anchor="middle" font-size="10.5" fill="#10b981" font-family="'Inter',sans-serif" font-weight="600">검수 게이트</text>
+        <text x="621" y="327" text-anchor="middle" font-size="9" fill="#8a8f98" font-family="'Inter',sans-serif">생성자 ≠ 검수자</text>
+
+        <!-- 검수 → 주간 리포트 (아래로) -->
+        <line x1="621" y1="277" x2="621" y2="300" stroke="#10b981" stroke-width="1.2"/>
+        <text x="675" y="280" font-size="9" fill="#8a8f98" font-family="'Inter',sans-serif">출력</text>
+        <!-- 주간 리포트 위 라벨 -->
+        <line x1="621" y1="300" x2="621" y2="300"/>
+      </svg>
+    </div>
+
+    <!-- 무엇을 배우나 -->
+    <div class="tbl-wrap reveal" data-delay="1" style="margin-top:24px;">
+      <table>
+        <thead><tr><th>패턴</th><th>설명</th></tr></thead>
+        <tbody>
+          <tr><td>순서 엄수 스캔</td><td>소스에 우선순위(★ 지난 결과는 생략 불가)를 두고 전수 조회</td></tr>
+          <tr><td>수집 서브에이전트 병렬</td><td>외부 소스(채팅/메일/캘린더/이슈)별 수집기를 분리 위임</td></tr>
+          <tr><td>수집 게이트</td><td>"필수 소스 N종을 실제로 호출했는가"를 판정해 누락 차단</td></tr>
+          <tr><td>cross-check</td><td>지난 산출물과 대조해 연속성 보장</td></tr>
+          <tr><td>검수 게이트</td><td>생성자와 검수자를 분리 — 자기검증 함정 차단</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal" data-delay="2" style="margin-top:8px;">
+      이 스킬의 실제 본문엔 사내 경로·채널·이름이 가득해 공개 불가. 교훈: <strong>무거운 스킬일수록 "절차+게이트+서브에이전트 위임"이 SKILL.md 안에 응축된다.</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARE ===== -->
+<section id="compare" style="background:var(--panel);">
+  <div class="wrap">
+    <div class="section-label">비교</div>
+    <h2>같은 일, 다른 뼈대</h2>
+    <p class="lead-text reveal">
+      둘 다 "전문 절차를 재사용 가능하게 굳히는" 것이 목적. 어떻게 굳히느냐가 다르다.
+    </p>
+
+    <div class="tbl-wrap reveal" data-delay="1">
+      <table class="compare-tbl">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="col-a">GitHub Copilot 커스텀 에이전트</th>
+            <th class="col-b">Claude 스킬</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>패키징 단위</td>
+            <td>파일 N개가 <code>handoffs</code>로 연결된 시스템</td>
+            <td><code>SKILL.md</code> 한 폴더 (+번들)</td>
+          </tr>
+          <tr>
+            <td>연결·협업</td>
+            <td>frontmatter <code>handoffs[]</code> (명시적 버튼)</td>
+            <td>모델이 <code>description</code> 매칭으로 로드·서브에이전트 위임</td>
+          </tr>
+          <tr>
+            <td>품질 보장</td>
+            <td>Handoff Contract (required_paths·validation·failure_codes)</td>
+            <td>게이트 step + 점진적 공개</td>
+          </tr>
+          <tr>
+            <td>역할 규율</td>
+            <td><code>stopping_rules</code> + role-boundaries</td>
+            <td><code>description</code> 범위 + (스킬별) 게이트</td>
+          </tr>
+          <tr>
+            <td>재사용 발화</td>
+            <td>에이전트 드롭다운 선택 / handoff 버튼</td>
+            <td>자동 (설명 매칭) + <code>/skill명</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout emerald reveal" data-delay="2">
+      <strong>Copilot</strong>은 <em>여러 에이전트를 계약으로 잇고</em>, <strong>Claude</strong>는 <em>한 스킬에 절차를 응축</em>한다.
+      개념 비교는 <a href="../agent-vs-skill/index.html">agent-vs-skill 가이드</a> 참조.
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="disclaimer">
+      <strong>출처 · 안전:</strong> 표본 출처는 개인 백업의 GitHub Copilot 커스텀 에이전트(<code style="font-family:var(--mono);font-size:11.5px;background:var(--elevated);color:var(--indigo);padding:1px 5px;border-radius:3px;">.github/agents/</code>) + 개인 Claude 스킬.
+      모두 <strong>익명화</strong> — 로컬 절대경로·개인/회사명·내부 프로젝트 코드명 제거, 구조·패턴만 게시.
+      이 문서는 공개-안전 원칙을 따른다.
+    </div>
+    <div class="footer-grid">
+      <div>
+        <h4>이 가이드</h4>
+        <p style="line-height:1.7;color:var(--text-qua);">
+          ai-workflow-kits / docs / guides / agent-skill-anatomy<br>
+          <a href="../agent-vs-skill/index.html" class="footer-link">← 개념편: agent-vs-skill</a>
+        </p>
+      </div>
+      <div>
+        <h4>목차</h4>
+        <p style="line-height:1.9;color:var(--text-qua);">
+          <a href="#part-a" class="footer-link">Part A — Copilot 에이전트 해부</a><br>
+          <a href="#anatomy" class="footer-link">9개 구성요소</a><br>
+          <a href="#handoff" class="footer-link">Handoff &amp; Contract</a><br>
+          <a href="#shared" class="footer-link">shared/ 공통 규약</a><br>
+          <a href="#part-b" class="footer-link">Part B — Claude 스킬 해부</a><br>
+          <a href="#compare" class="footer-link">같은 일, 다른 뼈대</a>
+        </p>
+      </div>
+    </div>
+    <div class="made-by">Agent &amp; Skill Anatomy — ai-workflow-kits</div>
+  </div>
+</footer>
+
+<script>
+// ===== scroll progress =====
+const prog = document.getElementById('prog');
+function updateProg() {
+  const s = document.documentElement.scrollTop;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (h > 0 ? (s / h) * 100 : 0) + '%';
+}
+window.addEventListener('scroll', updateProg, { passive: true });
+
+// ===== reveal (IntersectionObserver) =====
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => io.observe(el));
+
+// ===== nav active link on scroll =====
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+function updateNav() {
+  const st = window.scrollY + 80;
+  let current = '';
+  sections.forEach(sec => {
+    if (sec.offsetTop <= st) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+// ===== reduced motion: skip animations if preferred =====
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  reveals.forEach(el => el.classList.add('in'));
+}
+</script>
+</body>
+</html>

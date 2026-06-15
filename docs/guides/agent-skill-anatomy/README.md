@@ -8,6 +8,13 @@
 
 ---
 
+## 시각 자료 · 견본 다운로드
+
+- 🖥 **인터랙티브 HTML (Linear 디자인)** — https://shinjaehyun20.github.io/ai-workflow-kits/docs/guides/agent-skill-anatomy/
+- 📦 **바로 쓰는 견본** — [`samples/`](samples/) : Copilot `planner` 에이전트 + Claude `session-to-skill` 스킬 + 설치 가이드
+
+---
+
 ## 목차
 
 - [Part A — GitHub Copilot 커스텀 에이전트 해부](#part-a--github-copilot-커스텀-에이전트-해부)
