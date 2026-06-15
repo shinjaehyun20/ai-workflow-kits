@@ -118,6 +118,7 @@ The repository also includes public-safe article series derived from completed w
 | Series | Purpose |
 | --- | --- |
 | [`docs/public-series`](docs/public-series/README.md) | Turn completed devlog cases into GitHub articles with 쉬운거, 중간, and 난이도 있는거 reading paths |
+| [`docs/guides/agent-vs-skill`](docs/guides/agent-vs-skill/README.md) | Agent vs Skill compared across Claude, Copilot, and Codex — layered analogy → developer code samples, with interactive HTML and a slide deck |
 
 Public guides are not private logs. They remove local paths, private names, credentials, and runtime state before publication.
 

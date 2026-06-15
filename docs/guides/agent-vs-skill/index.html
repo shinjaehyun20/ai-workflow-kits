@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent vs Skill — Claude · Copilot · Codex</title>
+<style>
+  /* ===== Ferrari-inspired tokens (chiaroscuro · Rosso Corsa · razor edges) ===== */
+  :root{
+    --red:#DA291C; --red-dark:#B01E0A; --red-deep:#9D2211;
+    --yellow:#F6E500; --yellow-hi:#FFF200;
+    --black:#000000; --ink:#181818; --surface-dark:#303030;
+    --white:#FFFFFF; --gray20:#D2D2D2; --gray50:#8F8F8F; --gray60:#666666; --silver:#969696; --border:#CCCCCC;
+    --teal:#1EAEDB; --link:#3860BE;
+    --r:2px;
+    --font:'Helvetica Neue',Arial,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+    --mono:'JetBrains Mono','Cascadia Code','Consolas',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--black);color:var(--white);font-family:var(--font);
+    line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  /* kicker / editorial labels (Body-Font uppercase, 1px tracking) */
+  .kicker{text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:700;color:var(--silver)}
+  .kicker .n{color:var(--red);margin-right:10px}
+  a{color:inherit}
+  /* ===== top scroll progress (red) ===== */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--red);z-index:60;transition:width .08s linear}
+  /* ===== nav ===== */
+  nav{position:fixed;top:3px;left:0;right:0;z-index:50;background:rgba(0,0,0,.82);backdrop-filter:blur(7px);
+    border-bottom:1px solid #1c1c1c}
+  nav .wrap{display:flex;align-items:center;gap:18px;height:54px}
+  nav .brand{font-weight:800;letter-spacing:.02em;font-size:15px;white-space:nowrap}
+  nav .brand b{color:var(--red)}
+  nav .links{display:flex;gap:2px;margin-left:auto;overflow-x:auto}
+  nav .links a{text-decoration:none;color:var(--gray20);font-size:12px;font-weight:600;letter-spacing:.04em;
+    padding:8px 11px;border-radius:var(--r);white-space:nowrap;transition:color .2s,background .2s}
+  nav .links a:hover{color:#fff;background:#1c1c1c}
+  /* ===== hero (cinematic black) ===== */
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;padding:120px 0 60px}
+  .hero .wrap{position:relative;z-index:2}
+  .hero .eye{margin-bottom:26px}
+  .hero h1{font-size:clamp(40px,9vw,104px);line-height:.96;margin:0;font-weight:800;letter-spacing:-.03em}
+  .hero h1 .a{color:var(--red)} .hero h1 .vs{color:var(--gray60);font-weight:400;font-size:.5em;vertical-align:middle;margin:0 .15em}
+  .hero h1 .s{color:#fff;position:relative}
+  .hero h1 .s::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.09em;background:var(--yellow);
+    transform:scaleX(0);transform-origin:left;transition:transform 1s .5s cubic-bezier(.2,.7,.2,1)}
+  .hero.lit h1 .s::after{transform:scaleX(1)}
+  .hero .redline{height:4px;width:0;background:var(--red);margin:40px 0 26px;transition:width 1s .3s cubic-bezier(.2,.7,.2,1)}
+  .hero.lit .redline{width:160px}
+  .hero .sub{max-width:640px;color:var(--gray20);font-size:clamp(16px,2.3vw,20px);font-weight:400}
+  .hero .moderow{margin-top:38px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  /* mode toggle as ghost buttons */
+  .ghost,.mbtn{font-family:var(--font);cursor:pointer;border-radius:var(--r);font-weight:700;letter-spacing:.06em;
+    font-size:13px;padding:13px 22px;transition:background .22s,color .22s,border-color .22s}
+  .mbtn{background:transparent;color:#fff;border:1px solid #fff}
+  .mbtn.on{background:var(--white);color:#000;border-color:#fff}
+  .mbtn:not(.on):hover{background:var(--teal);border-color:var(--teal);color:#fff}
+  .modehint{color:var(--silver);font-size:12px;letter-spacing:.02em}
+  /* marquee ticker */
+  .marquee{border-top:1px solid #1c1c1c;border-bottom:1px solid #1c1c1c;overflow:hidden;background:#080808;
+    padding:13px 0;margin-top:54px;white-space:nowrap}
+  .marquee .track{display:inline-block;animation:scroll 26s linear infinite}
+  .marquee span{font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gray60);margin:0 26px}
+  .marquee span b{color:var(--red)} .marquee span i{color:var(--yellow);font-style:normal}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* ===== chiaroscuro sections ===== */
+  section.sec{padding:96px 0;position:relative}
+  .sec--black{background:var(--black);color:#fff}
+  .sec--white{background:var(--white);color:var(--ink)}
+  .sec--dark{background:var(--surface-dark);color:#fff}
+  .sec h2{font-size:clamp(26px,4.4vw,46px);margin:14px 0 10px;font-weight:800;letter-spacing:-.02em;line-height:1.04}
+  .sec--white h2{color:var(--ink)}
+  .lead{font-size:17px;max-width:680px;margin:0 0 34px}
+  .sec--black .lead{color:var(--gray20)} .sec--white .lead{color:var(--gray60)}
+  .accent-red{color:var(--red)} .accent-yel{color:#b9a900}
+  .sec--black .accent-yel{color:var(--yellow)}
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  /* ===== summary cards (chiaroscuro within white) ===== */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink)}
+  @media(max-width:760px){.twocol{grid-template-columns:1fr}}
+  .scard{padding:34px}
+  .scard.agent{background:var(--black);color:#fff}
+  .scard.skill{background:var(--white);color:var(--ink);border-left:1px solid var(--ink)}
+  @media(max-width:760px){.scard.skill{border-left:0;border-top:1px solid var(--ink)}}
+  .label{display:inline-block;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;
+    padding:6px 11px;border-radius:var(--r);margin-bottom:18px}
+  .label.r{background:var(--red);color:#fff} .label.y{background:var(--yellow);color:#000}
+  .scard h3{font-size:24px;margin:0 0 12px;font-weight:700;letter-spacing:-.01em}
+  .scard .one{font-size:16px;font-weight:700;margin:0 0 14px}
+  .scard.agent .one{color:#fff} .scard.skill .one{color:var(--ink)}
+  .scard ul{margin:0;padding-left:18px}
+  .scard li{margin:7px 0;font-size:14.5px}
+  .scard.agent li{color:var(--gray20)} .scard.skill li{color:var(--gray60)}
+  /* ===== analogy scenes ===== */
+  .scenes{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1c1c1c;border:1px solid #1c1c1c}
+  @media(max-width:760px){.scenes{grid-template-columns:1fr}}
+  .scene{background:var(--black);padding:30px;text-align:center}
+  .scene svg{width:100%;height:170px}
+  .scene .cap{margin-top:16px}
+  .scene .cap b{display:block;font-size:17px;letter-spacing:.02em;margin-bottom:4px}
+  .scene .cap.r b{color:var(--red)} .scene .cap.y b{color:var(--yellow)}
+  .scene .cap span{color:var(--gray50);font-size:14px}
+  /* ===== matrix (editorial white, razor borders) ===== */
+  .matrix{width:100%;border-collapse:collapse;font-size:14.5px;border:1px solid var(--ink)}
+  .matrix th,.matrix td{padding:15px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border)}
+  .matrix thead th{background:var(--black);color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.1em;border-bottom:0}
+  .matrix thead th.ha{color:var(--red)} .matrix thead th.hs{color:var(--yellow)}
+  .matrix tbody th{width:120px;font-weight:800;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;font-size:12px;background:#fafafa}
+  .matrix td{color:var(--gray60)}
+  .matrix td.ca{border-left:3px solid var(--red)} .matrix td.cs{border-left:3px solid var(--yellow)}
+  .matrix tr:last-child th,.matrix tr:last-child td{border-bottom:0}
+  .matrix code{font-family:var(--mono);font-size:12.5px;background:#f1f1f1;padding:1px 5px;border-radius:var(--r);color:var(--ink)}
+  /* ===== tools lineup carousel (black, vehicle-lineup style) ===== */
+  .lineup{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+  .chip{display:flex;align-items:center;gap:11px;padding:12px 18px;border:1px solid #2a2a2a;background:#0a0a0a;
+    border-radius:var(--r);cursor:pointer;transition:border-color .22s,background .22s}
+  .chip:hover{border-color:#555}
+  .chip.on{border-color:var(--red);background:#140707}
+  .chip .lg{width:30px;height:30px;border-radius:var(--r);display:grid;place-items:center;font-weight:800;font-size:13px;color:#fff;flex:none}
+  .chip .lg.cl{background:#d97757} .chip .lg.co{background:#4078c0} .chip .lg.cx{background:#10a37f}
+  .chip .nm{font-weight:700;font-size:14px} .chip .nm small{display:block;color:var(--gray50);font-size:11px;font-weight:500;letter-spacing:.04em}
+  .carwrap{position:relative;border:1px solid #1c1c1c;background:#070707}
+  .carnav{position:absolute;top:-58px;right:0;display:flex;gap:8px}
+  .arrow{width:40px;height:40px;border:1px solid #333;background:#0a0a0a;color:#fff;border-radius:var(--r);cursor:pointer;
+    font-size:17px;line-height:1;transition:background .2s,border-color .2s}
+  .arrow:hover{background:var(--teal);border-color:var(--teal)}
+  .stage{padding:34px}
+  .tpanel{display:none}
+  .tpanel.slidein{display:block;animation:slidein .5s cubic-bezier(.2,.7,.2,1)}
+  @keyframes slidein{from{opacity:0;transform:translateX(46px)}to{opacity:1;transform:none}}
+  .thead{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+  .thead .lg{width:42px;height:42px;border-radius:var(--r);display:grid;place-items:center;font-weight:800;font-size:17px;color:#fff;flex:none}
+  .thead h3{margin:0;font-size:23px;font-weight:800;letter-spacing:-.01em}
+  .thead .tg{margin-left:auto;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--silver)}
+  .impl{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+  @media(max-width:760px){.impl{grid-template-columns:1fr}}
+  .ibox{border:1px solid #242424;padding:18px;background:#0c0c0c;border-top:3px solid #242424;transition:border-color .25s}
+  .ibox.a{border-top-color:var(--red)} .ibox.a:hover{border-color:var(--red-deep);border-top-color:var(--red)}
+  .ibox.s{border-top-color:var(--yellow)} .ibox.s:hover{border-color:#7a7400;border-top-color:var(--yellow)}
+  .ibox h4{margin:0 0 9px;font-size:15.5px;font-weight:800}
+  .ibox.a h4{color:var(--red)} .ibox.s h4{color:var(--yellow)}
+  .ibox p{margin:6px 0;font-size:13.7px;color:var(--gray20)}
+  .ibox code,.note code,.combine-note code{font-family:var(--mono);font-size:12px;background:#1a1a1a;padding:1px 5px;border-radius:var(--r);color:#fff}
+  .note{margin-top:16px;font-size:13px;color:var(--gray20);border:1px solid #2a2a2a;border-left:3px solid var(--yellow);
+    padding:12px 15px;background:#0c0c0c}
+  /* code blocks */
+  .dev-only{display:none} body.dev .dev-only{display:block}
+  .filename{font-family:var(--mono);font-size:12px;color:var(--gray50);display:inline-block;margin:16px 0 4px;
+    border:1px solid #2a2a2a;padding:3px 9px;border-radius:var(--r);background:#0a0a0a}
+  pre{background:#050505;border:1px solid #1c1c1c;border-left:3px solid var(--red);padding:16px;overflow:auto;
+    font-size:12.5px;line-height:1.55;margin:0}
+  code{font-family:var(--mono)}
+  pre .k{color:#ff8a7d} pre .v{color:var(--yellow)} pre .c{color:#6a6a6a} pre .fm{color:#555}
+  /* combine diagram (white editorial) */
+  .combine{border:1px solid var(--ink);padding:12px;background:#fff}
+  .combine svg{width:100%;height:auto;display:block}
+  .combine-note{margin-top:18px;font-size:15px;color:var(--gray60)}
+  /* when-use */
+  .when{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1c1c1c;border:1px solid #1c1c1c}
+  @media(max-width:760px){.when{grid-template-columns:1fr}}
+  .wcol{background:#070707;padding:30px}
+  .wcol .label{margin-bottom:20px}
+  .wcol ul{margin:0;padding-left:18px} .wcol li{margin:11px 0;font-size:15px;color:var(--gray20)}
+  /* footer */
+  footer{background:var(--surface-dark);color:var(--gray20);padding:60px 0 70px;font-size:13px}
+  footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:12px;color:#fff;margin:0 0 14px}
+  .disclaimer{border:1px solid #4a4a4a;border-left:3px solid var(--red);padding:15px 18px;color:var(--gray20);
+    font-size:13px;margin-bottom:30px;background:#262626}
+  .srclist{columns:2;column-gap:30px;font-size:12.5px} @media(max-width:760px){.srclist{columns:1}}
+  .srclist div{break-inside:avoid;margin-bottom:7px;color:var(--gray50)}
+  .srclist a{color:var(--gray20);text-decoration:none;border-bottom:1px solid #555}
+  .srclist a:hover{color:#fff;border-color:var(--teal)}
+  .madeby{margin-top:26px;color:var(--gray50)}
+
+  /* ============ CSS ANIMATION EFFECTS ============ */
+  /* hero kinetic title — words rev in */
+  .hero h1 span{display:inline-block;opacity:0;animation:wordUp 1s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero h1 .a{animation-delay:.12s} .hero h1 .vs{animation-delay:.30s} .hero h1 .s{animation-delay:.46s}
+  @keyframes wordUp{0%{opacity:0;transform:translateY(48px) skewY(4deg)}100%{opacity:1;transform:none}}
+  /* live pulse dot */
+  .pdot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);position:relative;margin-right:10px;vertical-align:middle}
+  .pdot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--red);animation:pulse 1.8s ease-out infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.85}70%{transform:scale(3.2);opacity:0}100%{opacity:0}}
+  /* scroll-down cue */
+  .scrolldown{position:absolute;left:0;right:0;bottom:104px;text-align:center;z-index:2}
+  .scrolldown span{display:inline-block;width:22px;height:34px;border:2px solid var(--gray60);border-radius:12px;position:relative}
+  .scrolldown span::after{content:"";position:absolute;left:50%;top:6px;width:3px;height:7px;background:var(--red);border-radius:2px;transform:translateX(-50%);animation:scrolldot 1.6s infinite}
+  @keyframes scrolldot{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}100%{opacity:0}}
+  @media(max-width:760px){.scrolldown{display:none}}
+  /* redline shimmer sweep */
+  .hero .redline{position:relative;overflow:hidden}
+  .hero .redline::after{content:"";position:absolute;top:0;left:-45%;width:45%;height:100%;background:rgba(255,255,255,.5);transform:skewX(-20deg);animation:shimmer 2.8s 1.3s infinite}
+  @keyframes shimmer{0%{left:-45%}55%,100%{left:150%}}
+  /* nav link underline draw */
+  nav .links a{position:relative}
+  nav .links a::after{content:"";position:absolute;left:11px;right:11px;bottom:4px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+  nav .links a:hover::after{transform:scaleX(1)}
+  /* mode button teal sweep */
+  .mbtn{position:relative;overflow:hidden;z-index:0}
+  .mbtn::before{content:"";position:absolute;inset:0;background:var(--teal);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.7,.2,1);z-index:-1}
+  .mbtn:not(.on):hover::before{transform:scaleX(1)}
+  .mbtn:not(.on):hover{border-color:var(--teal);color:#fff}
+  /* summary card accent bar + lift */
+  .scard{position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+  .scard::before{content:"";position:absolute;top:0;left:0;height:4px;width:0;transition:width .55s cubic-bezier(.2,.7,.2,1)}
+  .scard.agent::before{background:var(--red)} .scard.skill::before{background:var(--yellow)}
+  .scard:hover::before{width:100%} .scard:hover{transform:translateY(-5px)}
+  /* chip + logo motion */
+  .chip{transition:border-color .22s,background .22s,transform .22s}
+  .chip:hover{transform:translateY(-3px)}
+  .chip .lg{transition:transform .35s} .chip:hover .lg{transform:rotate(-8deg) scale(1.08)}
+  @keyframes popin{0%{transform:scale(.6)}60%{transform:scale(1.14)}100%{transform:scale(1)}}
+  .chip.on .lg{animation:popin .45s}
+  /* impl box lift */
+  .ibox{transition:border-color .25s,transform .3s}
+  .ibox:hover{transform:translateY(-4px)}
+  /* matrix row cascade */
+  .matrix tbody tr{opacity:0}
+  .reveal.in .matrix tbody tr{animation:rowin .55s cubic-bezier(.2,.7,.2,1) forwards}
+  .reveal.in .matrix tbody tr:nth-child(1){animation-delay:.04s}
+  .reveal.in .matrix tbody tr:nth-child(2){animation-delay:.10s}
+  .reveal.in .matrix tbody tr:nth-child(3){animation-delay:.16s}
+  .reveal.in .matrix tbody tr:nth-child(4){animation-delay:.22s}
+  .reveal.in .matrix tbody tr:nth-child(5){animation-delay:.28s}
+  .reveal.in .matrix tbody tr:nth-child(6){animation-delay:.34s}
+  .reveal.in .matrix tbody tr:nth-child(7){animation-delay:.40s}
+  .reveal.in .matrix tbody tr:nth-child(8){animation-delay:.46s}
+  @keyframes rowin{0%{opacity:0;transform:translateX(-16px)}100%{opacity:1;transform:none}}
+  /* SVG stroke draw-on when scene revealed */
+  .scenes svg [stroke]{stroke-dasharray:560;stroke-dashoffset:560}
+  .scenes.in svg [stroke]{animation:draw 1.5s ease forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  /* reduced motion fallback */
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1!important;transform:none!important}
+    .hero h1 span{opacity:1!important} .matrix tbody tr{opacity:1!important}
+    .scenes svg [stroke]{stroke-dashoffset:0!important}
+  }
+</style>
+</head>
+<body class="cmp">
+<div id="prog"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><b>AGENT</b> vs SKILL</div>
+    <div class="links">
+      <a href="#summary">요약</a><a href="#analogy">비유</a><a href="#matrix">비교표</a>
+      <a href="#tools">도구</a><a href="#combine">함께</a><a href="#when">언제</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker eye"><span class="pdot"></span>AI 코딩 도구 · 개념 정리 · CLAUDE · COPILOT · CODEX</div>
+    <h1><span class="a">에이전트</span><span class="vs">vs</span><span class="s">스킬</span></h1>
+    <div class="redline"></div>
+    <p class="sub">세 도구로 보는 <b>Agent</b>와 <b>Skill</b>의 차이 — 채용한 전문 일꾼인가, 펴 보는 작업 매뉴얼인가.
+      쉬운 비유부터 실제 코드 샘플까지.</p>
+    <div class="moderow">
+      <button id="m-cmp" class="mbtn on" onclick="setMode('cmp')">비유 모드</button>
+      <button id="m-dev" class="mbtn" onclick="setMode('dev')">개발자 모드</button>
+      <span class="modehint">개발자 모드 = 실제 코드 샘플 · 파일 경로 표시</span>
+    </div>
+  </div>
+  <div class="scrolldown" aria-hidden="true"><span></span></div>
+  <div class="marquee">
+    <div class="track">
+      <span><b>AGENT</b> = 전문 일꾼</span><span><i>SKILL</i> = 작업 매뉴얼</span><span>CLAUDE SUBAGENT</span>
+      <span>COPILOT CUSTOM AGENT</span><span>CODEX AGENTS.md</span><span><i>SKILL.md</i> OPEN STANDARD</span>
+      <span><b>AGENT</b> = 전문 일꾼</span><span><i>SKILL</i> = 작업 매뉴얼</span><span>CLAUDE SUBAGENT</span>
+      <span>COPILOT CUSTOM AGENT</span><span>CODEX AGENTS.md</span><span><i>SKILL.md</i> OPEN STANDARD</span>
+    </div>
+  </div>
+</header>
+
+<!-- 01 SUMMARY (white editorial) -->
+<section class="sec sec--white" id="summary">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="n">01</span>SUMMARY · 한 줄 요약</div>
+    <h2 class="reveal">한 문장이면 <span class="accent-red">에이전트는 '일꾼'</span>,<br><span class="accent-yel">스킬은 '매뉴얼'</span>입니다.</h2>
+    <p class="lead reveal">같은 자동화 도구지만 역할이 다릅니다. 일꾼을 부를지, 매뉴얼을 펼칠지.</p>
+    <div class="twocol reveal">
+      <div class="scard agent">
+        <span class="label r">Agent · 에이전트</span>
+        <h3>전문 일꾼 (페르소나)</h3>
+        <p class="one">자체 컨텍스트·도구·권한·판단을 갖고 위임받은 작업을 끝까지 수행하는 재사용 일꾼 정의.</p>
+        <ul>
+          <li>자기만의 작업 책상(별도 컨텍스트)을 새로 차림</li>
+          <li>스스로 판단하고 일감 전체를 처리</li>
+          <li>끝나면 <b>요약만</b> 메인 대화에 돌려줌</li>
+        </ul>
+      </div>
+      <div class="scard skill">
+        <span class="label y">Skill · 스킬</span>
+        <h3>작업 매뉴얼 (플레이북)</h3>
+        <p class="one">특정 작업 수행법을 instructions·스크립트·리소스로 묶은 SKILL.md 폴더. 필요할 때만 펼쳐짐.</p>
+        <ul>
+          <li>평소엔 책장에 꽂혀 자리(컨텍스트)를 거의 안 차지</li>
+          <li>description이 요청과 맞을 때만 본문 로드</li>
+          <li>일꾼을 <b>전문가로 임시 변신</b>시키는 문서</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ANALOGY (black cinematic) -->
+<section class="sec sec--black" id="analogy">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="n">02</span>ANALOGY · 사무실 풍경</div>
+    <h2 class="reveal">전문가를 <span class="accent-red">채용</span>할까,<br>매뉴얼을 <span class="accent-yel">펼칠</span>까</h2>
+    <p class="lead reveal">에이전트와 스킬을 회사에 비유하면 이렇습니다.</p>
+    <div class="scenes reveal">
+      <div class="scene">
+        <svg viewBox="0 0 320 170" role="img" aria-label="별도 책상에서 일하는 전문가">
+          <rect x="36" y="104" width="248" height="12" fill="#3a3a3a"/>
+          <rect x="58" y="66" width="58" height="36" fill="#0c0c0c" stroke="#DA291C"/>
+          <rect x="206" y="60" width="52" height="42" fill="#0c0c0c" stroke="#DA291C"/>
+          <circle cx="160" cy="58" r="21" fill="#DA291C"/>
+          <rect x="140" y="84" width="40" height="26" fill="#DA291C"/>
+          <text x="160" y="150" fill="#8F8F8F" font-size="11" text-anchor="middle" letter-spacing="1">OWN DESK · OWN TOOLS · OWN JUDGMENT</text>
+        </svg>
+        <div class="cap r"><b>에이전트 = 채용한 전문가</b><span>독립된 자리에서 일을 통째로 맡아 끝낸다</span></div>
+      </div>
+      <div class="scene">
+        <svg viewBox="0 0 320 170" role="img" aria-label="책장에 꽂힌 매뉴얼들">
+          <rect x="58" y="34" width="204" height="104" fill="#0c0c0c" stroke="#5a5600"/>
+          <line x1="58" y1="69" x2="262" y2="69" stroke="#5a5600"/><line x1="58" y1="104" x2="262" y2="104" stroke="#5a5600"/>
+          <rect x="70" y="40" width="13" height="25" fill="#F6E500"/><rect x="88" y="40" width="13" height="25" fill="#5a5600"/>
+          <rect x="106" y="40" width="13" height="25" fill="#F6E500"/><rect x="124" y="40" width="13" height="25" fill="#5a5600"/>
+          <rect x="70" y="75" width="13" height="25" fill="#5a5600"/><rect x="88" y="75" width="13" height="25" fill="#F6E500"/>
+          <rect x="206" y="75" width="48" height="25" fill="#F6E500" opacity=".55"/>
+          <text x="230" y="92" fill="#000" font-size="9" text-anchor="middle" font-weight="bold">OPEN</text>
+          <text x="160" y="155" fill="#8F8F8F" font-size="11" text-anchor="middle" letter-spacing="1">PULLED OFF THE SHELF ON DEMAND</text>
+        </svg>
+        <div class="cap y"><b>스킬 = 책장 속 매뉴얼</b><span>관련 작업을 만났을 때만 꺼내 읽는다</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 MATRIX (white editorial) -->
+<section class="sec sec--white" id="matrix">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="n">03</span>COMPARISON · 비교표</div>
+    <h2 class="reveal">8가지 축으로 본 차이</h2>
+    <p class="lead reveal">같은 질문에 둘이 어떻게 갈라지는지 한눈에.</p>
+    <div class="reveal">
+    <table class="matrix">
+      <thead><tr><th>축</th><th class="ha">에이전트 (Agent)</th><th class="hs">스킬 (Skill)</th></tr></thead>
+      <tbody>
+        <tr><th>정의</th><td class="ca">별도 컨텍스트·프롬프트·도구·권한을 가진 전문 일꾼. 위임받아 처리 후 요약 반환</td><td class="cs">작업 수행법+선택 스크립트·참조파일을 묶은 SKILL.md 폴더. 일반 에이전트를 임시 전문가로</td></tr>
+        <tr><th>핵심 목적</th><td class="ca">역할/페르소나 분리 — 별도 맥락에서 독립 수행, 메인 비오염</td><td class="cs">능력/지식 주입 — 컨텍스트를 안 부풀리고 필요 시만 절차 로드</td></tr>
+        <tr><th>자율성</th><td class="ca">높음 — 스스로 판단, 일감 전체를 끝까지</td><td class="cs">낮음 — 호출 주체의 판단 안에서 절차·지식 제공</td></tr>
+        <tr><th>호출 방식</th><td class="ca">자동(description 매칭) + 명시(이름·@-mention·세션 채택)</td><td class="cs">자동(description 매칭) + 명시(<code>/skill명</code>·<code>$skill명</code>)</td></tr>
+        <tr><th>재사용 단위</th><td class="ca">Markdown(+YAML) 정의 파일 1개 = 일꾼 하나</td><td class="cs">SKILL.md 1개 + 번들 폴더 = 작업 패키지 하나</td></tr>
+        <tr><th>컨텍스트 비용</th><td class="ca">별도 컨텍스트 윈도우 새로 소비. 요약만 합류</td><td class="cs">점진적 공개 — 메타데이터만 상시, 본문/번들은 필요 시</td></tr>
+        <tr><th>대표 위치</th><td class="ca"><code>.claude/agents/</code> · <code>.github/agents/</code> · <code>AGENTS.md</code></td><td class="cs"><code>SKILL.md</code> (<code>.claude/skills/</code> · <code>.github/skills/</code> · <code>.agents/skills/</code>)</td></tr>
+        <tr><th>대표 예시</th><td class="ca">code-reviewer 서브에이전트, test-specialist</td><td class="cs">pdf-processing, github-actions-failure-debugging</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<!-- 04 TOOLS LINEUP (black carousel) -->
+<section class="sec sec--black" id="tools">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="n">04</span>THE LINEUP · 도구별 구현</div>
+    <h2 class="reveal">Claude · Copilot · Codex</h2>
+    <p class="lead reveal">세 도구가 Agent와 Skill을 어떻게 부르고 구현하는지. 칩을 누르거나 화살표로 넘기세요.</p>
+    <div class="lineup reveal" id="lineup">
+      <div class="chip on" data-i="0" onclick="showTool(0)"><div class="lg cl">Cl</div><div class="nm">Claude<small>본가 · 명확 분리</small></div></div>
+      <div class="chip" data-i="1" onclick="showTool(1)"><div class="lg co">Co</div><div class="nm">GitHub Copilot<small>agent 과부하 주의</small></div></div>
+      <div class="chip" data-i="2" onclick="showTool(2)"><div class="lg cx">Cx</div><div class="nm">OpenAI Codex<small>AGENTS.md + SKILL.md</small></div></div>
+    </div>
+    <div class="carwrap reveal">
+      <div class="carnav"><button class="arrow" onclick="moveTool(-1)" aria-label="이전">‹</button><button class="arrow" onclick="moveTool(1)" aria-label="다음">›</button></div>
+      <div class="stage">
+
+        <!-- CLAUDE -->
+        <div class="tpanel slidein" data-p="0">
+          <div class="thead"><div class="lg cl">Cl</div><h3>Claude / Claude Code</h3><span class="tg">두 개념의 본가</span></div>
+          <p style="color:var(--gray20);font-size:14.5px;margin:0">Agent와 Skill이 가장 명확히 분리됨. Agent Skills 오픈 표준의 출발점.</p>
+          <div class="impl">
+            <div class="ibox a"><h4>Agent → Subagent</h4>
+              <p>자체 컨텍스트·시스템 프롬프트·도구·권한을 가진 서브에이전트. 위임 후 요약만 반환.</p>
+              <p>위치 <code>.claude/agents/</code> · <code>~/.claude/agents/</code> (재귀 스캔, 정체성=<code>name</code>)</p>
+              <p>호출 자동(description) + <code>@agent-name</code> · <code>claude --agent</code></p></div>
+            <div class="ibox s"><h4>Skill → Agent Skill</h4>
+              <p>SKILL.md 폴더 + 점진적 공개(메타 → 본문 → 번들). 매칭 시 온디맨드 로드.</p>
+              <p>위치 <code>~/.claude/skills/&lt;name&gt;/</code> (우선순위 enterprise &gt; personal &gt; project)</p>
+              <p>호출 자동 + <code>/skill명</code>, <code>disable-model-invocation</code>로 주체 제한</p></div>
+          </div>
+          <div class="dev-only">
+            <span class="filename">~/.claude/agents/code-reviewer.md</span>
+<pre><code><span class="fm">---</span>
+<span class="k">name</span>: code-reviewer
+<span class="k">description</span>: Expert code review specialist. Proactively reviews
+  code for quality, security, maintainability. Use after writing code.
+<span class="k">tools</span>: <span class="v">Read, Grep, Glob, Bash</span>
+<span class="k">model</span>: <span class="v">inherit</span>
+<span class="fm">---</span>
+You are a senior code reviewer. Run git diff, focus on modified files,
+review immediately. Organize: Critical / Warnings / Suggestions.</code></pre>
+            <span class="filename">~/.claude/skills/pdf-processing/SKILL.md</span>
+<pre><code><span class="fm">---</span>
+<span class="k">name</span>: pdf-processing
+<span class="k">description</span>: Extract text and tables from PDFs, fill forms. Use
+  when the user mentions PDFs, forms, or document extraction.
+<span class="fm">---</span>
+<span class="c"># PDF Processing</span>
+import pdfplumber
+with pdfplumber.open("doc.pdf") as pdf:
+    text = pdf.pages[0].extract_text()
+For advanced form filling, see FORMS.md   <span class="c"># L3 번들 = 참조 시 로드</span></code></pre>
+          </div>
+          <div class="note">함께: 서브에이전트 frontmatter <code>skills</code>로 시작 시 스킬 프리로드 · 스킬 <code>context: fork</code>로 격리 서브에이전트에서 실행 → 페르소나에 능력을 얹음.</div>
+        </div>
+
+        <!-- COPILOT -->
+        <div class="tpanel" data-p="1">
+          <div class="thead"><div class="lg co">Co</div><h3>GitHub Copilot</h3><span class="tg">agent 과부하 주의</span></div>
+          <p style="color:var(--gray20);font-size:14.5px;margin:0">여기서 '재사용 정의'는 <b style="color:#fff">Custom agents(.agent.md)</b>. 자율 cloud agent·Extension agent·agent mode와는 별개.</p>
+          <div class="impl">
+            <div class="ibox a"><h4>Agent → Custom agents</h4>
+              <p>역할 특화 재사용 파일. name·description·시스템프롬프트 본문(+도구/MCP 제한).</p>
+              <p>위치 <code>.github/agents/*.agent.md</code> (<code>.md</code>도 허용), CLI <code>~/.copilot/agents</code></p>
+              <p>호출 명시/사용자 선택 중심. 본문 ≤ 30,000자</p></div>
+            <div class="ibox s"><h4>Skill → Agent Skills <span style="color:var(--silver);font-weight:500">+ Skillset</span></h4>
+              <p><b style="color:#fff">Agent Skills</b>(SKILL.md): Anthropic 오픈 표준 채택 — Claude 스킬의 직접 대응물.</p>
+              <p>위치 <code>.github/skills/&lt;name&gt;/SKILL.md</code> (<code>.claude/skills/</code>도 탐지)</p>
+              <p><b style="color:#fff">Skillset</b>(별개): GitHub App의 최대 5개 API 엔드포인트. SKILL.md 아님!</p></div>
+          </div>
+          <div class="dev-only">
+            <span class="filename">.github/agents/test-specialist.agent.md</span>
+<pre><code><span class="fm">---</span>
+<span class="k">name</span>: test-specialist
+<span class="k">description</span>: Focuses on test coverage, quality, and testing best
+  practices without modifying production code
+<span class="fm">---</span>
+You are a testing specialist. Analyze coverage gaps; write unit/
+integration/e2e tests; focus only on test files.</code></pre>
+            <span class="filename">.github/skills/github-actions-failure-debugging/SKILL.md</span>
+<pre><code><span class="fm">---</span>
+<span class="k">name</span>: github-actions-failure-debugging
+<span class="k">description</span>: Debug failing GitHub Actions workflows. Use when
+  asked why a workflow run failed.
+<span class="k">license</span>: <span class="v">MIT</span>
+<span class="fm">---</span>
+<span class="c"># 필드: name · description · license · allowed-tools</span></code></pre>
+            <span class="filename">Skillset (GitHub App 설정 필드 — JSON 문서 아님)</span>
+<pre><code><span class="k">Name</span>:                 random_lorem_ipsum
+<span class="k">Inference description</span>: Generates random Lorem Ipsum text
+<span class="k">URL</span>:                  https://your-domain/random-lorem
+<span class="k">Parameters</span>:           <span class="v">{ JSON Schema object }</span>
+<span class="k">Return type</span>:          String
+<span class="c"># 최대 5개 skill · POST · application/json · 요청 서명 검증</span></code></pre>
+          </div>
+          <div class="note">혼동 금지: <b style="color:#fff">Agent Skills</b>(SKILL.md 파일)와 <b style="color:#fff">Skillset</b>(API 엔드포인트 모음)은 이름만 비슷할 뿐 다른 메커니즘.</div>
+        </div>
+
+        <!-- CODEX -->
+        <div class="tpanel" data-p="2">
+          <div class="thead"><div class="lg cx">Cx</div><h3>OpenAI Codex</h3><span class="tg">공유 지침 + 스킬</span></div>
+          <p style="color:var(--gray20);font-size:14.5px;margin:0">Codex의 'Agent'는 페르소나 파일이 아니라 <b style="color:#fff">공유 지침 AGENTS.md</b> — 가장 가까운 대응물.</p>
+          <div class="impl">
+            <div class="ibox a"><h4>Agent → AGENTS.md</h4>
+              <p>스키마·frontmatter 없는 순수 Markdown 지침("README for agents").</p>
+              <p>위치 레포 루트 + 전역 <code>~/.codex/AGENTS.md</code> (git 루트→cwd, 가까운 파일이 override)</p>
+              <p>호출 자동·실행당 1회. <b style="color:#fff">페르소나 아님 — 여러 에이전트가 공유</b></p></div>
+            <div class="ibox s"><h4>Skill → Agent Skills</h4>
+              <p>SKILL.md(name+description 필수) + scripts/·references/·assets/·<code>agents/openai.yaml</code>.</p>
+              <p>위치 <code>.agents/skills/&lt;name&gt;/</code> · <code>~/.agents/skills/</code></p>
+              <p>호출 자동 + 명시(<code>/skills</code>·<code>$skill명</code>). 선행 Custom Prompts는 deprecated</p></div>
+          </div>
+          <div class="dev-only">
+            <span class="filename">AGENTS.md (레포 루트)</span>
+<pre><code><span class="c"># AGENTS.md</span>
+<span class="c">## Setup commands</span>
+- Install deps: pnpm install
+- Run tests: pnpm test
+<span class="c">## Code style</span>
+- TypeScript strict mode; single quotes, no semicolons
+<span class="c"># 스키마 없음 — 32 KiB 한도까지 root→leaf 병합</span></code></pre>
+            <span class="filename">.agents/skills/code-reviewer/SKILL.md (+ 폴더)</span>
+<pre><code><span class="fm">---</span>
+<span class="k">name</span>: code-reviewer
+<span class="k">description</span>: Reviews code for bugs, security, style. Use when the
+  user asks to review code, check a PR, or find issues.
+<span class="fm">---</span>
+Skill instructions for Codex to follow.
+<span class="c"># 폴더: SKILL.md(필수)·scripts/·references/·assets/·agents/openai.yaml</span></code></pre>
+          </div>
+          <div class="note">SKILL.md 오픈 표준은 <b style="color:#fff">Anthropic이 2025-12-18 공개·오픈소스화</b> → Codex 채택(OpenAI 원작 아님). AGENTS.md='항상 켜진 지침', Skill='필요 시 호출 능력'.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 COMBINE (white editorial) -->
+<section class="sec sec--white" id="combine">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="n">05</span>TOGETHER · 함께 쓰기</div>
+    <h2 class="reveal">일꾼 + 매뉴얼</h2>
+    <p class="lead reveal">둘은 경쟁이 아니라 보완 관계. 에이전트가 스킬을 펼쳐 읽습니다.</p>
+    <div class="combine reveal">
+      <svg viewBox="0 0 820 220" role="img" aria-label="메인이 에이전트를 부르고 에이전트가 스킬을 로드하는 흐름">
+        <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#181818"/></marker></defs>
+        <rect x="20" y="86" width="150" height="48" fill="#fff" stroke="#181818"/>
+        <text x="95" y="107" fill="#181818" font-size="14" text-anchor="middle" font-weight="bold">메인 대화</text>
+        <text x="95" y="123" fill="#8F8F8F" font-size="10.5" text-anchor="middle">사용자 + 모델</text>
+        <line x1="170" y1="110" x2="252" y2="110" stroke="#181818" marker-end="url(#ar)"/>
+        <text x="210" y="100" fill="#8F8F8F" font-size="10" text-anchor="middle" letter-spacing="1">위임</text>
+        <rect x="256" y="68" width="200" height="84" fill="#DA291C"/>
+        <text x="356" y="98" fill="#fff" font-size="15" text-anchor="middle" font-weight="bold">에이전트 (일꾼)</text>
+        <text x="356" y="118" fill="#fff" font-size="11" text-anchor="middle" opacity=".85">별도 컨텍스트 · 도구 · 권한</text>
+        <text x="356" y="135" fill="#fff" font-size="10.5" text-anchor="middle" opacity=".7">frontmatter: skills 프리로드</text>
+        <line x1="456" y1="110" x2="538" y2="110" stroke="#181818" marker-end="url(#ar)"/>
+        <text x="497" y="100" fill="#8F8F8F" font-size="10" text-anchor="middle" letter-spacing="1">로드</text>
+        <rect x="542" y="60" width="256" height="44" fill="#F6E500"/>
+        <text x="670" y="80" fill="#181818" font-size="13" text-anchor="middle" font-weight="bold">스킬 A (매뉴얼)</text>
+        <text x="670" y="96" fill="#181818" font-size="10.5" text-anchor="middle" opacity=".75">description 매칭 시 본문 펼침</text>
+        <rect x="542" y="116" width="256" height="44" fill="#fff" stroke="#5a5600"/>
+        <text x="670" y="136" fill="#181818" font-size="13" text-anchor="middle" font-weight="bold">스킬 B (매뉴얼)</text>
+        <text x="670" y="152" fill="#8F8F8F" font-size="10.5" text-anchor="middle">평소엔 메타데이터만 상시</text>
+        <line x1="356" y1="152" x2="356" y2="188" stroke="#181818" marker-end="url(#ar)"/>
+        <line x1="356" y1="188" x2="95" y2="188" stroke="#181818"/>
+        <line x1="95" y1="188" x2="95" y2="138" stroke="#181818" marker-end="url(#ar)"/>
+        <text x="225" y="183" fill="#8F8F8F" font-size="10" text-anchor="middle" letter-spacing="1">결과는 요약만 메인으로 반환</text>
+      </svg>
+    </div>
+    <p class="combine-note reveal">예: <b>Claude 서브에이전트는 <code>skills</code> 필드로 시작 시 스킬을 프리로드</b>하고, 반대로 <b>스킬은 <code>context: fork</code>로 격리 서브에이전트에서 실행</b>됩니다. 전문 페르소나(에이전트)에 재사용 능력(스킬)을 얹는 구조.</p>
+  </div>
+</section>
+
+<!-- 06 WHEN (black) -->
+<section class="sec sec--black" id="when">
+  <div class="wrap">
+    <div class="kicker reveal"><span class="n">06</span>DECISION · 언제 무엇을</div>
+    <h2 class="reveal">일꾼을 부를까, 매뉴얼을 펼칠까</h2>
+    <div class="when reveal">
+      <div class="wcol">
+        <span class="label r">에이전트를 쓸 때</span>
+        <ul>
+          <li>반복되는 한 '역할'(코드 리뷰어·테스트 전문가·보안 감사자)을 분리된 맥락에서 통째로 맡길 때</li>
+          <li>작업이 길거나 메인 컨텍스트를 오염시키면 안 될 때</li>
+          <li>권한/도구 세트를 격리하고 싶을 때</li>
+          <li>멀티에이전트 오케스트레이션(코디네이터가 하위 일꾼 분기)</li>
+        </ul>
+      </div>
+      <div class="wcol">
+        <span class="label y">스킬을 쓸 때</span>
+        <ul>
+          <li>특정 작업 절차·도메인 지식(PDF 추출·HWPX 생성·CI 디버깅)을 여러 곳에서 재사용할 때</li>
+          <li>평소엔 컨텍스트를 안 차지하게 하고 싶을 때</li>
+          <li>새 페르소나가 아니라 기존 어시스턴트에 "이 작업은 이렇게"를 주입할 때</li>
+          <li>스크립트·템플릿·참조문서를 번들로 묶어 배포할 때</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="disclaimer reveal">⚠️ 일부 세부(버전 게이팅 숫자·경로·토큰 수치·GA 시점)는 도구 버전·시점에 따라 달라질 수 있습니다.
+      본 자료는 2026-06-15 공식 문서 기준으로 작성·교차검증되었으며, 최신 값은 각 공식 문서에서 확인하세요.</div>
+    <h4>출처 · 공식 문서</h4>
+    <div class="srclist">
+      <div>Claude 서브에이전트 · <a href="https://code.claude.com/docs/en/sub-agents">code.claude.com/docs/en/sub-agents</a></div>
+      <div>Claude Agent Skills · <a href="https://code.claude.com/docs/en/skills">code.claude.com/docs/en/skills</a></div>
+      <div>Anthropic Skills · <a href="https://claude.com/blog/skills">claude.com/blog/skills</a></div>
+      <div>Copilot Custom agents · <a href="https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-custom-agents">docs.github.com</a></div>
+      <div>Copilot Agent Skills · <a href="https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/">github.blog changelog</a></div>
+      <div>Copilot Skillsets · <a href="https://github.com/copilot-extensions/skillset-example">copilot-extensions/skillset-example</a></div>
+      <div>Codex AGENTS.md · <a href="https://agents.md/">agents.md</a></div>
+      <div>Codex Skills · <a href="https://developers.openai.com/codex/skills">developers.openai.com/codex/skills</a></div>
+    </div>
+    <p class="madeby">제작: AI 멀티에이전트 오케스트레이션 (Claude Code) · 6개 타깃 병렬 리서치 → 적대적 교차검증 → 종합 · 2026-06-15 · 디자인: Ferrari design system 적용</p>
+  </div>
+</footer>
+
+<script>
+  function setMode(m){
+    document.body.className = m;
+    document.getElementById('m-cmp').classList.toggle('on', m==='cmp');
+    document.getElementById('m-dev').classList.toggle('on', m==='dev');
+  }
+  // scroll progress
+  const prog=document.getElementById('prog');
+  function onScroll(){const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(sc*100)+'%';}
+  document.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+  // hero entrance
+  window.addEventListener('load',()=>{document.querySelector('.hero').classList.add('lit');});
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%4,3)*0.08)+'s';io.observe(el);});
+  // tools carousel
+  let cur=0; const panels=[...document.querySelectorAll('.tpanel')], chips=[...document.querySelectorAll('.chip')];
+  let timer=null;
+  function render(){
+    panels.forEach((p,i)=>{p.classList.remove('slidein'); if(i===cur){p.style.display='block'; void p.offsetWidth; p.classList.add('slidein');} else {p.style.display='none';}});
+    chips.forEach((c,i)=>c.classList.toggle('on',i===cur));
+  }
+  function showTool(i){cur=(i+panels.length)%panels.length; render(); restart();}
+  function moveTool(d){showTool(cur+d);}
+  function restart(){clearInterval(timer); timer=setInterval(()=>showTool(cur+1),7000);}
+  const car=document.querySelector('.carwrap');
+  car.addEventListener('mouseenter',()=>clearInterval(timer));
+  car.addEventListener('mouseleave',restart);
+  restart();
+</script>
+</body>
+</html>
