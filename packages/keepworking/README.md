@@ -37,6 +37,8 @@ Keepworking adds three habits to that loop:
 2. Preserve evidence before claiming completion.
 3. Re-enter repair when verification fails.
 
+It also tightens closure around the current action unit: the main runtime should know what is being acted on, what completion means, and which verifier proves it before marking the action done.
+
 ## Tier Model
 
 | Tier | Use for | Default behavior | Expected evidence |
@@ -56,6 +58,15 @@ The router decides:
 3. Can any work split into independent branches?
 4. What evidence is required before closure?
 
+For non-trivial tasks, the router should also identify the current action unit:
+
+```text
+Action: <inspect | edit | create | run | compare | verify | repair | publish>
+Object: <file, artifact, issue, dataset, deployment, decision, or branch>
+Completion criteria: <observable done conditions>
+Verifier: <test, build, log, render, diff, source check, review pass, or user confirmation>
+```
+
 ## Completion Sentinels
 
 Use these when a runtime supports grep-able or machine-readable worker completion:
@@ -71,6 +82,14 @@ KW_DELEGATE: medium <task>
 ```
 
 Sentinels are not enough by themselves. They must point back to evidence.
+
+## Reuse And Stop Rules
+
+Keepworking can reuse evidence-backed patterns instead of rediscovering the same workflow each time.
+
+- Repeated wins become playbooks or skill candidates when their preconditions and verifier are clear.
+- Repeated failures become stop rules. Do not retry the same method against the same input unless the failure cause has changed.
+- Before execution, check whether an existing skill, playbook, or stop rule already applies.
 
 ## Copy Pattern
 

@@ -41,10 +41,12 @@ Escalate when the current tier can no longer close the task safely:
 1. Restate the current goal in one line.
 2. Separate discoverable facts from preferences.
 3. Pick the smallest useful next slice.
-4. Execute or inspect that slice.
-5. Verify with evidence.
-6. If verification fails, repair and re-run the same or stronger check.
-7. Close only when the evidence and unresolved risks are explicit.
+4. Define the action unit: action, object, scope, owner, completion criteria, and verifier.
+5. Check whether an existing skill, playbook, or stop rule applies.
+6. Execute or inspect that slice.
+7. Verify with evidence.
+8. If verification fails, record the failure cause, change the next attempt, repair, and re-run the same or stronger check.
+9. Close only when the evidence satisfies the action unit's completion criteria and unresolved risks are explicit.
 
 ## Evidence
 
@@ -60,6 +62,38 @@ Prefer evidence that another person or tool can inspect:
 - audit events
 
 Do not treat a chat response as completion.
+
+## Action Units
+
+Do not close a large goal just because one step produced output. Close the current action unit first.
+
+An action unit names:
+
+- action: inspect, edit, create, run, compare, verify, repair, publish, etc.
+- object: exact file, artifact, issue, dataset, thread, deployment, or decision
+- scope: what is included and what is outside this slice
+- owner: main chat, local tool, sub-agent, external app, or user
+- completion criteria: observable conditions required for done
+- verifier: command, test, build, log, render, diff, source check, review pass, or user confirmation
+
+If the verifier is unavailable, say what could not be verified and use `partial`, `blocked`, or `failed` instead of `done`.
+
+## Reuse And Stop Rules
+
+Before non-trivial execution, check whether a relevant skill, playbook, or stop rule already applies.
+
+Repeated wins can become playbooks or skill candidates when their preconditions, verifier, and escalation trigger are clear.
+
+Repeated failures should become stop rules:
+
+```text
+Failure Cause:
+Method To Avoid:
+Changed Next Attempt:
+Verifier To Re-run:
+```
+
+Do not retry the same failed method against the same input unless the failure cause has changed.
 
 ## Parallel Work
 
@@ -78,9 +112,13 @@ Use this report shape:
 ```text
 Current Goal:
 Tier:
+Action Unit:
+Completion Criteria:
 Work Done:
 Evidence:
 Verification:
+Learned Pattern:
+Stop Rule:
 Unresolved Risks:
 Next Action:
 Close Decision:

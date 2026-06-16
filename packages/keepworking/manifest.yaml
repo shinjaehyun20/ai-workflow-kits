@@ -31,5 +31,7 @@ artifacts:
 evidence_required:
   - file_paths
   - logs_or_tests
+  - completion_criteria
+  - verifier_output
   - unresolved_risks
   - completion_status

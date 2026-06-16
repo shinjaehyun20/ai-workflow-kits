@@ -19,6 +19,32 @@
     "goal": {
       "type": "string"
     },
+    "action_unit": {
+      "type": "object",
+      "properties": {
+        "verb": {
+          "type": "string"
+        },
+        "object": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "completion_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verifier": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "tier": {
       "type": "string",
       "enum": ["simple", "medium", "complex", "creative"]
@@ -51,6 +77,46 @@
       "type": "array",
       "items": {
         "type": "string"
+      }
+    },
+    "learned_pattern": {
+      "type": "object",
+      "properties": {
+        "winning_pattern": {
+          "type": "string"
+        },
+        "reuse_preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "escalation_trigger": {
+          "type": "string"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stop_rule": {
+      "type": "object",
+      "properties": {
+        "failure_signature": {
+          "type": "string"
+        },
+        "method_to_avoid": {
+          "type": "string"
+        },
+        "changed_next_attempt": {
+          "type": "string"
+        },
+        "verifier_to_rerun": {
+          "type": "string"
+        }
       }
     },
     "model_profile": {
