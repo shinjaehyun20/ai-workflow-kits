@@ -52,6 +52,7 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Active |
 | [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Release user-authored workflow packages with readiness, verification, and GitHub surface sync | Active |
 | [`teamwork-preview`](packages/teamwork-preview/README.md) | Prepare worker-ready launch packets before multi-agent execution | Active |
+| [`agent-team-ops`](packages/agent-team-ops/README.md) | Stand up and operate a live multi-agent Claude Code team with remote control and conflict-safe fan-in | Experimental |
 | [`pet-companion`](packages/pet-companion/README.md) | Publish cross-runtime pet and companion workflows with a shared state contract | Experimental |
 
 `package-authoring` is the meta package for adding future skills, agents, prompts, hooks, commands, plugins, examples, and runtime adapters.
@@ -61,6 +62,8 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 `github-publication-bundle` is the release gate for public workflow packages. It blocks publication until install/use/verify docs, examples, verification evidence, and GitHub-facing source-of-truth updates are all present.
 
 `teamwork-preview` sits before `keepworking` when work needs delegation. It locks the goal, runs a grill-me pass, drafts a launch packet, and keeps the main session responsible for fan-in and final acceptance.
+
+`agent-team-ops` sits between `teamwork-preview` and `keepworking`: it stands up and operates the live team itself. It covers the team environment (multiplexed panes, a shared tool stack), per-member role charters, remote drive from a phone, and conflict-safe fan-in. It adapts a public Claude Code multi-agent guide into runtime-neutral artifacts, with concrete tool and Remote-Control setup steps kept in its docs.
 
 `pet-companion` shows how to package a runtime-neutral companion bundle, a lightweight viewer, and adapter guidance without publishing private local assets. It is intentionally experimental: Codex is the only runtime with a currently usable path in this repo, while Claude Code and GitHub Copilot are documented as future adapter targets rather than working integrations.
 

@@ -1,0 +1,40 @@
+id: agent-team-ops
+name: Agent Team Ops
+description: Stand up and operate a persistent multi-agent Claude Code team with remote control, a shared tool stack, and conflict-safe fan-in.
+category: orchestration
+status: experimental
+runtimes:
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  codex:
+    supported: true
+    status: draft
+    path: codex/
+  gemini:
+    supported: true
+    status: draft
+    path: gemini/
+  copilot:
+    supported: true
+    status: draft
+    path: copilot/
+artifacts:
+  - skill
+  - command
+  - agent
+  - prompt
+  - instruction
+  - example
+  - guide
+evidence_required:
+  - team_charter
+  - role_assignments
+  - tool_stack_state
+  - approval_state
+  - branch_status
+  - conflict_check
+  - evidence_paths
+  - unresolved_risks
+  - close_decision
