@@ -17,6 +17,7 @@ one workflow -> multiple AI runtimes -> evidence-first completion
 | Gemini | [`packages/keepworking/gemini/`](packages/keepworking/gemini/) |
 | GitHub Copilot | [`packages/keepworking/copilot/`](packages/keepworking/copilot/) |
 | Korean guide | [`packages/keepworking/docs/ko/keepworking-guide.md`](packages/keepworking/docs/ko/keepworking-guide.md) |
+| Plugin authoring guide | [`packages/package-authoring/plugins/plugin-authoring-guide.ko.md`](packages/package-authoring/plugins/plugin-authoring-guide.ko.md) |
 | Multi-agent launch packet | [`packages/teamwork-preview/`](packages/teamwork-preview/) |
 
 ## What This Is
@@ -120,6 +121,7 @@ The repository also includes public-safe article series derived from completed w
 
 | Series | Purpose |
 | --- | --- |
+| [`packages/package-authoring/plugins/plugin-authoring-guide.ko.md`](packages/package-authoring/plugins/plugin-authoring-guide.ko.md) | Codex plugin structure, authoring steps, the three reference plugins, operating principles, and improvement roadmap |
 | [`docs/public-series`](docs/public-series/README.md) | Turn completed devlog cases into GitHub articles with 쉬운거, 중간, and 난이도 있는거 reading paths |
 | [`docs/guides/agent-vs-skill`](docs/guides/agent-vs-skill/README.md) | Agent vs Skill compared across Claude, Copilot, and Codex — layered analogy → developer code samples, with interactive HTML and a slide deck |
 
