@@ -1,0 +1,37 @@
+{
+  "name": "meeting-intelligence",
+  "version": "0.1.0",
+  "description": "Turn meeting audio, STT transcripts, or notes into transcripts, summaries, decisions, action items, follow-up drafts, and optional briefing assets.",
+  "author": {
+    "name": "Shin Jaehyun"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "meeting-notes",
+    "transcription",
+    "action-items",
+    "follow-up",
+    "tts-briefing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Meeting Intelligence",
+    "shortDescription": "Create structured meeting packages from audio, STT, or notes.",
+    "longDescription": "Meeting Intelligence helps turn meeting audio, existing STT transcripts, or meeting notes into a durable transcript, concise summary, decisions, action items, follow-up draft, verification note, and optional TTS briefing plan. It keeps privacy gates explicit and reuses prior STT outputs before starting new transcription work.",
+    "developerName": "Shin Jaehyun",
+    "category": "Productivity",
+    "capabilities": [
+      "Transcript reuse",
+      "Meeting summarization",
+      "Decision extraction",
+      "Action item tracking",
+      "Follow-up drafting"
+    ],
+    "defaultPrompt": [
+      "Turn this transcript into summary and action items.",
+      "Find existing STT output before summarizing this audio.",
+      "Draft a follow-up message from these meeting notes."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

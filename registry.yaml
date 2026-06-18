@@ -25,6 +25,7 @@ packages:
       - agent
       - prompt
       - instruction
+      - plugin
       - example
   - id: keepworking
     name: Keepworking

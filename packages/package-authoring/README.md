@@ -41,6 +41,17 @@ That means a new workflow goes under `packages/<package-id>/`, and each AI-speci
 5. Update `REGISTRY.md`, `registry.yaml`, and the package `manifest.yaml`.
 6. Run `python tools/public-safety-scan.py --history`.
 
+## Reference Plugins
+
+Public-safe Codex plugin bundles live in [`plugins/`](plugins/README.md).
+The authoring guide is [`plugins/plugin-authoring-guide.ko.md`](plugins/plugin-authoring-guide.ko.md).
+
+| Plugin | Use it for |
+| --- | --- |
+| [`proposal-workbench`](plugins/proposal-workbench/README.md) | Evidence-backed proposal and RFP work packages |
+| [`meeting-intelligence`](plugins/meeting-intelligence/README.md) | Transcript, summary, decisions, action items, and follow-up packages |
+| [`idea-to-prototype`](plugins/idea-to-prototype/README.md) | Source-applied or generated-source prototype packages |
+
 ## References
 
 - `docs/package-authoring-rules.md`

@@ -25,6 +25,7 @@ artifacts:
   - agent
   - prompt
   - instruction
+  - plugin
   - example
 evidence_required:
   - registry_updated

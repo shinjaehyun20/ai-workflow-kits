@@ -1,0 +1,42 @@
+{
+  "name": "idea-to-prototype",
+  "version": "0.1.0+codex.20260618142851",
+  "description": "Turn a rough product idea into an anti-generic prototype package by applying supplied design/source files or generating a source baseline when none exists.",
+  "author": {
+    "name": "Shin Jaehyun"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "product-discovery",
+    "prototype",
+    "source-inventory",
+    "generated-source",
+    "design-contract",
+    "screen-map",
+    "build-spec",
+    "verification"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Idea To Prototype",
+    "shortDescription": "Apply source if present; generate it if missing.",
+    "longDescription": "A local Codex plugin for turning rough product ideas into bounded prototype packages. It applies supplied design/source materials when available, generates a reusable source baseline when not available, then creates source inventory, anti-generic gate, opportunity memo, screen map, prototype brief, design contract, build spec, clickable scaffold, and verification report.",
+    "developerName": "Shin Jaehyun",
+    "category": "Productivity",
+    "capabilities": [
+      "Planning",
+      "Prototyping",
+      "Code generation",
+      "Verification"
+    ],
+    "defaultPrompt": [
+      "Turn this idea into an anti-generic prototype plan.",
+      "Use this design.md and source folder to create a source-applied prototype.",
+      "No source files yet; generate the source baseline and build the prototype.",
+      "Apply this screen spec and brand guide before building the prototype.",
+      "Create a prototype brief and build spec before coding.",
+      "Scaffold a clickable working prototype and write verification notes."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

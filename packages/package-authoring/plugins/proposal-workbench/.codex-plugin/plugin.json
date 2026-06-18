@@ -1,0 +1,37 @@
+{
+  "name": "proposal-workbench",
+  "version": "0.1.0",
+  "description": "Evidence-backed proposal and RFP workbench for turning Perplexity research, URLs, RFPs, and briefs into proposal blocks, storyboard gates, task packs, and verifier close gates.",
+  "author": {
+    "name": "Shin Jaehyun"
+  },
+  "license": "UNLICENSED",
+  "keywords": [
+    "proposal",
+    "rfp",
+    "perplexity",
+    "evidence",
+    "storyboard",
+    "verification"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Proposal Workbench",
+    "shortDescription": "Turn research and RFP inputs into verified proposal work packages.",
+    "longDescription": "A local Codex plugin for structuring Perplexity project candidates, RFPs, URLs, and raw briefs into evidence matrices, proposal blocks, storyboard gates, execution boards, and close-gate verification notes before deck production.",
+    "developerName": "Shin Jaehyun",
+    "category": "Productivity",
+    "capabilities": [
+      "Research",
+      "Write",
+      "Planning",
+      "Verification"
+    ],
+    "defaultPrompt": [
+      "Turn this RFP into evidence-backed proposal blocks.",
+      "Build a storyboard gate for this proposal idea.",
+      "Create a task pack and verifier close gate."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
