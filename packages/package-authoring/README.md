@@ -45,6 +45,8 @@ That means a new workflow goes under `packages/<package-id>/`, and each AI-speci
 
 Public-safe Codex plugin bundles live in [`plugins/`](plugins/README.md).
 The authoring guide is [`plugins/plugin-authoring-guide.ko.md`](plugins/plugin-authoring-guide.ko.md).
+The ChatGPT app operations guide for Idea To Prototype Beta is
+[`docs/ko/idea-to-prototype-chatgpt-app-guide.md`](docs/ko/idea-to-prototype-chatgpt-app-guide.md).
 
 | Plugin | Use it for |
 | --- | --- |
