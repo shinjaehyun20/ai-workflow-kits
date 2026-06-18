@@ -26,3 +26,13 @@ Keepworking keeps AI work moving until evidence exists.
 | simple | search, classification, summaries |
 | medium | bounded implementation and repair |
 | complex | architecture and deep debugging |
+
+## Operating Add-ons
+
+| Add-on | Purpose |
+| --- | --- |
+| `agent-loop-playbook.md` | Convert proposal-grade notes into action units and close gates |
+| `local-agent-lane.md` | Decide which work can be completed locally before external dispatch |
+| `top-skills-shortlist.md` | Promote repeated wins into skill candidates only when verifiable |
+| `knowledge-registry-format.md` | Preserve benchmark signals as reusable registry entries |
+| `benchmark-signal-tags.md` | Route benchmark sources by source and application tags |

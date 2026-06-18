@@ -3,6 +3,20 @@
   "goal": "Inspect a small repository and identify verification gaps.",
   "tier": "simple",
   "runtime": "codex",
+  "loop_type": "bounded_loop",
+  "runtime_strategy": {
+    "primary_runtime": "codex",
+    "execution_mode": "local",
+    "subagent_policy": "explicit_only",
+    "evidence_owner": "main runtime"
+  },
+  "knowledge_format_strategy": {
+    "capture_format": "markdown",
+    "registry_target": "final report",
+    "reuse_policy": "promote repeated verification gaps into a playbook candidate",
+    "promotion_rule": "promote only after the same verifier catches the gap twice",
+    "signal_tags": ["loop-grade"]
+  },
   "branch_id": "simple-a",
   "skill_refs": ["keepworking"],
   "scope_in": ["README.md", "core/"],

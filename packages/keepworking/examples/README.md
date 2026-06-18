@@ -11,12 +11,19 @@ Each example should include:
 - task envelope
 - runtime used
 - expected evidence
+- loop type
+- runtime strategy
+- knowledge format strategy
 - final report shape
 - unresolved risks
 
 Current examples:
 
 - `basic-repair-loop/`: medium-tier repair and re-verification example
+
+Root-level examples:
+
+- `../../../examples/keepworking-basic/`: simple-tier inspection and verification-gap example
 
 Runtime-specific Korean cases:
 

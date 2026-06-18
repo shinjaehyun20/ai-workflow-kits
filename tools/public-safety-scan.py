@@ -115,8 +115,10 @@ REQUIRED_JSON = [
     "core/companion-state.schema.json",
     "core/runtime-adapters.schema.json",
     "examples/keepworking-basic/task-envelope.example.json",
+    "packages/keepworking/examples/basic-repair-loop/task-envelope.example.json",
     "packages/pet-companion/examples/nori-public-case/runtime-adapters.json",
     "packages/pet-companion/examples/nori-public-case/state/codex.example.json",
+    "templates/task-envelope.template.json",
 ]
 
 REQUIRED_YAML = [

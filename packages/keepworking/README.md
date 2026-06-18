@@ -25,6 +25,16 @@ Korean guide:
 docs/ko/keepworking-guide.md
 ```
 
+Operational add-ons:
+
+| Add-on | Use when |
+| --- | --- |
+| `docs/ko/agent-loop-playbook.md` | converting proposal-grade notes into action units |
+| `docs/ko/local-agent-lane.md` | deciding what can close locally before external dispatch |
+| `docs/ko/top-skills-shortlist.md` | deciding which repeated wins should become skill candidates |
+| `docs/ko/knowledge-registry-format.md` | preserving benchmark signals as reusable registry entries |
+| `docs/ko/benchmark-signal-tags.md` | tagging benchmark sources for routing and prioritization |
+
 ## Operating Loop
 
 ```text

@@ -38,6 +38,16 @@ Goal 스킬로 목표와 종료 조건을 고정
 -> 증거가 있을 때 종료
 ```
 
+## 확장 운영 문서
+
+| 문서 | 용도 |
+| --- | --- |
+| [`agent-loop-playbook.md`](agent-loop-playbook.md) | 제안형 메모를 실행 가능한 action unit으로 바꿀 때 |
+| [`local-agent-lane.md`](local-agent-lane.md) | 로컬에서 먼저 닫을 수 있는 작업과 외부 의존 작업을 나눌 때 |
+| [`top-skills-shortlist.md`](top-skills-shortlist.md) | 반복 성공을 스킬 후보로 승격할지 판단할 때 |
+| [`knowledge-registry-format.md`](knowledge-registry-format.md) | 벤치마킹 신호를 재사용 가능한 registry로 남길 때 |
+| [`benchmark-signal-tags.md`](benchmark-signal-tags.md) | 기사, 허브, 릴리스 신호를 실행 라우팅용 태그로 분류할 때 |
+
 ## Action unit 종료조건
 
 큰 목표를 바로 완료 처리하지 말고, 현재 행위를 먼저 닫습니다.

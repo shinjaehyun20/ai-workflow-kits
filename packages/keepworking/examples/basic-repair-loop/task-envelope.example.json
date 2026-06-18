@@ -3,6 +3,20 @@
   "goal": "Repair a failing package manifest check and re-run validation.",
   "tier": "medium",
   "runtime": "codex",
+  "loop_type": "repair_loop",
+  "runtime_strategy": {
+    "primary_runtime": "codex",
+    "execution_mode": "local",
+    "subagent_policy": "explicit_only",
+    "evidence_owner": "main runtime"
+  },
+  "knowledge_format_strategy": {
+    "capture_format": "markdown",
+    "registry_target": "final report and package docs",
+    "reuse_policy": "reuse the repair route only when the same manifest verifier fails",
+    "promotion_rule": "promote to a stop rule if the same failure repeats after repair",
+    "signal_tags": ["loop-grade", "proposal-grade"]
+  },
   "branch_id": "medium-repair-a",
   "skill_refs": ["keepworking"],
   "scope_in": ["packages/example/manifest.yaml", "registry.yaml"],

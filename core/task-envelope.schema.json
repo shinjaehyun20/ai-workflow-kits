@@ -52,6 +52,63 @@
     "runtime": {
       "type": "string"
     },
+    "loop_type": {
+      "type": "string",
+      "enum": [
+        "one_shot",
+        "bounded_loop",
+        "repair_loop",
+        "watch_loop",
+        "fanout_loop",
+        "human_approval_loop"
+      ]
+    },
+    "runtime_strategy": {
+      "type": "object",
+      "properties": {
+        "primary_runtime": {
+          "type": "string"
+        },
+        "fallback_runtime": {
+          "type": "string"
+        },
+        "execution_mode": {
+          "type": "string",
+          "enum": ["local", "remote", "hybrid", "manual_handoff"]
+        },
+        "subagent_policy": {
+          "type": "string",
+          "enum": ["none", "explicit_only", "auto_when_supported"]
+        },
+        "evidence_owner": {
+          "type": "string"
+        }
+      }
+    },
+    "knowledge_format_strategy": {
+      "type": "object",
+      "properties": {
+        "capture_format": {
+          "type": "string",
+          "enum": ["markdown", "json", "yaml", "artifact_bundle"]
+        },
+        "registry_target": {
+          "type": "string"
+        },
+        "reuse_policy": {
+          "type": "string"
+        },
+        "promotion_rule": {
+          "type": "string"
+        },
+        "signal_tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "branch_id": {
       "type": "string"
     },

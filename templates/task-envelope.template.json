@@ -1,0 +1,29 @@
+{
+  "task_id": "replace-with-task-id",
+  "goal": "State the outcome that must be true before closure.",
+  "tier": "medium",
+  "runtime": "codex",
+  "loop_type": "bounded_loop",
+  "runtime_strategy": {
+    "primary_runtime": "codex",
+    "execution_mode": "local",
+    "subagent_policy": "explicit_only",
+    "evidence_owner": "main runtime"
+  },
+  "knowledge_format_strategy": {
+    "capture_format": "markdown",
+    "registry_target": "final report or registry entry",
+    "reuse_policy": "reuse only when the verifier and preconditions match",
+    "promotion_rule": "promote repeated evidence-backed wins into playbooks first",
+    "signal_tags": ["loop-grade"]
+  },
+  "branch_id": "main",
+  "skill_refs": ["keepworking"],
+  "scope_in": ["replace-with-in-scope-path-or-object"],
+  "scope_out": ["replace-with-out-of-scope-boundary"],
+  "expected_evidence": ["changed paths", "verification command output", "unresolved risks"],
+  "model_profile": "balanced",
+  "reasoning_level": "medium",
+  "temperature": 0,
+  "status": "planned"
+}
