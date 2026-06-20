@@ -12,6 +12,53 @@ collisions. The main session stays the acceptance owner.
 This is not the launch-packet step (`teamwork-preview`) and not a single loop
 (`keepworking`). It is the operating layer between them.
 
+## Activation Modes
+
+There are two ways to run the team. Pick by whether members need to actually
+coordinate, or just run long, separate contexts.
+
+### Mode A — Subagents in one session (recommended for real coordination)
+
+One Claude Code session acts as the **team lead** and delegates work to
+`builder` and `reviewer` **subagents** via the Task tool. The lead and its
+subagents share one run: the lead dispatches, receives each subagent's returned
+evidence, runs the conflict check, and closes. This is the mode where fan-in and
+verification actually happen inside the tool, not by hand.
+
+Install the role agents where Claude Code reads subagents, then drive them:
+
+```text
+# project-scoped (this repo only)
+cp packages/agent-team-ops/claude/agents/builder.agent.md  .claude/agents/builder.md
+cp packages/agent-team-ops/claude/agents/reviewer.agent.md .claude/agents/reviewer.md
+# (team-lead is NOT installed as a subagent — the main session IS the lead)
+```
+
+Then, in the main session:
+
+1. Write the team charter (objective, members, shared task list with
+   dependency order, conflict rule, per-member in/out-of-scope paths).
+2. For each independent task, dispatch a subagent with the Task tool:
+   "Use the builder subagent to implement T1 inside `<in-scope paths>`;
+   return status, changed paths, and test/build output." Run independent
+   tasks in parallel; serialize any that share a file.
+3. When builder evidence lands, dispatch the reviewer subagent against the
+   charter's acceptance criteria. The reviewer surfaces risks and never edits.
+4. As the lead, run the conflict check, fan in the returned evidence, verify,
+   and make the close decision. Member completion is never final acceptance.
+
+The lead never edits a member's files directly; if it must, it reassigns first.
+
+### Mode B — Separate sessions / panes (long, isolated contexts)
+
+The book's original shape: one Claude Code session per member in separate
+multiplexed panes, optionally drivable from a phone. Members do not share
+context and cannot message each other — the human (or the lead's session) is the
+only channel. Use this only when each member needs a long, genuinely separate
+context, or when you want remote (mobile) drive of live sessions. Launchers:
+`examples/public-safe-team-run/launch-team.sh` (tmux) and `launch-team.ps1`
+(Windows Terminal). See `docs/ko/tooling-setup.md`.
+
 ## Steps
 
 1. Confirm the environment: parallel-session mechanism, shared tool stack,

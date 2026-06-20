@@ -8,7 +8,12 @@ It is the operating layer that sits **after** a launch packet exists and **aroun
 teamwork-preview (lock + packet) -> agent-team-ops (stand up + operate the live team) -> keepworking (each member's evidence loop)
 ```
 
-Use it when one execution loop is not enough and you need several Claude Code sessions running in parallel, addressable from your phone, sharing a token-efficient tool stack, and merging without stepping on each other.
+Use it when one execution loop is not enough and you need work split across roles, merged without stepping on each other.
+
+There are two ways to run it (see `claude/commands/agent-team-ops.md` → Activation Modes):
+
+- **Mode A — subagents in one session (recommended).** The main session is the team lead and delegates to `builder`/`reviewer` subagents via the Task tool. Fan-in and verification happen inside the tool, not by hand. Install: copy the role agents into `.claude/agents/`.
+- **Mode B — separate sessions / panes.** One session per member in multiplexed panes, optionally phone-driven. Isolated contexts with no inter-member channel. Launchers: `examples/public-safe-team-run/launch-team.sh` / `launch-team.ps1`.
 
 This package adapts the public guide
 [*클로드 코드(Claude Code) 멀티에이전트 팀 자동화 완성 가이드*](https://wikidocs.net/book/19736)

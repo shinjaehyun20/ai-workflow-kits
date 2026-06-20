@@ -7,6 +7,64 @@
 > 저장소의 최신 안내를 우선한다. 설치 후에는 반드시 동작을 확인한다 — "설치됨"은
 > 검증되어야 팀 스택에 포함된다.
 
+## 0. 먼저 — 실행 방식 두 가지
+
+팀을 굴리는 방식은 두 가지다. **멤버가 실제로 협업해야 하면 A, 그냥 긴 독립
+컨텍스트를 따로 돌리는 게 목적이면 B**를 쓴다.
+
+| | A. 서브에이전트 (한 세션) | B. 세션/창 분리 (여러 창) |
+| --- | --- | --- |
+| 협업·결과 fan-in | ✅ Task 도구로 실제 위임·수집 | ❌ 격리 — 사람이 유일한 메신저 |
+| team-lead | **메인 세션 자신** | 별도 창 하나 |
+| 적합 상황 | 작업을 나눠 위임하고 한 곳에서 검증·종료 | 멤버별 긴 독립 작업, 휴대폰 원격 운영 |
+| 설치 | 에이전트 파일을 `.claude/agents/`에 복사 | tmux / Windows Terminal 런처 |
+
+이 절(0)은 **A(서브에이전트, 권장)**를 다룬다. B는 아래 1~3절(런처·원격)이다.
+
+### 0-1. 서브에이전트 설치
+
+`builder`·`reviewer`만 서브에이전트로 설치한다. **team-lead는 설치하지 않는다 —
+오케스트레이션하는 메인 세션이 곧 팀장이기 때문이다.**
+
+작업 중인 프로젝트 루트에서 (프로젝트 한정):
+
+```bash
+mkdir -p .claude/agents
+cp <레포>/packages/agent-team-ops/claude/agents/builder.agent.md  .claude/agents/builder.md
+cp <레포>/packages/agent-team-ops/claude/agents/reviewer.agent.md .claude/agents/reviewer.md
+```
+
+윈도우 PowerShell:
+
+```powershell
+New-Item -ItemType Directory -Force .claude\agents | Out-Null
+Copy-Item <레포>\packages\agent-team-ops\claude\agents\builder.agent.md  .claude\agents\builder.md
+Copy-Item <레포>\packages\agent-team-ops\claude\agents\reviewer.agent.md .claude\agents\reviewer.md
+```
+
+> 모든 프로젝트에서 쓰려면 `.claude/agents/` 대신 홈의 `~/.claude/agents/`
+> (윈도우 `%USERPROFILE%\.claude\agents\`)에 넣는다.
+
+확인: Claude Code 세션에서 `/agents` 를 치면 목록에 `builder`, `reviewer`가 보여야
+한다.
+
+### 0-2. 실행
+
+메인 세션에서:
+
+1. 팀 차터를 쓴다(목표, 멤버, 의존순서 있는 공유 작업목록, 충돌 규칙, 멤버별
+   in/out-of-scope 경로). 예시: `../../examples/public-safe-team-run/team-charter.example.md`.
+2. 독립 작업마다 Task 도구로 위임한다 — 예: *"builder 서브에이전트로 T1을
+   `<in-scope 경로>` 안에서 구현하고, 상태·변경파일·테스트/빌드 출력을 반환해."*
+   파일을 공유하지 않는 작업은 병렬로, 공유하면 직렬로.
+3. builder 결과가 오면 reviewer 서브에이전트를 차터 수용기준에 맞춰 돌린다
+   (위험만 보고, 직접 수정 금지).
+4. 팀장(메인 세션)이 충돌 점검 → 증거 fan-in → 검증 → 종료 판단. **멤버 완료는
+   최종 수용이 아니다.**
+
+전체 흐름·산출 양식은 `../../claude/commands/agent-team-ops.md`의 "Activation
+Modes → Mode A" 참고.
+
 ## 1. 멀티플렉서 (TMUX) — 팀 패널 기반 (2~3장)
 
 여러 Claude Code 세션을 한 화면에서 병렬로 띄우는 기반.
