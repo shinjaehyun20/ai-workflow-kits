@@ -1,6 +1,6 @@
 # daily-log
 
-Use this command to append the current session's activity to the shared daily log.
+Use this command to append the current session's activity to the shared daily log with a one-line trigger like "log it".
 
 ```text
 /daily-log
@@ -85,6 +85,18 @@ Report in one line:
 ```text
 daily-log saved: <path> — [Claude] section appended, N bullets
 ```
+
+## Log Lane
+
+This command defaults to the `daily-log` lane. Depending on session content, route to the appropriate lane:
+
+| Lane | File | Use when |
+| --- | --- | --- |
+| **devlog** | `<vault>/devlogs/YYYY/MM/YYYY-MM-DD-dev.md` | Coding, development, technical work |
+| **daily-log** | `<vault>/logs/YYYY/MM/YYYY-MM-DD-daily.md` | Personal, learning, general sessions |
+| **work-log** | `<vault>/work-logs/YYYY/MM/YYYY-MM-DD-work.md` | Project tasks, handoffs, work deliverables |
+
+All three lanes use the same mechanism and the same LOG_CONTRACT rules.
 
 ## Rules
 

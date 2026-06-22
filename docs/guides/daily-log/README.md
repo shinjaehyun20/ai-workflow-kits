@@ -1,6 +1,6 @@
 # Multi-AI Daily Log — Visual Guide
 
-> **One line to log it.** Say "log it" at the end of a conversation and the session is structured into your vault's daily note — shared across Claude, Codex, Gemini, and Copilot without conflicts.
+> **One line to log it.** Say a one-line trigger like "log it" at the end of a conversation and the session is structured into your vault's daily note — shared across Claude, Codex, Gemini, and Copilot without conflicts.
 >
 > This guide covers the pattern. Replace `<vault>` and `<your-section>` placeholders with your own vault path and section names before use.
 
@@ -21,12 +21,12 @@ The guide walks through the full workflow in 8 screens with a keyboard-navigable
 | Step | Screen | What it shows |
 | --- | --- | --- |
 | 01 | **Problem: Scattered logs** | Each AI tool leaves records in a different place — chat history, working directory, separate docs. Same project, same day, four different locations. |
-| 02 | **Trigger: "log it"** | At the end of a conversation, one line ("log it" / "기록해줘") kicks off the workflow. The AI extracts the session summary and appends it to today's log. |
+| 02 | **Trigger: "log it"** | At the end of a conversation, a one-line trigger like "log it" (or "기록해줘") kicks off the workflow. The AI extracts the session summary and routes it to the right log lane — devlog, daily-log, or work-log — then appends to today's file. |
 | 03 | **Env detection: absent / present branch** | The runtime detects the vault root and resolves the target path. If the file is absent, it creates a new one with the header and section skeleton. If the file already exists, it opens it and appends only to the AI's own section — no other content is touched. |
 | 04 | **Append-only: own section only** | Each AI writes only to its own section (`## Claude`, `## Codex`, etc.) at the end of that section. No reads or writes to any other section. Existing content is never touched. |
-| 05 | **Multi-AI shared file** | Claude, Codex, Gemini, and Copilot all share one file. Each appends to its own section. One day, one file, all AI activity. |
+| 05 | **3-lane model: devlog · daily-log · work-log** | One trigger, three lanes. Dev work goes to devlog, personal sessions to daily-log, project tasks to work-log. All three lanes share the same mechanism and the same LOG_CONTRACT. Claude, Codex, Gemini, and Copilot each append to their own section within whichever lane is active. |
 | 06 | **LOG_CONTRACT: zero conflicts** | LOG_CONTRACT formalizes section ownership, append-only rules, and env-detection procedure. All runtimes follow the same contract so concurrent writes never conflict. |
-| 07 | **Result: one log, full history** | At the end of the day, a single file holds all AI activity in time order. Vault search works across dates and keywords. |
+| 07 | **Result: one log, full history** | At the end of the day, each lane file holds all AI activity in time order. Vault search works across dates, keywords, and lanes. |
 | 08 | **Install: runtime-specific files** | Copy the file for your runtime from `packages/daily-log/` — `claude/`, `codex/`, `gemini/`, or `copilot/`. Set your vault root, then start with "log it". |
 
 ---

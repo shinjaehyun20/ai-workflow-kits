@@ -17,6 +17,7 @@
   --font:'Helvetica Neue',Arial,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
   --mono:'JetBrains Mono','Cascadia Code','Consolas',monospace;
   --step-count:8;
+  --dev:#7C3AED;--dev-dark:#6D28D9;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -334,8 +335,8 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
     </h1>
     <div class="redline" aria-hidden="true"></div>
     <p class="sub">
-      "기록해줘" 한 줄로 대화가 오늘 일지에 구조화된다.<br>
-      Claude · Codex · Gemini · Copilot이 같은 파일에, 각자 자기 섹션에.
+      "기록해줘" 한 줄 트리거로 대화가 오늘 일지에 구조화된다.<br>
+      devlog · daily-log · work-log 세 갈래, 각 AI 자기 섹션에 충돌 없이.
     </p>
     <button class="ctabtn" onclick="document.getElementById('stepper').scrollIntoView({behavior:'smooth'})" aria-label="인터랙티브 가이드로 이동">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -355,7 +356,11 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
     <span><b>LOG_CONTRACT</b></span>
     <span>섹션 소유권</span>
     <span><i>conflict: 0</i></span>
-    <span><b>Claude</b></span>
+    <span><b>devlog</b></span>
+    <span>daily-log</span>
+    <span><i>work-log</i></span>
+    <span><b>3-lane</b></span>
+    <span>Claude</span>
     <span>Codex</span>
     <span><i>Gemini</i></span>
     <span>Copilot</span>
@@ -365,7 +370,11 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
     <span><b>LOG_CONTRACT</b></span>
     <span>섹션 소유권</span>
     <span><i>conflict: 0</i></span>
-    <span><b>Claude</b></span>
+    <span><b>devlog</b></span>
+    <span>daily-log</span>
+    <span><i>work-log</i></span>
+    <span><b>3-lane</b></span>
+    <span>Claude</span>
     <span>Codex</span>
     <span><i>Gemini</i></span>
     <span>Copilot</span>
@@ -388,7 +397,7 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
       <button class="dot"    role="tab" aria-selected="false" aria-label="2단계" data-i="1"></button>
       <button class="dot"    role="tab" aria-selected="false" aria-label="3단계" data-i="2"></button>
       <button class="dot"    role="tab" aria-selected="false" aria-label="4단계" data-i="3"></button>
-      <button class="dot"    role="tab" aria-selected="false" aria-label="5단계" data-i="4"></button>
+      <button class="dot"    role="tab" aria-selected="false" aria-label="5단계: 3-lane" data-i="4"></button>
       <button class="dot"    role="tab" aria-selected="false" aria-label="6단계" data-i="5"></button>
       <button class="dot"    role="tab" aria-selected="false" aria-label="7단계" data-i="6"></button>
       <button class="dot"    role="tab" aria-selected="false" aria-label="8단계" data-i="7"></button>
@@ -452,18 +461,19 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
       </div>
 
       <!-- STEP 2 -->
-      <div class="step-card" role="tabpanel" aria-label="2단계: 트리거" id="panel-1">
+      <div class="step-card" role="tabpanel" aria-label="2단계: 트리거 한 줄" id="panel-1">
         <div class="card">
           <div class="card-text">
             <p class="card-step-num">Step 02</p>
             <h3>트리거:<br>"기록해줘" 한 줄</h3>
             <p class="desc">
-              대화를 마치고 "log it" 또는 "기록해줘"라고 입력한다.
-              AI 도구가 현재 대화에서 핵심을 추출해 오늘 일지에 구조화된 항목을 추가한다.
+              대화를 마치고 "log it" 또는 "기록해줘"처럼 한 줄 트리거를 입력한다.
+              AI가 대화 내용을 보고 devlog · daily-log · work-log 세 갈래 중 맞는 일지를 골라
+              오늘 파일의 내 섹션에 구조화된 항목을 append한다.
             </p>
             <div class="callout">
-              <strong>설계 원칙:</strong> 기록 명령은 자연어 한 줄.
-              타임스탬프·섹션·포맷은 LOG_CONTRACT가 결정한다.
+              <strong>설계 원칙:</strong> 트리거는 자연어 한 줄.
+              갈래 판단·타임스탬프·섹션·포맷은 LOG_CONTRACT가 결정한다.
             </div>
           </div>
           <div class="card-vis">
@@ -473,13 +483,13 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
                 <span>→ "기록해줘"</span>
               </div>
               <div class="m-bubble ai">
-                <span class="ai-tag">Claude · daily-log</span>
-                오늘 일지에 추가할게요.<br>
+                <span class="ai-tag">Claude · lane 판단</span>
+                개발 작업 → devlog 로 적재합니다.<br>
                 <div class="m-typing"><span></span><span></span><span></span></div>
               </div>
               <div class="m-bubble ai">
                 <span class="ai-tag">완료</span>
-                <vault>/logs/2025/06/2025-06-22-daily.md<br>
+                &lt;vault&gt;/devlogs/2025/06/2025-06-22-dev.md<br>
                 → Claude 섹션 14:32 항목 append ✓
               </div>
             </div>
@@ -579,51 +589,51 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
       </div>
 
       <!-- STEP 5 -->
-      <div class="step-card" role="tabpanel" aria-label="5단계: 멀티AI 공유" id="panel-4">
+      <div class="step-card" role="tabpanel" aria-label="5단계: 3-lane 모델" id="panel-4">
         <div class="card">
           <div class="card-text">
             <p class="card-step-num">Step 05</p>
-            <h3>멀티AI 공유:<br>같은 파일, 각자 섹션</h3>
+            <h3>3-lane 모델:<br>devlog · daily-log · work-log</h3>
             <p class="desc">
-              Claude, Codex, Gemini, Copilot 모두 같은 일지 파일을 공유한다.
-              각자 자기 섹션에만 기록하므로 충돌 없이 하루 전체 AI 활동이 한 곳에 모인다.
+              트리거 한 줄 → 내용에 따라 세 갈래 중 하나로 라우팅된다.
+              세 갈래 모두 같은 메커니즘: 환경 감지 → 오늘 파일 → 내 섹션 append.
+              각 갈래 파일 안에서 Claude · Codex · Gemini · Copilot이 자기 섹션에만 기록한다.
             </p>
             <div class="callout">
-              <strong>결과:</strong> 하루 끝에 한 파일을 열면
-              어떤 AI가 무엇을 했는지 시간순으로 보인다.
+              <strong>핵심:</strong> 갈래가 달라도 규약은 동일.
+              LOG_CONTRACT 하나로 세 파일 모두 충돌 없이 공유한다.
             </div>
           </div>
           <div class="card-vis">
-            <div class="m-shell m-multi">
-              <div class="m-ai-row">
-                <div class="m-ai-avatar ic-cl">Cl</div>
-                <div class="m-ai-content">
-                  <div class="m-ai-header" style="color:var(--red)">Claude</div>
-                  <div class="m-ai-entry">14:32 API 캐싱 레이어 설계 완료<br>15:10 단위 테스트 3건 추가</div>
+            <div class="m-shell" style="padding:16px">
+              <!-- trigger -->
+              <div style="text-align:center;margin-bottom:14px">
+                <span style="display:inline-block;padding:7px 18px;background:#1a1a2e;border:1px solid #2a2a4a;border-radius:var(--r);font-size:12.5px;color:var(--yellow);font-weight:700">"기록해줘" (log it)</span>
+                <div style="color:var(--gray50);font-size:11px;margin-top:6px">↓ 내용(case) 판단</div>
+              </div>
+              <!-- 3 lanes -->
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+                <div style="padding:10px 10px;background:#0d0a1a;border:1px solid #2a1a4a;border-top:2px solid var(--dev);border-radius:var(--r)">
+                  <div style="font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--dev);font-weight:800;margin-bottom:5px">devlog</div>
+                  <div style="font-size:11px;color:var(--gray50);line-height:1.55">코딩 · 개발<br>기술 작업</div>
+                  <div style="font-size:10px;color:#555;margin-top:5px;font-family:var(--mono)">dev.md</div>
+                </div>
+                <div style="padding:10px 10px;background:#0a0d0a;border:1px solid #1a2a1a;border-top:2px solid var(--green);border-radius:var(--r)">
+                  <div style="font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--green);font-weight:800;margin-bottom:5px">daily-log</div>
+                  <div style="font-size:11px;color:var(--gray50);line-height:1.55">개인 · 학습<br>일반 세션</div>
+                  <div style="font-size:10px;color:#555;margin-top:5px;font-family:var(--mono)">daily.md</div>
+                </div>
+                <div style="padding:10px 10px;background:#0a0a0d;border:1px solid #1a1a2a;border-top:2px solid var(--teal);border-radius:var(--r)">
+                  <div style="font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--teal);font-weight:800;margin-bottom:5px">work-log</div>
+                  <div style="font-size:11px;color:var(--gray50);line-height:1.55">업무 · 프로젝트<br>인수인계</div>
+                  <div style="font-size:10px;color:#555;margin-top:5px;font-family:var(--mono)">work.md</div>
                 </div>
               </div>
-              <div class="m-ai-row">
-                <div class="m-ai-avatar ic-co">Co</div>
-                <div class="m-ai-content">
-                  <div class="m-ai-header" style="color:#10a37f">Codex</div>
-                  <div class="m-ai-entry">11:05 PR #42 diff 분석<br>13:40 린트 오류 8건 수정</div>
-                </div>
+              <!-- shared contract badge -->
+              <div style="display:flex;align-items:center;gap:10px;padding:8px 12px;background:#060606;border:1px solid #222;border-left:3px solid var(--yellow);border-radius:var(--r)">
+                <span style="font-size:11px;font-weight:800;color:var(--yellow)">LOG_CONTRACT</span>
+                <span style="font-size:11px;color:var(--gray50)">세 갈래 공통 · 같은 규약 · 충돌 0</span>
               </div>
-              <div class="m-ai-row">
-                <div class="m-ai-avatar ic-gm">G</div>
-                <div class="m-ai-content">
-                  <div class="m-ai-header" style="color:#4285f4">Gemini</div>
-                  <div class="m-ai-entry">10:30 아키텍처 문서 요약<br>12:15 다이어그램 초안 생성</div>
-                </div>
-              </div>
-              <div class="m-ai-row">
-                <div class="m-ai-avatar ic-cp">Cp</div>
-                <div class="m-ai-content">
-                  <div class="m-ai-header" style="color:#1e73be">Copilot</div>
-                  <div class="m-ai-entry">09:00 코드 자동완성 인라인 제안<br>16:20 리뷰 코멘트 2건</div>
-                </div>
-              </div>
-              <div class="same-file-badge">모두 같은 파일 · 각자 자기 섹션</div>
             </div>
           </div>
         </div>
@@ -807,8 +817,8 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
     <div class="summary-grid">
       <div class="sg-card">
         <div class="sg-n">01 · 트리거</div>
-        <h4>"기록해줘" 한 마디</h4>
-        <p>대화가 끝날 때 자연어 한 줄로 기록을 요청한다. 포맷·경로·타임스탬프는 LOG_CONTRACT가 알아서 결정한다.</p>
+        <h4>한 줄 트리거로 시작</h4>
+        <p>"log it" 또는 "기록해줘"처럼 한 줄 트리거를 입력한다. 갈래 판단·경로·타임스탬프·포맷은 LOG_CONTRACT가 결정한다.</p>
       </div>
       <div class="sg-card">
         <div class="sg-n">02 · 섹션 소유권</div>
@@ -818,12 +828,12 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
       <div class="sg-card">
         <div class="sg-n">03 · 단일 진실</div>
         <h4>볼트 검색 하나로 전부</h4>
-        <p>하루 끝에 파일 하나에 모든 AI 활동이 시간순으로 쌓인다. 키워드로 날짜를 가로질러 검색할 수 있다.</p>
+        <p>하루 끝에 각 갈래 파일에 AI 활동이 시간순으로 쌓인다. 키워드로 날짜·갈래를 가로질러 검색할 수 있다.</p>
       </div>
       <div class="sg-card" style="grid-column:1/-1;border-top:2px solid var(--yellow)">
-        <div class="sg-n" style="color:var(--yellow)">04 · 두 가지 일지 유형</div>
-        <h4>daily-log와 work-log 분리</h4>
-        <p>개인 통합 일지(<strong>daily-log</strong>)와 업무 일지(<strong>work-log</strong>)를 분리해 같은 규약으로 운영할 수 있다. 경로와 섹션 이름만 다르게 설정하면 된다. 이 패키지는 패턴을 제공한다 — 경로와 섹션 이름은 본인 환경에 맞게 채운다.</p>
+        <div class="sg-n" style="color:var(--yellow)">04 · 3-lane 모델</div>
+        <h4>devlog · daily-log · work-log</h4>
+        <p>트리거 한 줄 → 내용에 따라 세 갈래 중 알맞은 일지에 적재된다. 개발(<strong>devlog</strong>), 개인·일상(<strong>daily-log</strong>), 업무(<strong>work-log</strong>) — 세 갈래 모두 같은 메커니즘과 LOG_CONTRACT를 공유한다. 경로만 분리하면 된다. 이 패키지는 패턴을 제공한다 — 경로와 섹션 이름은 본인 환경에 맞게 채운다.</p>
       </div>
     </div>
   </div>
@@ -855,10 +865,10 @@ footer h4{text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:#
 const TOTAL = 8;
 const TITLES = [
   '문제: 기록이 흩어진다',
-  '트리거: "기록해줘" 한 줄',
+  '트리거: 한 줄 트리거로 시작',
   '환경 감지: 오늘 일지 경로 보장',
   'Append-only: 내 섹션에만 추가',
-  '멀티AI 공유: 같은 파일, 각자 섹션',
+  '3-lane 모델: devlog · daily-log · work-log',
   'LOG_CONTRACT: 충돌을 0으로',
   '결과: 하나의 일지, 전체 히스토리',
   '시작하기: 런타임별 파일 설치'

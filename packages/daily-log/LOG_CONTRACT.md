@@ -6,7 +6,7 @@ This contract defines how multiple AI runtimes share a single daily log file wit
 
 One log file per day. Multiple AI runtimes read from it and write to it. Each AI writes only to its own named section. No AI overwrites, reorganizes, or removes content from another AI's section.
 
-This contract applies to any log type — a personal daily log (`daily-log`) and a work activity log (`work-log`) can each use this contract independently. Keep them in separate files.
+This contract applies to any log lane. Three lanes are defined: a development log (`devlog`), a personal daily log (`daily-log`), and a work activity log (`work-log`). Each lane uses the same mechanism — trigger, environment detection, today's file, append to own section — with a separate file per lane. All three follow the rules in this contract.
 
 ## File Location
 
@@ -18,7 +18,13 @@ Each team or user sets their own vault path. The recommended layout is:
 
 Replace `<vault>` with your local notes or workspace directory — for example, an Obsidian vault, a plain Markdown folder, or any directory you use for notes.
 
-One file per date. Create the `YYYY/MM/` folders lazily on first write. For a work log, use a parallel path such as `<vault>/work-logs/YYYY/MM/YYYY-MM-DD-work.md`.
+One file per date. Create the `YYYY/MM/` folders lazily on first write. For the three lanes, use parallel paths:
+
+```text
+<vault>/devlogs/YYYY/MM/YYYY-MM-DD-dev.md     (devlog)
+<vault>/logs/YYYY/MM/YYYY-MM-DD-daily.md       (daily-log)
+<vault>/work-logs/YYYY/MM/YYYY-MM-DD-work.md   (work-log)
+```
 
 ## File Header
 

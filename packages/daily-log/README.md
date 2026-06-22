@@ -46,7 +46,7 @@ Daily Log adds three habits to that loop:
 
 ## Session Recording Flow
 
-At the end of a conversation, say "log it" or "기록해줘". The AI then:
+At the end of a conversation, say a one-line trigger like "log it" or "기록해줘". The AI then:
 
 1. Detects the environment and resolves today's file path.
 2. Checks whether today's file already exists.
@@ -59,14 +59,15 @@ This "absent / present" branch is the core safety mechanism. It prevents overwri
 
 ## Log Types
 
-You can apply the same section contract to two distinct log types:
+One trigger, three lanes. Say "log it" (or "기록해줘") and the AI routes the session to the right log file based on content:
 
 | Log type | Purpose |
 | --- | --- |
+| **devlog** | Development log — coding sessions, technical work, build activity |
 | **daily-log** | Personal integrated log — sessions, learning, personal tasks |
 | **work-log** | Work activity log — project tasks, handoffs, work deliverables |
 
-Both follow the same LOG_CONTRACT rules. Keep them in separate files if your vault separates personal and work contexts.
+All three lanes use the same mechanism: trigger → environment detection → today's file → append to your section only. Same LOG_CONTRACT, same absent/present branch, same multi-AI section ownership. Keep each lane in a separate file if your vault separates contexts.
 
 ## Section Contract
 
