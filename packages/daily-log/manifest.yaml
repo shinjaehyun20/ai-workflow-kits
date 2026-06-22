@@ -1,0 +1,35 @@
+id: daily-log
+name: Daily Log
+description: Multi-AI structured daily journaling with a shared append-only section contract.
+category: logging
+status: active
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: active
+    path: claude/
+  gemini:
+    supported: true
+    status: draft
+    path: gemini/
+  copilot:
+    supported: true
+    status: draft
+    path: copilot/
+artifacts:
+  - skill
+  - command
+  - prompt
+  - instruction
+  - contract
+  - guide
+  - example
+evidence_required:
+  - log_file_path
+  - section_appended
+  - other_sections_unchanged
+  - verification_result

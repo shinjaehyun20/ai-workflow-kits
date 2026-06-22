@@ -21,7 +21,7 @@ BLOCKED_PATTERNS = [
     ("windows_drive_path", re.compile(r"\b[A-Za-z]:\\[^\s`\"']+")),
     ("windows_user_path", re.compile(r"\\Users\\|C:\\Users", re.IGNORECASE)),
     ("unix_user_path", re.compile(r"/Users/|/home/")),
-    ("private_drive_label", re.compile(r"내 드라이브|Downloads|Desktop|Obsidian|AppData", re.IGNORECASE)),
+    ("private_drive_label", re.compile(r"내 드라이브|Downloads|Desktop|AppData", re.IGNORECASE)),
     ("private_person_or_project", re.compile(r"Wylie|HF_|AXinnovation|조가인|신재현|재현|jaehy|shinjaehyun2018")),
     ("workspace_ids", re.compile(r"data_source_id|SLACK_WEBHOOK_URL|NOTION_TOKEN", re.IGNORECASE)),
     ("secret_words", re.compile(r"client_secret|refresh_token|access_token|authorization:|bearer\s+|password\s*[:=]|passwd\s*[:=]|api_key\s*[:=]|private[_-]?key", re.IGNORECASE)),

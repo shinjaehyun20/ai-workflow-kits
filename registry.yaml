@@ -54,6 +54,33 @@ packages:
       - instruction
       - example
       - guide
+  - id: daily-log
+    name: Daily Log
+    description: Shared daily journaling across multiple AI runtimes with an append-only section contract.
+    category: logging
+    status: active
+    path: packages/daily-log
+    runtimes:
+      codex:
+        status: active
+        path: packages/daily-log/codex
+      claude:
+        status: active
+        path: packages/daily-log/claude
+      gemini:
+        status: draft
+        path: packages/daily-log/gemini
+      copilot:
+        status: draft
+        path: packages/daily-log/copilot
+    artifacts:
+      - skill
+      - command
+      - prompt
+      - instruction
+      - contract
+      - guide
+      - example
   - id: github-publication-bundle
     name: GitHub Publication Bundle
     description: Public release workflow for user-authored workflow packages.

@@ -51,6 +51,7 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 | --- | --- | --- |
 | [`package-authoring`](packages/package-authoring/README.md) | Add public-safe packages and runtime artifacts consistently | Active |
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Active |
+| [`daily-log`](packages/daily-log/README.md) | Shared daily journaling across multiple AI runtimes with a section contract | Active |
 | [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Release user-authored workflow packages with readiness, verification, and GitHub surface sync | Active |
 | [`teamwork-preview`](packages/teamwork-preview/README.md) | Prepare worker-ready launch packets before multi-agent execution | Active |
 | [`agent-team-ops`](packages/agent-team-ops/README.md) | Stand up and operate a live multi-agent Claude Code team with remote control and conflict-safe fan-in | Experimental |
@@ -59,6 +60,8 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 `package-authoring` is the meta package for adding future skills, agents, prompts, hooks, commands, plugins, examples, and runtime adapters.
 
 `keepworking` is the first workflow package. It defines a long-running evidence-first loop with tiered routing, parallel worker dispatch, repair, and re-verification.
+
+`daily-log` is a shared daily journaling package. It defines a section contract where each AI runtime appends only to its own section in a shared log file — Claude, Codex, Gemini, and Copilot can all write to the same file without conflicts.
 
 `github-publication-bundle` is the release gate for public workflow packages. It blocks publication until install/use/verify docs, examples, verification evidence, and GitHub-facing source-of-truth updates are all present.
 
@@ -124,6 +127,7 @@ The repository also includes public-safe article series derived from completed w
 | [`packages/package-authoring/plugins/plugin-authoring-guide.ko.md`](packages/package-authoring/plugins/plugin-authoring-guide.ko.md) | Codex plugin structure, authoring steps, the three reference plugins, operating principles, and improvement roadmap |
 | [`docs/public-series`](docs/public-series/README.md) | Turn completed devlog cases into GitHub articles with 쉬운거, 중간, and 난이도 있는거 reading paths |
 | [`docs/guides/agent-vs-skill`](docs/guides/agent-vs-skill/README.md) | Agent vs Skill compared across Claude, Copilot, and Codex — layered analogy → developer code samples, with interactive HTML and a slide deck |
+| [`docs/guides/daily-log`](https://shinjaehyun20.github.io/ai-workflow-kits/docs/guides/daily-log/) | Multi-AI Daily Log workflow — 8-step interactive guide showing the session-recording flow, absent/present branch, section contract, and runtime install |
 
 Public guides are not private logs. They remove local paths, private names, credentials, and runtime state before publication.
 
