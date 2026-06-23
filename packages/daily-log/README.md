@@ -16,7 +16,7 @@ This package ships patterns and scaffolding templates — not a finished interna
 | I use... | Open this |
 | --- | --- |
 | Codex | `codex/skills/daily-log/SKILL.md` |
-| Claude Code | `claude/commands/daily-log.md` |
+| Claude Code | `claude/skills/daily-log/SKILL.md` |
 | Gemini | `gemini/prompts/daily-log-system-prompt.md` |
 | GitHub Copilot | `copilot/github/copilot-instructions.md` |
 
@@ -133,7 +133,7 @@ Copy the runtime folder you need into your AI workspace, then adapt local paths 
 
 ```text
 packages/daily-log/codex/     -> Codex skill pack
-packages/daily-log/claude/    -> Claude Code command pack
+packages/daily-log/claude/    -> Claude Code skill pack
 packages/daily-log/gemini/    -> Gemini prompt pack
 packages/daily-log/copilot/   -> GitHub Copilot instruction pack
 ```

@@ -86,7 +86,7 @@ AI 도구마다 자기 스타일로 로그를 만들면 같은 날 여러 AI가 
 | AI | 파일 위치 |
 | --- | --- |
 | Codex | `codex/skills/daily-log/SKILL.md` |
-| Claude Code | `claude/commands/daily-log.md` |
+| Claude Code | `claude/skills/daily-log/SKILL.md` |
 | Gemini | `gemini/prompts/daily-log-system-prompt.md` |
 | GitHub Copilot | `copilot/github/copilot-instructions.md` |
 

@@ -1,10 +1,11 @@
+---
+name: daily-log
+description: Append the current session's activity to the shared daily log. Triggered by natural-language phrases like "log it" or "기록해줘".
+---
+
 # daily-log
 
-Use this command to append the current session's activity to the shared daily log with a one-line trigger like "log it".
-
-```text
-/daily-log
-```
+Append the current session's activity to the shared daily log with a one-line trigger like "log it" or "기록해줘".
 
 Claude appends only to the `[Claude]` section. Other sections are read-only.
 
@@ -19,7 +20,7 @@ Claude appends only to the `[Claude]` section. Other sections are read-only.
 
 ## Log File Path
 
-Set your vault path before using this command:
+Set your vault path before using this skill:
 
 ```text
 <vault>/logs/YYYY/MM/YYYY-MM-DD-daily.md
@@ -88,7 +89,7 @@ daily-log saved: <path> — [Claude] section appended, N bullets
 
 ## Log Lane
 
-This command defaults to the `daily-log` lane. Depending on session content, route to the appropriate lane:
+This skill defaults to the `daily-log` lane. Depending on session content, route to the appropriate lane:
 
 | Lane | File | Use when |
 | --- | --- | --- |

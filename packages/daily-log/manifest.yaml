@@ -22,7 +22,6 @@ runtimes:
     path: copilot/
 artifacts:
   - skill
-  - command
   - prompt
   - instruction
   - contract
