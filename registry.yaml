@@ -187,3 +187,23 @@ packages:
       - instruction
       - example
       - guide
+  - id: design-spec-review
+    name: Design Spec Review
+    description: Compare a Figma design against its source screen-spec and produce a designer-facing confirm/fix request report.
+    category: design
+    status: active
+    path: packages/design-spec-review
+    runtimes:
+      claude:
+        status: active
+        path: packages/design-spec-review/claude
+      codex:
+        status: planned
+      gemini:
+        status: planned
+      copilot:
+        status: planned
+    artifacts:
+      - skill
+      - guide
+      - example

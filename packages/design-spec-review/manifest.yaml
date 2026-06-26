@@ -1,0 +1,28 @@
+id: design-spec-review
+name: Design Spec Review
+description: Compare a Figma design against its source screen-spec document and produce a designer-facing confirm/fix request report.
+category: design
+status: active
+runtimes:
+  claude:
+    supported: true
+    status: active
+    path: claude/
+  codex:
+    supported: false
+    status: planned
+  gemini:
+    supported: false
+    status: planned
+  copilot:
+    supported: false
+    status: planned
+artifacts:
+  - skill
+  - guide
+  - example
+evidence_required:
+  - base_spec_version
+  - exported_screens
+  - mismatch_findings
+  - report_path

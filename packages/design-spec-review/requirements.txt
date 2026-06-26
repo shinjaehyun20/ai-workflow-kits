@@ -1,0 +1,8 @@
+# design-spec-review — Python dependencies
+# install: pip install -r requirements.txt
+
+# Read screen-spec PPTX, recursing into group shapes and table cells
+python-pptx>=0.6.23
+
+# Optional: image cropping via Pillow when not using a platform image API
+Pillow>=10.0.0

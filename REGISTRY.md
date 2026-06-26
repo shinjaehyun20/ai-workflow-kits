@@ -11,6 +11,7 @@ This file is the human-readable catalog for AI Workflow Kits.
 | [`teamwork-preview`](packages/teamwork-preview/README.md) | Goal lock, grill-me review, and launch-packet workflow for safe multi-agent delegation | Active | Draft | Draft | Draft | Active |
 | [`agent-team-ops`](packages/agent-team-ops/README.md) | Stand up and operate a persistent multi-agent Claude Code team with remote control and conflict-safe fan-in | Draft | Draft | Draft | Draft | Experimental |
 | [`pet-companion`](packages/pet-companion/README.md) | Cross-runtime companion workflow with shared state contracts and external viewer | Active | Draft | Planned | Draft | Experimental |
+| [`design-spec-review`](packages/design-spec-review/README.md) | Compare a Figma design against its source screen-spec and produce a designer-facing confirm/fix report | Planned | Active | Planned | Planned | Active |
 
 ## Status Values
 
