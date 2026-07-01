@@ -115,7 +115,7 @@
 
 ---
 
-## 견본 2 — Claude 메타 스킬 (`session-to-skill/SKILL.md`)
+## 견본 2 — Claude 메타 스킬 (`session-to-claude-skill/session-to-skill/SKILL.md`)
 
 ### 무엇인가
 
@@ -231,7 +231,7 @@ Claude가 대화 히스토리를 분석한 뒤, 스킬 이름·설명·트리거
 
 | 항목 | 견본 1 (Copilot 에이전트) | 견본 2 (Claude 스킬) |
 |---|---|---|
-| 파일 | `planner.agent.md` | `session-to-skill/SKILL.md` |
+| 파일 | `planner.agent.md` | `session-to-claude-skill/session-to-skill/SKILL.md` |
 | AI 플랫폼 | GitHub Copilot | Claude Code / Claude.ai |
 | 설치 위치 | `.github/agents/` | `~/.claude/skills/<name>/` |
 | 활성화 방법 | 채팅 에이전트 드롭다운 선택 | 트리거 표현 입력 |

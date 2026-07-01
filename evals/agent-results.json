@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "suite": "ai-workflow-kits-agent-readiness",
+  "updated": "2026-07-01",
+  "metrics": [
+    {
+      "name": "context_path_validation",
+      "command": "python tools/validate-context-paths.py",
+      "target": "no broken non-placeholder context paths"
+    },
+    {
+      "name": "public_safety_scan",
+      "command": "python tools/public-safety-scan.py",
+      "target": "no private data or unsafe public artifacts"
+    }
+  ]
+}

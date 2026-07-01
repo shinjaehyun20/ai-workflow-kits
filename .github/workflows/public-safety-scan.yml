@@ -29,4 +29,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check PyYAML
 
       - name: Run public safety scan
-        run: python tools/public-safety-scan.py --history
+        run: python tools/public-safety-scan.py
+
+      - name: Validate context references
+        run: python tools/validate-context-paths.py

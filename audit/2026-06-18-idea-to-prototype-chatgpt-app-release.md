@@ -20,14 +20,14 @@ quality, add public submission support artifacts, leave a guide in
 ## Local App Package
 
 ```text
-D:\workspace\projects\active\proposal-workbench\gpt-apps\idea-to-prototype-app
+<WORKSPACE>\\projects\\active\\proposal-workbench\\gpt-apps\\idea-to-prototype-app
 ```
 
 ## Deployment
 
 - Provider: Vercel
 - Deployment ID: `dpl_CeCAQanYgLVcGvAq1G6bV2VsjF6t`
-- Deployment URL: `https://idea-to-prototype-br620yfxv-shinjaehyun2018-7231s-projects.vercel.app`
+- Deployment URL: `<vercel-preview-url>`
 - Production alias: `https://idea-to-prototype-app.vercel.app`
 
 ## Verification

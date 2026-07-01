@@ -47,7 +47,7 @@ AI tools do not share the same extension model.
 | Codex | `AGENTS.md`, skills, local verification loops |
 | Claude Code | agents, slash commands, hooks |
 | Gemini | system prompts, context files, adapter instructions |
-| GitHub Copilot | `.github/copilot-instructions.md`, prompts, repository guidance |
+| GitHub Copilot | repository guidance, prompts, and GitHub configuration files |
 
 This repository keeps the workflow intent in one place and publishes runtime-specific implementations beside it.
 

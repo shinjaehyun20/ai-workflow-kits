@@ -1,0 +1,8 @@
+# Default review ownership for public workflow package changes.
+* @shinjaehyun20
+
+# Package and runtime surface changes need explicit review.
+/packages/ @shinjaehyun20
+/runtimes/ @shinjaehyun20
+/core/ @shinjaehyun20
+/tools/ @shinjaehyun20

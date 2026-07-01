@@ -31,13 +31,13 @@ Platform 조직 인증과 Owner 권한 확인 후 dashboard에서 별도로 진�
 원본 Codex 플러그인:
 
 ```text
-C:\Users\jaehy\plugins\idea-to-prototype
+<USER_HOME>\\plugins\\idea-to-prototype
 ```
 
 ChatGPT 앱 래퍼:
 
 ```text
-D:\workspace\projects\active\proposal-workbench\gpt-apps\idea-to-prototype-app
+<WORKSPACE>\\projects\\active\\proposal-workbench\\gpt-apps\\idea-to-prototype-app
 ```
 
 이 둘은 자동 연동되지 않는다. 플러그인을 수정하면 앱 래퍼에 반영하고, 다시
@@ -48,7 +48,7 @@ D:\workspace\projects\active\proposal-workbench\gpt-apps\idea-to-prototype-app
 앱 래퍼 폴더에서 실행한다.
 
 ```powershell
-cd D:\workspace\projects\active\proposal-workbench\gpt-apps\idea-to-prototype-app
+cd <WORKSPACE>\\projects\\active\\proposal-workbench\\gpt-apps\\idea-to-prototype-app
 npm run sync:check
 ```
 
@@ -76,7 +76,7 @@ npm run verify:remote
 ## 공개 제출 패키지 위치
 
 ```text
-D:\workspace\projects\active\proposal-workbench\gpt-apps\idea-to-prototype-app\submission
+<WORKSPACE>\\projects\\active\\proposal-workbench\\gpt-apps\\idea-to-prototype-app\submission
 ```
 
 포함된 파일:
