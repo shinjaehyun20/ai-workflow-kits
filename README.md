@@ -8,7 +8,13 @@ Stop rewriting the same AI operating rules for every tool. Pick a workflow packa
 one workflow -> multiple AI runtimes -> evidence-first completion
 ```
 
+**Best for:** developers, AI-ops maintainers, prompt/workflow authors, and teams that want reusable AI-agent operating patterns without mixing every tool's configuration format.
+
+**Use it when:** you need a working policy, skill, prompt, agent, hook, or repository instruction that can be copied into one runtime and then verified with evidence.
+
 ## Start Here
+
+New to this repo? Open [`docs/getting-started.md`](docs/getting-started.md) first.
 
 | I use... | Open this |
 | --- | --- |
@@ -19,6 +25,18 @@ one workflow -> multiple AI runtimes -> evidence-first completion
 | Korean guide | [`packages/keepworking/docs/ko/keepworking-guide.md`](packages/keepworking/docs/ko/keepworking-guide.md) |
 | Plugin authoring guide | [`packages/package-authoring/plugins/plugin-authoring-guide.ko.md`](packages/package-authoring/plugins/plugin-authoring-guide.ko.md) |
 | Multi-agent launch packet | [`packages/teamwork-preview/`](packages/teamwork-preview/) |
+| Package catalog | [`REGISTRY.md`](REGISTRY.md) |
+| Discovery / GitHub surface checklist | [`docs/discovery-checklist.md`](docs/discovery-checklist.md) |
+
+## Copy Path
+
+1. Choose a package from [`REGISTRY.md`](REGISTRY.md).
+2. Open the package README and confirm the runtime support status.
+3. Copy only the runtime folder you actually use.
+4. Replace placeholders with your own project paths and verification commands.
+5. Run the relevant verification command and keep the evidence.
+
+For the full walkthrough, see [`docs/getting-started.md`](docs/getting-started.md).
 
 ## What This Is
 
@@ -112,11 +130,14 @@ Do not split one workflow across separate top-level `skills`, `agents`, and `pro
 ## Project Navigation
 
 - Package catalog: [`REGISTRY.md`](REGISTRY.md)
+- Getting started: [`docs/getting-started.md`](docs/getting-started.md)
 - GitHub About text and topics: [`docs/github-about.md`](docs/github-about.md)
+- Discovery checklist: [`docs/discovery-checklist.md`](docs/discovery-checklist.md)
 - Project board plan: [`docs/project-board.md`](docs/project-board.md)
 - Wiki source pages: [`docs/wiki/Home.md`](docs/wiki/Home.md)
 - Public safety guard: [`docs/publication-guard.md`](docs/publication-guard.md)
 - Contribution guide: [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- Security policy: [`SECURITY.md`](SECURITY.md)
 
 ## Public Guides
 

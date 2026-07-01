@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Workflow Kits</title>
+<title>AI Workflow Kits — copy-ready workflow packs for Codex, Claude Code, Gemini, Copilot</title>
+<meta name="description" content="Copy-ready AI workflow packs for Codex, Claude Code, Gemini, and GitHub Copilot. Reusable evidence-first agent operations, prompts, skills, commands, and repository instructions.">
+<meta property="og:title" content="AI Workflow Kits">
+<meta property="og:description" content="One workflow. Multiple AI runtimes. Evidence-first completion.">
+<meta property="og:type" content="website">
 <style>
   :root{--bg:#0b0d12;--panel:#13161d;--line:#262b36;--tx:#e8eaf0;--tx2:#9aa3b5;--red:#DA291C;--yellow:#F6E500}
   *{margin:0;padding:0;box-sizing:border-box}
@@ -30,6 +34,9 @@
   .more{margin-top:34px;display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
   .more a{color:var(--tx2);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
   .more a:hover{color:var(--tx);border-color:var(--red)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-top:18px}
+  .card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:16px;text-decoration:none;color:var(--tx)}
+  .card b{display:block;margin-bottom:4px}.card span{color:var(--tx2);font-size:13px}.card:hover{border-color:var(--red)}
   footer{color:#6b7283;font-size:12.5px;margin-top:46px;border-top:1px solid var(--line);padding-top:18px}
 </style>
 </head>
@@ -52,6 +59,13 @@
     <p style="margin-top:16px;font-size:14px;color:var(--tx2)">🔬 심화 —
       <a href="https://github.com/shinjaehyun20/ai-workflow-kits/blob/main/docs/guides/agent-skill-anatomy/README.md"
          style="color:var(--yellow);border-bottom:1px solid var(--line);text-decoration:none">실제 표본 해부 (Copilot 에이전트 · Claude 스킬) →</a></p>
+  </div>
+
+  <div class="grid" aria-label="Start links">
+    <a class="card" href="https://github.com/shinjaehyun20/ai-workflow-kits/blob/main/docs/getting-started.md"><b>Getting Started</b><span>처음 온 사람이 어디를 복사할지 고르는 5단계 가이드</span></a>
+    <a class="card" href="https://github.com/shinjaehyun20/ai-workflow-kits/blob/main/REGISTRY.md"><b>Package Registry</b><span>workflow package와 runtime 지원 상태 한눈에 보기</span></a>
+    <a class="card" href="https://github.com/shinjaehyun20/ai-workflow-kits/tree/main/packages/keepworking"><b>Keepworking</b><span>AI가 증거가 생길 때까지 repair/re-verify하는 운영 루프</span></a>
+    <a class="card" href="https://github.com/shinjaehyun20/ai-workflow-kits/blob/main/docs/discovery-checklist.md"><b>Discovery Checklist</b><span>GitHub 노출·참조성 점검 체크리스트</span></a>
   </div>
 
   <div class="more">

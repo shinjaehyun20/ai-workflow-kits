@@ -37,7 +37,8 @@ Do not add top-level artifact buckets such as `skills/`, `agents/`, or `plugins/
 4. If the package is public-facing, update the publication bundle:
    `README.md`, `docs/github-about.md`, `docs/project-board.md`, and `docs/wiki/`.
 5. Add or update at least one public-safe example when behavior changes.
-6. Run:
+6. If the change affects discoverability, update `docs/discovery-checklist.md` or `docs/github-about.md`.
+7. Run:
 
 ```powershell
 python tools/public-safety-scan.py --history
@@ -47,4 +48,4 @@ python tools/public-safety-scan.py --history
 
 Do not include private local paths, customer/project names, tokens, keys, logs, local audit trails, or generated delivery bundles.
 
-See [`docs/publication-guard.md`](docs/publication-guard.md).
+See [`docs/publication-guard.md`](docs/publication-guard.md) and [`SECURITY.md`](SECURITY.md).
