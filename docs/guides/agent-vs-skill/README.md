@@ -242,7 +242,7 @@ my-skill/
 ├── scripts/      (선택)
 ├── references/   (선택)
 ├── assets/       (선택)
-└── agents/openai.yaml  (선택 — Codex 전용 메타데이터)
+└── <agents/openai.yaml>  (선택 — Codex 전용 메타데이터)
 ```
 
 > 출처: https://developers.openai.com/codex/skills [SOURCE]

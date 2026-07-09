@@ -63,7 +63,7 @@ handoffs:
   - label: Continue to Architecture        # ③ 다음 단계로 잇는 버튼
     agent: architect
     prompt: |
-      Consume the plan at projects/active/{slug}/docs/planning/plan.md and
+      Consume the plan at projects/active/{slug}/docs/project-board.md and
       produce an architecture outline, module interfaces, and handoffs.
     send: true                              # 자동 전달
     showContinueOn: false
@@ -90,7 +90,7 @@ Plans describe steps for the USER or another agent to execute later.
 - source_agent: planner  ->  target_agent: architect
 ### required_paths
 - projects/active/{slug}/docs/specification/spec.md
-- projects/active/{slug}/docs/planning/plan.md
+- projects/active/{slug}/docs/project-board.md
 ### validation_checks
 - 출력 계획에 task, dependency, acceptance criteria 포함
 - 미완성 계획은 handoff 금지
@@ -170,9 +170,9 @@ handoff가 "연결선"이라면, **Handoff Contract는 "통관 심사"**다. 각
 ```text
 사용자: "기능 X 구현해줘"
   └▶ meta-router        → 구현 작업으로 분류, workflow-router로 분기
-     └▶ planner         → docs/planning/plan.md  (task·의존성·AC)
+     └▶ planner         → docs/project-board.md  (task·의존성·AC)
         │  [Continue to Architecture]
-        └▶ architect    → docs/architecture/architecture.md  (모듈경계·계약)
+        └▶ architect    → docs/ARCHITECTURE.md  (모듈경계·계약)
            │  [Continue to UI/UX]
            └▶ uiux       → 플로우·컴포넌트 계약
               │  [Pre-dev gate]
@@ -180,7 +180,7 @@ handoff가 "연결선"이라면, **Handoff Contract는 "통관 심사"**다. 각
                  │  [Develop]
                  └▶ developer  → docs/implementation/{guidance,patches}.md
                     │  [Test & Validate]            ↺ 실패 시 developer로 리포트
-                    └▶ test-specialist  → docs/testing/test-plan.md
+                    └▶ test-specialist  → docs/publication-guard.md
                        └▶ security-reviewer  → OWASP·Zero Trust 리뷰
 ```
 

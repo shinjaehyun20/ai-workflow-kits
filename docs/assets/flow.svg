@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="120" viewBox="0 0 760 120" font-family="Arial, sans-serif" role="img" aria-labelledby="title desc">
+  <title id="title">AI Workflow Kits package flow</title>
+  <desc id="desc">A three step workflow from teamwork-preview to agent-team-ops to keepworking.</desc>
+  <style>
+    .box { fill: #eef2ff; stroke: #4f46e5; stroke-width: 1.5; }
+    .title { fill: #111827; font-size: 15px; font-weight: 700; }
+    .body { fill: #374151; font-size: 12px; }
+    .arrow { fill: #4f46e5; font-size: 22px; font-weight: 700; }
+  </style>
+  <rect class="box" x="10" y="30" width="210" height="60" rx="8" />
+  <text class="title" x="30" y="56">teamwork-preview</text>
+  <text class="body" x="30" y="76">goal lock + launch packet</text>
+  <text class="arrow" x="242" y="67">&#8594;</text>
+  <rect class="box" x="280" y="30" width="210" height="60" rx="8" />
+  <text class="title" x="300" y="56">agent-team-ops</text>
+  <text class="body" x="300" y="76">run the live team</text>
+  <text class="arrow" x="512" y="67">&#8594;</text>
+  <rect class="box" x="550" y="30" width="200" height="60" rx="8" />
+  <text class="title" x="570" y="56">keepworking</text>
+  <text class="body" x="570" y="76">evidence-first loop</text>
+</svg>

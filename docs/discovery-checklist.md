@@ -12,6 +12,20 @@ A new visitor should understand these points without scrolling far:
 - which packages are active versus experimental
 - how to verify public safety before reuse
 
+## Visual surface
+
+A repository is scanned visually before it is read. Keep these present and current:
+
+- README badge row: license, supported runtimes, PRs welcome, last commit, stars
+- One hero diagram on the first screen, committed as an in-repo SVG
+- Step-by-step usage images hosted externally and linked by absolute URL
+- Social preview image set in repo Settings so shared links render a card
+- Alt text on every image for accessibility and search
+
+Binary constraint: this repo blocks binary media via public safety scanning. Commit
+only text assets such as SVG and badge URLs. Host PNG or GIF walkthrough images
+externally, then reference them by absolute link.
+
 ## GitHub About panel
 
 Recommended values are maintained in [`docs/github-about.md`](github-about.md).

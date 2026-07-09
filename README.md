@@ -1,5 +1,11 @@
 # AI Workflow Kits
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Runtimes](https://img.shields.io/badge/runtimes-Codex%20%7C%20Claude%20Code%20%7C%20Gemini%20%7C%20Copilot-blue)](#start-here)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+![Last Commit](https://img.shields.io/github/last-commit/shinjaehyun20/ai-workflow-kits)
+![Stars](https://img.shields.io/github/stars/shinjaehyun20/ai-workflow-kits?style=social)
+
 Copy-ready workflow packs for Codex, Claude Code, Gemini, and GitHub Copilot.
 
 Stop rewriting the same AI operating rules for every tool. Pick a workflow package, choose your runtime, and copy the native files into your workspace.
@@ -7,6 +13,8 @@ Stop rewriting the same AI operating rules for every tool. Pick a workflow packa
 ```text
 one workflow -> multiple AI runtimes -> evidence-first completion
 ```
+
+![Workflow flow](docs/assets/flow.svg)
 
 **Best for:** developers, AI-ops maintainers, prompt/workflow authors, and teams that want reusable AI-agent operating patterns without mixing every tool's configuration format.
 
@@ -47,7 +55,7 @@ AI tools do not share the same extension model.
 | Codex | `AGENTS.md`, skills, local verification loops |
 | Claude Code | agents, slash commands, hooks |
 | Gemini | system prompts, context files, adapter instructions |
-| GitHub Copilot | `.github/copilot-instructions.md`, prompts, repository guidance |
+| GitHub Copilot | repository guidance, prompts, and GitHub configuration files |
 
 This repository keeps the workflow intent in one place and publishes runtime-specific implementations beside it.
 

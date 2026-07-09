@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -eu
+python tools/public-safety-scan.py
+python tools/validate-context-paths.py
