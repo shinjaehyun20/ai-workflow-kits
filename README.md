@@ -24,12 +24,6 @@ one workflow -> multiple AI runtimes -> evidence-first completion
 
 New to this repo? Open [`docs/getting-started.md`](docs/getting-started.md) first.
 
-If you only have a minute, use this path:
-
-1. Pick the runtime row that matches your AI tool.
-2. Copy only that runtime folder into your project.
-3. Run the package verifier and keep the evidence before calling the work complete.
-
 | I use... | Open this |
 | --- | --- |
 | Codex | [`packages/keepworking/codex/`](packages/keepworking/codex/) |
