@@ -1,5 +1,11 @@
 # GitHub About
 
+## Applied portfolio surface
+
+- **Description:** Copy-ready AI workflow packs for Codex, Claude Code, Gemini, and GitHub Copilot.
+- **Homepage:** https://shinjaehyun20.github.io/ai-workflow-kits/
+- **Topics:** `agent-workflows`, `ai-agents`, `ai-workflows`, `automation`, `claude-code`, `codex`, `developer-tools`, `gemini`, `github-copilot`, `llmops`, `multi-agent`, `prompt-engineering`
+
 Use this content in the GitHub repository About panel.
 
 ## Description

@@ -10,6 +10,10 @@ Copy-ready workflow packs for Codex, Claude Code, Gemini, and GitHub Copilot.
 
 Stop rewriting the same AI operating rules for every tool. Pick a workflow package, choose your runtime, and copy the native files into your workspace.
 
+[![Open the live workflow gallery](docs/assets/portfolio-hero.svg)](https://shinjaehyun20.github.io/ai-workflow-kits/)
+
+**[Explore the live gallery](https://shinjaehyun20.github.io/ai-workflow-kits/)** · **[Choose a package](REGISTRY.md)** · **[Verify before publishing](docs/discovery-checklist.md)**
+
 ```text
 one workflow -> multiple AI runtimes -> evidence-first completion
 ```
