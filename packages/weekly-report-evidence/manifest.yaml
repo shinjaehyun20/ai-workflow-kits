@@ -1,0 +1,37 @@
+id: weekly-report-evidence
+name: Evidence-Backed Weekly Report
+description: Runtime-neutral weekly report workflow using daily work logs and prior-plan reconciliation.
+category: status-reporting
+status: active
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: true
+    status: draft
+    path: gemini/
+  copilot:
+    supported: true
+    status: draft
+    path: copilot/
+artifacts:
+  - contract
+  - skill
+  - instruction
+  - prompt
+  - example
+evidence_required:
+  - reporting_period
+  - source_coverage_ledger
+  - daily_work_log_review
+  - prior_plan_reconciliation
+  - verified_attribution
+  - saved_file_readback
+upstream_dependencies:
+  - packages/daily-work-log/

@@ -1,0 +1,38 @@
+id: daily-work-log
+name: Daily Work Log
+description: Runtime-neutral daily work record contract for evidence-backed weekly reporting.
+category: work-records
+status: active
+runtimes:
+  codex:
+    supported: true
+    status: active
+    path: codex/
+  claude:
+    supported: true
+    status: draft
+    path: claude/
+  gemini:
+    supported: true
+    status: draft
+    path: gemini/
+  copilot:
+    supported: true
+    status: draft
+    path: copilot/
+artifacts:
+  - contract
+  - skill
+  - instruction
+  - prompt
+  - example
+evidence_required:
+  - work_date
+  - source_coverage
+  - work_item_status
+  - evidence_label
+  - owner_scope
+  - next_action
+  - saved_file_readback
+upstream_consumers:
+  - packages/weekly-report-evidence/

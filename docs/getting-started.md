@@ -14,6 +14,8 @@ Recommended first packages:
 | If you want to... | Start with |
 | --- | --- |
 | make an AI agent keep repairing until evidence exists | [`keepworking`](../packages/keepworking/README.md) |
+| record evidence-backed daily work for a later status report | [`daily-work-log`](../packages/daily-work-log/README.md) |
+| turn daily work logs and a prior plan into a weekly report | [`weekly-report-evidence`](../packages/weekly-report-evidence/README.md) |
 | add new reusable workflow packages safely | [`package-authoring`](../packages/package-authoring/README.md) |
 | publish a workflow package without leaking private context | [`github-publication-bundle`](../packages/github-publication-bundle/README.md) |
 | prepare delegated multi-agent work | [`teamwork-preview`](../packages/teamwork-preview/README.md) |

@@ -21,7 +21,7 @@ AI Workflow Kits Roadmap
 | Field | Values |
 | --- | --- |
 | Status | Backlog, Ready, In Progress, Review, Done |
-| Package | package-authoring, keepworking, teamwork-preview, agent-team-ops, pet-companion, new-package |
+| Package | package-authoring, keepworking, daily-work-log, weekly-report-evidence, teamwork-preview, agent-team-ops, pet-companion, new-package |
 | Runtime | Codex, Claude Code, Gemini, GitHub Copilot, Cross-runtime |
 | Type | docs, package, adapter, example, scanner, project |
 | Priority | P0, P1, P2 |
@@ -37,6 +37,8 @@ AI Workflow Kits Roadmap
 | Expand keepworking Codex dry-run example | keepworking | Codex | example | P1 |
 | Expand keepworking Gemini example | keepworking | Gemini | example | P1 |
 | Expand keepworking Copilot prompt examples | keepworking | GitHub Copilot | example | P1 |
+| Add a cross-runtime daily-work-log example | daily-work-log | Cross-runtime | example | P1 |
+| Add runtime parity examples for weekly-report-evidence | weekly-report-evidence | Cross-runtime | example | P1 |
 | Add runtime parity examples for Teamwork Preview | teamwork-preview | Cross-runtime | example | P1 |
 | Validate agent-team-ops Claude runtime end to end | agent-team-ops | Claude Code | package | P1 |
 | Verify agent-team-ops tool + Remote-Control setup steps | agent-team-ops | Cross-runtime | docs | P1 |

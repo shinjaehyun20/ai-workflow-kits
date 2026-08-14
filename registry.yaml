@@ -81,6 +81,56 @@ packages:
       - contract
       - guide
       - example
+  - id: daily-work-log
+    name: Daily Work Log
+    description: Runtime-neutral evidence-backed work records for later weekly reporting.
+    category: work-records
+    status: active
+    path: packages/daily-work-log
+    runtimes:
+      codex:
+        status: active
+        path: packages/daily-work-log/codex
+      claude:
+        status: draft
+        path: packages/daily-work-log/claude
+      gemini:
+        status: draft
+        path: packages/daily-work-log/gemini
+      copilot:
+        status: draft
+        path: packages/daily-work-log/copilot
+    artifacts:
+      - contract
+      - skill
+      - prompt
+      - instruction
+      - example
+  - id: weekly-report-evidence
+    name: Evidence-Backed Weekly Report
+    description: Reconcile daily work logs, a prior plan, and supplementary evidence into a weekly report.
+    category: status-reporting
+    status: active
+    path: packages/weekly-report-evidence
+    runtimes:
+      codex:
+        status: active
+        path: packages/weekly-report-evidence/codex
+      claude:
+        status: draft
+        path: packages/weekly-report-evidence/claude
+      gemini:
+        status: draft
+        path: packages/weekly-report-evidence/gemini
+      copilot:
+        status: draft
+        path: packages/weekly-report-evidence/copilot
+    artifacts:
+      - contract
+      - skill
+      - prompt
+      - instruction
+      - example
   - id: github-publication-bundle
     name: GitHub Publication Bundle
     description: Public release workflow for user-authored workflow packages.
