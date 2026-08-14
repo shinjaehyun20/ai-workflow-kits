@@ -82,6 +82,8 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 | [`package-authoring`](packages/package-authoring/README.md) | Add public-safe packages and runtime artifacts consistently | Active |
 | [`keepworking`](packages/keepworking/README.md) | Keep AI agents working until evidence exists | Active |
 | [`daily-log`](packages/daily-log/README.md) | Shared daily journaling across multiple AI runtimes with a section contract | Active |
+| [`daily-work-log`](packages/daily-work-log/README.md) | Evidence-backed daily work records for later weekly reporting | Active |
+| [`weekly-report-evidence`](packages/weekly-report-evidence/README.md) | Reconcile daily work logs, prior plans, and evidence into a weekly report | Active |
 | [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Release user-authored workflow packages with readiness, verification, and GitHub surface sync | Active |
 | [`teamwork-preview`](packages/teamwork-preview/README.md) | Prepare worker-ready launch packets before multi-agent execution | Active |
 | [`agent-team-ops`](packages/agent-team-ops/README.md) | Stand up and operate a live multi-agent Claude Code team with remote control and conflict-safe fan-in | Experimental |
@@ -92,6 +94,10 @@ Evidence can be changed files, test output, build output, logs, screenshots, str
 `keepworking` is the first workflow package. It defines a long-running evidence-first loop with tiered routing, parallel worker dispatch, repair, and re-verification.
 
 `daily-log` is a shared daily journaling package. It defines a section contract where each AI runtime appends only to its own section in a shared log file — Claude, Codex, Gemini, and Copilot can all write to the same file without conflicts.
+
+`daily-work-log` records daily work facts with source coverage, status, evidence, confirmed owner scope, blockers, and next actions. It is the preferred daily source for `weekly-report-evidence`.
+
+`weekly-report-evidence` reconciles those daily work records with a prior plan and supplementary evidence without turning coverage gaps into missing-work claims.
 
 `github-publication-bundle` is the release gate for public workflow packages. It blocks publication until install/use/verify docs, examples, verification evidence, and GitHub-facing source-of-truth updates are all present.
 

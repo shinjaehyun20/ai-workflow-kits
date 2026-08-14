@@ -38,6 +38,13 @@ ai-agent-operations
 evidence-first
 ```
 
+## Current package focus
+
+- `daily-work-log`: a runtime-neutral daily work-record contract.
+- `weekly-report-evidence`: a runtime-neutral weekly-report contract that reads daily work logs first.
+
+Both packages ship native runtime adapters without making any one AI tool the source of truth.
+
 ## Social Preview Idea
 
 ```text

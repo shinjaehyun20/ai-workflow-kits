@@ -7,6 +7,8 @@ This file is the human-readable catalog for AI Workflow Kits.
 | [`package-authoring`](packages/package-authoring/README.md) | Meta workflow for adding public-safe packages and runtime artifacts | Active | Draft | Stub | Stub | Active |
 | [`keepworking`](packages/keepworking/README.md) | Long-running evidence-first workflow loop | Active | Active | Draft | Draft | Active |
 | [`daily-log`](packages/daily-log/README.md) | Shared daily journaling across multiple AI runtimes with a section contract | Active | Active | Draft | Draft | Active |
+| [`daily-work-log`](packages/daily-work-log/README.md) | Evidence-backed daily work records for later weekly reporting | Active | Draft | Draft | Draft | Active |
+| [`weekly-report-evidence`](packages/weekly-report-evidence/README.md) | Reconcile daily work logs, prior plans, and evidence into a weekly report | Active | Draft | Draft | Draft | Active |
 | [`github-publication-bundle`](packages/github-publication-bundle/README.md) | Public release workflow for user-authored packages with readiness and GitHub surface sync | Active | Active | Draft | Active | Active |
 | [`teamwork-preview`](packages/teamwork-preview/README.md) | Goal lock, grill-me review, and launch-packet workflow for safe multi-agent delegation | Active | Draft | Draft | Draft | Active |
 | [`agent-team-ops`](packages/agent-team-ops/README.md) | Stand up and operate a persistent multi-agent Claude Code team with remote control and conflict-safe fan-in | Draft | Draft | Draft | Draft | Experimental |
