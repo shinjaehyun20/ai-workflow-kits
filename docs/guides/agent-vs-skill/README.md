@@ -61,7 +61,7 @@ flowchart TD
 | **호출 방식** | 자동(description 매칭 위임) + 명시(이름 지목·@mention·세션 채택). Copilot은 명시/선택 중심 | 자동(description 매칭 로드) + 명시(`/skill명` 또는 `$skill명`). description이 트리거 핵심 |
 | **재사용 단위** | 한 개 Markdown(+YAML) 정의 파일 = 하나의 일꾼/페르소나 | SKILL.md 1개 + 번들 리소스 폴더 = 하나의 작업 패키지 |
 | **컨텍스트 비용** | 별도 컨텍스트 윈도우 새로 소비. 결과는 요약만 메인에 합류 | 점진적 공개 — 메타데이터만 상시, 본문은 트리거 시, 번들은 참조 시 로드(평소 최소) |
-| **대표 파일/위치** | Claude `.claude/agents/*.md` / Copilot `.github/agents/*.agent.md` / Codex `AGENTS.md` | 공통 `SKILL.md` — Claude `.claude/skills/<n>/` / Copilot `.github/skills/<n>/` / Codex `.agents/skills/<n>/` |
+| **대표 파일/위치** | Claude `.claude/agents/*.md` / Copilot `.github/agents/*.agent.md` / Codex `AGENTS.md` | 공통 `SKILL.md` — Claude `.claude/skills/<n>/` / Copilot `.github/skills/<n>/` / Codex configured skill root `<n>/SKILL.md` |
 | **대표 예시** | Claude code-reviewer 서브에이전트, Copilot test-specialist, Codex AGENTS.md | pdf-processing 스킬, github-actions-failure-debugging, Codex code-reviewer SKILL |
 
 ---
@@ -226,7 +226,7 @@ GitHub App에 정의하는 최대 5개 API 엔드포인트 모음. Copilot이 �
 
 > **교정**: SKILL.md 오픈 표준은 **Anthropic이 2025-12-18 공개·오픈소스화**하고 Codex가 채택한 것이다(OpenAI 원작 아님). 선행 기능 Custom Prompts는 deprecated.
 
-- **위치(현행)**: `.agents/skills`(레포 현재/부모/루트), `~/.agents/skills`, `/etc/codex/skills` + 빌트인
+- **위치(운영 확인 필요)**: Codex의 현재 설정이 가리키는 skill root 아래 `<name>/SKILL.md`. 프로젝트 `AGENTS.md`는 별도 지침 표면입니다. 고정 디렉터리를 일반 규칙으로 단정하지 말고 configured skill root와 새 세션 discovery로 확인합니다.
 - **호출**: 자동(name+description 프리로드 후 매칭) + 명시(`/skills` 또는 `$skill명`)
 
 ```
@@ -323,7 +323,7 @@ flowchart TD
 
     CO["OpenAI Codex"]
     CO_A["AGENTS.md (레포 루트)<br/>또는<br/>~/.codex/AGENTS.md"]
-    CO_S[".agents/skills/name/SKILL.md<br/>또는<br/>~/.agents/skills"]
+    CO_S["Configured Codex skill root<br/>name/SKILL.md"]
 
     ROOT --> CL
     ROOT --> CP

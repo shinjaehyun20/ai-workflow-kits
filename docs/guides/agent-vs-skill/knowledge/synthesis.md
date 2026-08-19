@@ -23,7 +23,7 @@
 | **호출 방식** | 자동(description 매칭 위임) + 명시(이름 지목·@-mention·세션 채택). Copilot은 명시/선택 중심 | 자동(description 매칭 로드) + 명시(`/skill명` 또는 `$skill명`). description이 트리거 핵심 |
 | **재사용 단위** | 한 개 Markdown(+YAML) 정의 파일 = 하나의 일꾼/페르소나 | SKILL.md 1개 + 번들 리소스 폴더 = 하나의 작업 패키지 |
 | **컨텍스트 비용** | 별도 컨텍스트 윈도우 새로 소비. 결과는 요약만 메인에 합류 | 점진적 공개 — 메타데이터만 상시, 본문은 트리거 시, 번들은 참조 시 로드(평소 최소) |
-| **대표 파일/위치** | Claude `.claude/agents/*.md` / Copilot `.github/agents/*.agent.md` / Codex `AGENTS.md` | 공통 `SKILL.md` — Claude `.claude/skills/<n>/` / Copilot `.github/skills/<n>/` / Codex `.agents/skills/<n>/` |
+| **대표 파일/위치** | Claude `.claude/agents/*.md` / Copilot `.github/agents/*.agent.md` / Codex `AGENTS.md` | 공통 `SKILL.md` — Claude `.claude/skills/<n>/` / Copilot `.github/skills/<n>/` / Codex configured skill root `<n>/SKILL.md` |
 | **대표 예시** | Claude code-reviewer 서브에이전트, Copilot test-specialist, Codex AGENTS.md | pdf-processing 스킬, github-actions-failure-debugging, Codex code-reviewer SKILL |
 
 ## 언제 무엇을 쓰나

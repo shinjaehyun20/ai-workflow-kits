@@ -32,7 +32,7 @@ Each workflow is organized by runtime-specific files. Copy only the folder that 
 | Gemini | prompt/context files and adapter notes |
 | GitHub Copilot | `.github/copilot-instructions.md`, prompts, PR guidance |
 
-Example for Keepworking:
+Example for Keepworking (only Codex and Claude Code are currently **Active**):
 
 ```text
 packages/keepworking/codex/      -> Codex workspace files
@@ -65,6 +65,7 @@ The scan checks public safety patterns, JSON/YAML parseability, and large/binary
 
 - This repo is not a package manager.
 - It does not install Codex, Claude Code, Gemini, or Copilot.
+- It does not perform automatic, signal-based model routing such as NVIDIA NeMo Switchyard-style escalation. Keepworking's tier is selected by the main chat; it is not an automatic control plane.
 - It does not make private workspace files safe automatically.
 - It provides reusable workflow source material that you review, copy, adapt, and verify.
 

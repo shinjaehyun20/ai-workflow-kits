@@ -1,6 +1,8 @@
 # Keepworking
 
-Keepworking is a copy-ready workflow package for AI work that should continue until evidence exists.
+**Your AI answered. Did it finish the work?**
+
+Keepworking is a copy-ready workflow package that carries AI work through execution, verification, repair, and re-verification until inspectable evidence exists.
 
 Use it when a task needs more than a one-shot answer:
 
@@ -12,12 +14,16 @@ Use it when a task needs more than a one-shot answer:
 
 ## Start Here
 
-| I use... | Open this |
-| --- | --- |
-| Codex | `codex/skills/keepworking/SKILL.md` |
-| Claude Code | `claude/agents/` |
-| Gemini | `gemini/prompts/keepworking-system-prompt.md` |
-| GitHub Copilot | `copilot/github/copilot-instructions.md` |
+| I use... | Status | Start here |
+| --- | --- | --- |
+| Codex | **Active** | `codex/skills/keepworking/SKILL.md` |
+| Claude Code | **Active** | [`claude/README.md`](claude/README.md) |
+| Gemini | Draft | `gemini/prompts/keepworking-system-prompt.md` |
+| GitHub Copilot | Draft | `copilot/github/copilot-instructions.md` |
+
+For a first install, use the active-runtime guide: [`docs/active-runtime-install-smoke.md`](docs/active-runtime-install-smoke.md).
+
+Draft adapters are source material under validation, not production-ready installation claims.
 
 Korean guide:
 
@@ -68,6 +74,12 @@ The router decides:
 3. Can any work split into independent branches?
 4. What evidence is required before closure?
 
+### Not an automatic model router
+
+`simple`, `medium`, and `complex` are decisions made by the main chat for the current action unit. Keepworking does **not** automatically select providers or escalate models from live cost, latency, tool, or error signals.
+
+[NVIDIA NeMo Switchyard](https://developer.nvidia.com/blog/route-ai-agent-workloads-across-models-with-nvidia-nemo-switchyard) is an optional advanced routing reference, not a Keepworking feature or performance claim. Any future routing layer needs its own provider-neutral contract, quality threshold, workload evaluation, and verifier.
+
 For non-trivial tasks, the router should also identify the current action unit:
 
 ```text
@@ -116,6 +128,7 @@ packages/keepworking/copilot/   -> GitHub Copilot instruction pack
 
 | Runtime | Case |
 | --- | --- |
+| Codex | [`docs/active-runtime-install-smoke.md`](docs/active-runtime-install-smoke.md) |
 | Claude Code | `claude/examples/repo-repair-case.ko.md` |
 | Gemini | `gemini/examples/research-synthesis-case.ko.md` |
 | GitHub Copilot | `copilot/github/prompts/keepworking-repair.prompt.md` |

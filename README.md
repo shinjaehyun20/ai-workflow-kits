@@ -8,7 +8,7 @@
 
 Copy-ready workflow packs for Codex, Claude Code, Gemini, and GitHub Copilot.
 
-Stop rewriting the same AI operating rules for every tool. Pick a workflow package, choose your runtime, and copy the native files into your workspace.
+**AI answered, but did not finish the work?** Start with Keepworking: execution → verification → repair → re-verification → evidence.
 
 [![Open the live workflow gallery](docs/assets/portfolio-hero.svg)](https://shinjaehyun20.github.io/ai-workflow-kits/)
 
@@ -30,10 +30,10 @@ New to this repo? Open [`docs/getting-started.md`](docs/getting-started.md) firs
 
 | I use... | Open this |
 | --- | --- |
-| Codex | [`packages/keepworking/codex/`](packages/keepworking/codex/) |
-| Claude Code | [`packages/keepworking/claude/`](packages/keepworking/claude/) |
-| Gemini | [`packages/keepworking/gemini/`](packages/keepworking/gemini/) |
-| GitHub Copilot | [`packages/keepworking/copilot/`](packages/keepworking/copilot/) |
+| Codex — Active | [`packages/keepworking/docs/active-runtime-install-smoke.md`](packages/keepworking/docs/active-runtime-install-smoke.md) |
+| Claude Code — Active | [`packages/keepworking/claude/README.md`](packages/keepworking/claude/README.md) |
+| Gemini — Draft | [`packages/keepworking/gemini/`](packages/keepworking/gemini/) |
+| GitHub Copilot — Draft | [`packages/keepworking/copilot/`](packages/keepworking/copilot/) |
 | Korean guide | [`packages/keepworking/docs/ko/keepworking-guide.md`](packages/keepworking/docs/ko/keepworking-guide.md) |
 | Plugin authoring guide | [`packages/package-authoring/plugins/plugin-authoring-guide.ko.md`](packages/package-authoring/plugins/plugin-authoring-guide.ko.md) |
 | Multi-agent launch packet | [`packages/teamwork-preview/`](packages/teamwork-preview/) |

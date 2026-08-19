@@ -363,7 +363,7 @@
         <tr><th>호출 방식</th><td class="ca">자동(description 매칭) + 명시(이름·@-mention·세션 채택)</td><td class="cs">자동(description 매칭) + 명시(<code>/skill명</code>·<code>$skill명</code>)</td></tr>
         <tr><th>재사용 단위</th><td class="ca">Markdown(+YAML) 정의 파일 1개 = 일꾼 하나</td><td class="cs">SKILL.md 1개 + 번들 폴더 = 작업 패키지 하나</td></tr>
         <tr><th>컨텍스트 비용</th><td class="ca">별도 컨텍스트 윈도우 새로 소비. 요약만 합류</td><td class="cs">점진적 공개 — 메타데이터만 상시, 본문/번들은 필요 시</td></tr>
-        <tr><th>대표 위치</th><td class="ca"><code>.claude/agents/</code> · <code>.github/agents/</code> · <code>AGENTS.md</code></td><td class="cs"><code>SKILL.md</code> (<code>.claude/skills/</code> · <code>.github/skills/</code> · <code>.agents/skills/</code>)</td></tr>
+        <tr><th>대표 위치</th><td class="ca"><code>.claude/agents/</code> · <code>.github/agents/</code> · <code>AGENTS.md</code></td><td class="cs"><code>SKILL.md</code> (<code>.claude/skills/</code> · <code>.github/skills/</code> · configured Codex skill root)</td></tr>
         <tr><th>대표 예시</th><td class="ca">code-reviewer 서브에이전트, test-specialist</td><td class="cs">pdf-processing, github-actions-failure-debugging</td></tr>
       </tbody>
     </table>
@@ -479,7 +479,7 @@ integration/e2e tests; focus only on test files.</code></pre>
               <p>호출 자동·실행당 1회. <b style="color:#fff">페르소나 아님 — 여러 에이전트가 공유</b></p></div>
             <div class="ibox s"><h4>Skill → Agent Skills</h4>
               <p>SKILL.md(name+description 필수) + scripts/·references/·assets/·<code>agents/openai.yaml</code>.</p>
-              <p>위치 <code>.agents/skills/&lt;name&gt;/</code> · <code>~/.agents/skills/</code></p>
+              <p>위치 <code>&lt;configured Codex skill root&gt;/&lt;name&gt;/SKILL.md</code></p>
               <p>호출 자동 + 명시(<code>/skills</code>·<code>$skill명</code>). 선행 Custom Prompts는 deprecated</p></div>
           </div>
           <div class="dev-only">
@@ -491,7 +491,7 @@ integration/e2e tests; focus only on test files.</code></pre>
 <span class="c">## Code style</span>
 - TypeScript strict mode; single quotes, no semicolons
 <span class="c"># 스키마 없음 — 32 KiB 한도까지 root→leaf 병합</span></code></pre>
-            <span class="filename">.agents/skills/code-reviewer/SKILL.md (+ 폴더)</span>
+            <span class="filename">&lt;configured Codex skill root&gt;/code-reviewer/SKILL.md (+ 폴더)</span>
 <pre><code><span class="fm">---</span>
 <span class="k">name</span>: code-reviewer
 <span class="k">description</span>: Reviews code for bugs, security, style. Use when the

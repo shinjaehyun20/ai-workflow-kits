@@ -110,7 +110,7 @@
 
 **(1) Agent Skills (SKILL.md)** — Claude/Codex와 같은 오픈 표준의 직접 대응물
 - **포맷**: `SKILL.md`(YAML frontmatter + 본문) + 선택 `scripts/`·`references/`·`assets/`.
-- **위치**: 프로젝트 `.github/skills/<name>/SKILL.md`(+`.claude/skills/`·`.agents/skills/` 자동탐지), 개인 `~/.copilot/skills/`. org/enterprise는 "coming soon"(현재 가용 여부 재확인 필요).
+- **위치**: 프로젝트 `.github/skills/<name>/SKILL.md`(+호환 skill root 자동탐지), 개인 `~/.copilot/skills/`. org/enterprise는 "coming soon"(현재 가용 여부 재확인 필요).
 - **필드**: `name`(필수), `description`(필수·호출 매칭의 핵심), `license`(선택), `allowed-tools`(선택). — Copilot은 이 4개만 문서화.
 - **호출**: 자동(description 매칭 로드).
 - **샘플** (`.github/skills/github-actions-failure-debugging/SKILL.md`):
@@ -169,9 +169,9 @@
 
 - **공식명**: Agent Skills (`SKILL.md`, "open agent skills standard"). 선행 기능 **Custom Prompts**는 DEPRECATED → Skills로 대체.
 - **정의**: `SKILL.md`(+선택 scripts/·references/·assets/·`agents/openai.yaml`)를 담은 재사용 워크플로우 폴더. name+description을 시작 시 프리로드, 관련 시에만 본문 로드.
-- **위치**(현행): `.agents/skills`(레포 현재/부모/루트), `~/.agents/skills`, `/etc/codex/skills` + 빌트인. (🔧 버전 차이: 초기 실험판 2025-12은 `~/.codex/skills` + `--enable skills` 플래그.)
+- **위치**(운영 확인 필요): Codex의 현재 설정이 가리키는 skill root 아래 `<skill-name>/SKILL.md`. 프로젝트 `AGENTS.md`는 별도 지침 표면이다. 설치 경로는 Codex 버전·설정에 따라 달라질 수 있으므로, 고정 디렉터리를 일반 규칙으로 단정하지 말고 configured skill root와 새 세션 discovery로 확인한다.
 - **호출**: 자동(name+desc 프리로드 후 매칭) + 명시(`/skills` 선택 또는 `$skill명`).
-- **샘플** (`.agents/skills/code-reviewer/SKILL.md` + 폴더):
+- **샘플** (`<configured CODEX_HOME>/skills/code-reviewer/SKILL.md` + 폴더):
   ```
   ---
   name: code-reviewer

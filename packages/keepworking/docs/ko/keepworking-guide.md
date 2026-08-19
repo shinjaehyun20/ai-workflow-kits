@@ -78,6 +78,12 @@ Goal 스킬로 목표와 종료 조건을 고정
 | Gemini | system prompt 중심 | 문맥 정리, 비교, 종합 설명에 적합 |
 | GitHub Copilot | repository instruction과 prompt 중심 | 코드 저장소 안에서 구현/검수 지침으로 쓰기 좋음 |
 
+## 선택형 고급 라우팅 참고
+
+Keepworking은 작업을 끝까지 닫는 실행·검증 루프입니다. `simple`·`medium`·`complex` 선택은 메인 채팅이 현재 action unit과 검증자에 따라 내리며, 비용·지연·도구 오류 신호로 모델을 자동 승격하는 기능은 제공하지 않습니다.
+
+[NVIDIA NeMo Switchyard](https://developer.nvidia.com/blog/route-ai-agent-workloads-across-models-with-nvidia-nemo-switchyard)는 향후 별도 control-plane을 검토할 때의 참고 사례입니다. 이 패키지의 기능, 비용 절감 결과, 특정 모델/provider 설정을 의미하지 않습니다. 자동 라우팅을 검토하려면 provider-neutral 계약, 품질 하한, 실제 workload 평가, verifier를 별도로 갖춰야 합니다.
+
 ## 언제 쓰나
 
 - 원인을 찾을 때까지 계속 디버깅해야 할 때
