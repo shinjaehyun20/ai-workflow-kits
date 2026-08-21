@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="0%" r="100%" fx="50%" fy="0%">
+      <stop offset="0%" stop-color="#1a2030" />
+      <stop offset="100%" stop-color="#0b0d12" />
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <text x="100" y="210" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#9aa3b5" letter-spacing="0.2em">COPY-READY WORKFLOW PACKS</text>
+  <rect x="100" y="240" width="120" height="4" fill="#DA291C" />
+  <text x="100" y="360" font-family="system-ui, sans-serif" font-size="96" font-weight="800" fill="#e8eaf0" letter-spacing="-0.02em">AI <tspan fill="#DA291C">Workflow</tspan> Kits</text>
+  <text x="100" y="440" font-family="system-ui, sans-serif" font-size="36" font-weight="400" fill="#9aa3b5">One workflow. Multiple AI runtimes. Evidence-first.</text>
+  <text x="100" y="520" font-family="system-ui, sans-serif" font-size="28" font-weight="600" fill="#F6E500">Codex · Claude Code · Gemini · GitHub Copilot</text>
+</svg>

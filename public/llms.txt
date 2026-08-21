@@ -1,0 +1,18 @@
+# AI Workflow Kits
+
+Copy-ready workflow packs for Codex, Claude Code, Gemini, and GitHub Copilot. Reusable evidence-first agent operations, prompts, skills, commands, and repository instructions.
+
+## Key Features
+- Evidence-first completion: AI workflows that require evidence of testing and verification before claiming a task is done.
+- Multiple Runtimes: Support for Codex, Claude Code, Gemini, and GitHub Copilot.
+- Agent vs Skill distinctions: Clear operational patterns for autonomous agents versus deterministic skills.
+
+## Runtimes Supported
+- Codex
+- Claude Code
+- Gemini
+- GitHub Copilot
+
+## Source
+Repository: https://github.com/shinjaehyun20/ai-workflow-kits
+Website: https://shinjaehyun20.github.io/ai-workflow-kits/
